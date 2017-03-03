@@ -1,0 +1,22 @@
+<template>
+	<div class="row">
+		<progress-tracker pages.bind="pages"></progress-tracker>
+	</div>
+	<div class="row">
+		<compose view-model="subforms/${activePage.pageKey}" model="report"></compose>
+	</div>
+	<div class="row next-prev-footer mt-2" if.bind="!onFirstPage && !onLastPage">
+		<div class="col-md-6">
+			<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="!hasPreviousPage" click.delegate="previousPage()">Tagasi</button>
+		</div>
+		<div class="col-md-6">
+			<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="!hasNextPage" click.delegate="nextPage()">Edasi</button>
+		</div>
+	</div>
+	<div class="row begin-footer mt-5" if.bind="onFirstPage">
+		<div class="col-md-6 col-md-offset-3">
+			<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="nextPage()">Alusta</button>
+		</div>
+	</div>
+	<top-scroller></top-scroller>
+</template>

@@ -1,0 +1,55 @@
+<template>
+	<h2>Teie kontaktandmed</h2>
+	<form class="mt-1">
+		<div class="row">
+			<div class="form-group required col-md-3">
+				<label for="phoneNumber" class="control-label">Telefoninumber</label>
+				<input type="tel" class="form-control" id="phoneNumber">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group required col-md-4">
+				<label for="email" class="control-label">E-post</label>
+				<input type="tel" class="form-control" id="email">
+			</div>
+		</div>
+		<div class="row">
+			<label class="col-form-legend col-md-3">Eelistatud kontaktmeetod</label>
+			<div class="form-group col-md-12">
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" name="preferredModeOfContact" value="telephone" checked="checked">
+						telefon
+					</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input class="form-check-input" type="radio" name="preferredModeOfContact" value="email">
+						e-mail
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label for="contactTime" class="control-label">Sobiv aeg kontakteerumiseks</label>
+				<input type="text" class="form-control" id="contactTime">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-5">
+				<label for="address" class="control-label">Aadress</label>
+				<input type="text" class="form-control" id="address">
+				<small class="form-text text-muted">Tänav, maja, korter, linn</small>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label for="municipality" class="control-label">Maakond</label>
+				<select class="form-control" id="municipality">
+					<option></option>
+				</select>
+			</div>
+		</div>
+	</form>
+</template>

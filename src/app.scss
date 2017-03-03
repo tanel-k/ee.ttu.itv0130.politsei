@@ -1,0 +1,110 @@
+$nav-height: 100px;
+$body-font-stack: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+$body-font-size: 1.5em;
+$body-font-weight: 400;
+$begin-footer-top-margin: 200px;
+$spacer-y: 25px;
+
+@mixin top-bottom-margin($margin) {
+	margin-top: $margin;
+	margin-bottom: $margin;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	/*
+	when nav is fixed:
+	margin-top: $nav-height + 10px;
+	*/
+	margin-bottom: 30px;
+	font-family: $body-font-stack;
+    font-size: $body-font-size;
+	font-weight: $body-font-weight;
+	
+	> nav {
+		height: $nav-height;
+		background-image: url(/images/bg-repeat.gif);
+		background-repeat: repeat-x;
+		padding-left: 10px;
+		border-bottom: none !important;
+		
+		img.logo {
+			height: $nav-height;
+		}
+	}
+	
+
+	form {
+		label {
+			font-weight: $body-font-weight !important;
+		}
+		
+		.form-group.required {
+			> .control-label:after {
+				content:"*";
+				color:red;
+			}
+		}
+	}
+	
+	.progress-indicator {
+		li:after {
+			content:"\0000a0";
+		}
+	}
+	
+	.removable-panel {
+		@include top-bottom-margin(20px);
+		.btn-remove {
+			display: block;
+			float: right;
+		}
+	}
+	
+	.damage-panel {
+		@extend .removable-panel;
+	}
+	
+	.suspect-panel {
+		@extend .removable-panel;
+	}
+	
+	.witness-panel {
+		@extend .removable-panel;
+	}
+	
+	.next-prev-footer {
+		margin-top: $begin-footer-top-margin / 4;
+	}
+	
+	.begin-footer {
+		margin-top: $begin-footer-top-margin;
+	}
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mt-1 {
+  margin-top: $spacer-y !important;
+}
+
+.mt-2 {
+  margin-top: 2*$spacer-y !important;
+}
+
+.mt-3 {
+  margin-top: 3*$spacer-y !important;
+}
+
+.mt-4 {
+  margin-top: 4*$spacer-y !important;
+}
+
+.mt-5 {
+  margin-top: 5*$spacer-y !important;
+}

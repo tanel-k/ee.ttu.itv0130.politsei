@@ -1,0 +1,44 @@
+<template>
+	<h2>Sündmus</h2>
+	<form class="mt-1">
+		<div class="row">
+			<div class="form-group required col-md-6">
+				<label class="control-label" for="eventDescription">Toimunu kirjeldus</label>
+				<textarea class="form-control" id="eventDescription" rows="6"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-2">
+				<label for="eventDate" class="control-label">Kuupäev</label>
+				<input type="date" class="form-control" id="eventDate">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-2">
+				<label for="eventTime" class="control-label">Kellaaeg</label>
+				<input type="time" class="form-control" id="eventTime">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label for="eventCountry" class="control-label">Riik</label>
+				<select class="form-control" id="eventCountry">
+					<option></option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-5">
+				<label for="eventAddress" class="control-label">Aadress</label>
+				<input type="text" class="form-control" id="eventAddress">
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4">
+				<label for="eventLocation" class="control-label">Toimumiskoht</label>
+				<input type="text" class="form-control" id="eventLocation">
+				<small class="form-text text-muted">Nt internet, park, kauplus</small>
+			</div>
+		</div>
+	</form>
+</template>

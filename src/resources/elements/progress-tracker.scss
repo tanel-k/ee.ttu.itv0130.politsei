@@ -1,0 +1,173 @@
+// colors
+$incomplete: #bbb !default;
+$complete: #65d074 !default;
+$active: #337AB7 !default;
+$hover: #5671d0 !default;
+
+$hover-weight: 500;
+$normal-weight: 400;
+$disabled-weight: 100;
+
+// sizing
+$bubble-size: 20px !default;
+$bubble-line-thickness: 3px !default;
+$border-thickness: 1px !default;
+$darken-amount: 20% !default;
+
+// misc
+$mobile-size: 400px !default;
+
+@mixin bubble-style($color) {
+    background-color: $color;
+    color: $color;
+    border-color: darken($color, $darken-amount);
+}
+@mixin unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.flexer {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+.no-flexer {
+    display: block;
+}
+.no-flexer-element {
+    -ms-flex: 0;
+    -webkit-flex: 0;
+    -moz-flex: 0;
+    flex: 0;
+}
+.flexer-element {
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    flex: 1;
+}
+.progress-indicator {
+    @extend .flexer;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    text-transform: uppercase;
+    margin-bottom: 1em;
+	// default state
+    > li {
+		@extend .flexer-element;
+		@include unselectable;
+        
+        list-style: none;
+        text-align: center;
+        width: auto;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        text-overflow: ellipsis;
+        color: $incomplete;
+        display: block;
+		font-weight: $normal-weight;
+		
+        &:hover {
+            color: darken($incomplete, $darken-amount);
+			cursor: pointer;
+			font-weight: $hover-weight;
+        }
+    }
+	
+	> li.threshod {
+	
+	}
+	
+	> li.new {
+		opacity: 0.5;
+		cursor: default;
+		color: $incomplete;
+		font-weight: $disabled-weight;
+	}
+
+    // completed state
+    > li.completed {
+        color: $complete;
+        .bubble {
+            @include bubble-style($complete);
+			&:before,
+			&:after {
+				background-color: $complete;
+				border-color: darken($complete, $darken-amount);
+			}
+        }
+		&:hover {
+			color: darken($complete, $darken-amount) !important;
+		}
+    }
+
+    // current state
+    > li.active {
+        color: $active;
+        .bubble {
+            @include bubble-style($active);
+			&:before,
+			&:after {
+				background-color: $active;
+				border-color: darken($active, $darken-amount);
+			}
+        }
+		&:hover {
+			color: darken($active, $darken-amount) !important;
+		}
+    }
+
+    > li .bubble {
+        border-radius: 1000px;
+        width: $bubble-size;
+        height: $bubble-size;
+        background-color: $incomplete;
+        display: block;
+        margin: 0 auto 0.5em auto;
+        border-bottom: $border-thickness solid darken($incomplete, 20%);
+    }
+
+    // line connectors
+    > li .bubble:before,
+    > li .bubble:after {
+        display: block;
+        position: absolute;
+        top: $bubble-size / 2 - $border-thickness;
+        width: 100%;
+        height: $bubble-line-thickness;
+        content: '';
+        background-color: $incomplete;
+    }
+    > li .bubble:before {
+        left: 0;
+    }
+    > li .bubble:after {
+        right: 0;
+    }
+
+    > li:first-child .bubble:before,
+    > li:first-child .bubble:after {
+        width: 50%;
+        margin-left: 50%;
+    }
+
+    > li:last-child .bubble:before,
+    > li:last-child .bubble:after {
+        width: 50%;
+        margin-right: 50%;
+    }
+}
+
+@media handheld, screen and (max-width: $mobile-size) {
+    .progress-indicator {
+        font-size: 60%;
+    }
+}

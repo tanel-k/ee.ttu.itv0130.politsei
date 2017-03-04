@@ -18,10 +18,7 @@ export class Report {
 
 export class Person {
 	constructor() {
-		// do not use required() here
-		ValidationRules
-			.ensure('email')
-				.email().withMessage('See pole korrektne e-maili aadress.');
+		// ValidationRules are not inheritable
 	}
 
 	firstName = 'John';
@@ -38,16 +35,20 @@ export class Person {
 export class Reporter extends Person {
 	constructor() {
 		super();
-		ValidationRules
+		// applyPersonValidationRules(this);
+		getPersonValidationRules()
 			.ensure('firstName')
 				.required().withMessage('See väli on kohustuslik.')
 			.ensure('lastName')
 				.required().withMessage('See väli on kohustuslik.')
 			.ensure('phoneNumber')
+				.maxLength(50).withMessage('Number on liiga pikk')
+				.minLength(5).withMessage('Number on liiga lühike')
 				.required().withMessage('See väli on kohustuslik.')
 			.ensure('email')
 				.required().withMessage('See väli on kohustuslik.')
-				.email().withMessage('See pole korrektne e-mail.')
+			.ensure('SSN')
+				.required().withMessage('See väli on kohustuslik.')
 			.on(this);
 		
 	}
@@ -60,10 +61,7 @@ export class Reporter extends Person {
 export class Suspect extends Person {
 	constructor() {
 		super();
-		ValidationRules
-			.ensure('email')
-				.email().withMessage('See pole korrektne e-mail.')
-			.on(this);
+		getPersonValidationRules().on(this);
 	}
 
 	description = '';
@@ -72,11 +70,20 @@ export class Suspect extends Person {
 export class Witness extends Person {
 	constructor() {
 		super();
-		ValidationRules
-			.ensure('email')
-				.email().withMessage('See pole korrektne e-mail.')
-			.on(this);
+		getPersonValidationRules().on(this);
 	}
+}
+
+function getPersonValidationRules() {
+	return ValidationRules
+		.ensure('phoneNumber')
+			.maxLength(50).withMessage('Number on liiga pikk')
+			.minLength(5).withMessage('Number on liiga lühike')
+		.ensure('email')
+			.required().withMessage('See väli on kohustuslik.')
+			.email().withMessage('See pole korrektne e-mail.')
+		.ensure('SSN')
+			.matches(/[1-6][0-9]{2}[1,2][0-9][0-9]{2}[0-9]{4}/).withMessage('Pole korrektne isikukood');
 }
 
 export class Event {
@@ -87,7 +94,7 @@ export class Event {
 			.on(this);
 	}
 
-	description = 'X';
+	description = 'Random text';
 	dateEvent = '';
 	timeEvent = '';
 	country = '';

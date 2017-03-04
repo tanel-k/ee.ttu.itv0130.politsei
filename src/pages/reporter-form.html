@@ -23,7 +23,7 @@
 						<div class="row">
 							<div class="form-group col-md-12">
 								<label for="SSN" class="control-label">Isikukood</label>
-								<input type="text" class="form-control" id="SSN">
+								<number-field value.bind="report.reporter.SSN & validate"></number-field>
 							</div>
 						</div>
 						<div class="row">
@@ -39,7 +39,7 @@
 		<div class="row">
 			<div class="form-group col-md-5">
 				<label for="nationality" class="control-label">Kodakondsus</label>
-				<select class="form-control" id="nationality">
+				<select class="form-control" id="nationality" value.bind="report.reporter.nationality & validate">
 					<option></option>
 				</select>
 			</div>
@@ -47,13 +47,13 @@
 		<div class="row">
 			<div class="form-group col-md-4">
 				<label for="occupation" class="control-label">Amet</label>
-				<input type="text" class="form-control" id="occupation">
+				<input type="text" class="form-control" id="occupation" value.bind="report.reporter.occupation & validate">
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-check col-md-5">
 				<label class="form-check-label">
-					<input type="checkbox" class="form-check-input control-label">&nbsp;&nbsp;Kannatanu on juriidiline isik
+					<input type="checkbox" class="form-check-input control-label" checked.bind="report.reporter.isJuridicialPerson">&nbsp;&nbsp;Kannatanu on juriidiline isik
 				</label>
 			</div>
 		</div>

@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="form-group required col-md-3">
 				<label for="phoneNumber" class="control-label">Telefoninumber</label>
-				<input type="tel" class="form-control" id="phoneNumber" value.bind="report.reporter.phoneNumber & validate">
+				<number-field value.bind="report.reporter.phoneNumber & validate"></number-field>
 			</div>
 		</div>
 		<div class="row">
@@ -18,13 +18,13 @@
 			<div class="form-group col-md-12">
 				<div class="form-check">
 					<label class="form-check-label">
-						<input class="form-check-input" type="radio" name="preferredModeOfContact" value="telephone" checked="checked">
+						<input class="form-check-input" type="radio" name="preferredModeOfContact" value="phone" checked.bind="report.reporter.preferredModeOfContact">
 						telefon
 					</label>
 				</div>
 				<div class="form-check">
 					<label class="form-check-label">
-						<input class="form-check-input" type="radio" name="preferredModeOfContact" value="email">
+						<input class="form-check-input" type="radio" name="preferredModeOfContact" value="email" checked.bind="report.reporter.preferredModeOfContact">
 						e-mail
 					</label>
 				</div>

@@ -1,7 +1,7 @@
 import {customElement, inject, bindable} from 'aurelia-framework';
 import 'jquery';
 
-@customElement('top-scroller')
+// @customElement('top-scroller')
 @inject(Element)
 export class TopScroller {
 	@bindable scrollDuration = 100;

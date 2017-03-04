@@ -35,6 +35,11 @@ export class Person {
 export class Reporter extends Person {
 	constructor() {
 		super();
+		ValidationRules
+			.ensure('firstName').required().withMessage('See väli on kohustuslik.')
+			.ensure('lastName').required().withMessage('See väli on kohustuslik.')
+			.on(this);
+		
 	}
 
 	preferredModeOfContact = 'phone';
@@ -58,7 +63,10 @@ export class Witness extends Person {
 
 export class Event {
 	constructor() {
-		
+		ValidationRules
+			.ensure('description')
+				.required().withMessage('See väli on kohustuslik.')
+			.on(this);
 	}
 
 	description = '';

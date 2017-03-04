@@ -1,10 +1,11 @@
 <template>
 	<h2>Sündmus</h2>
-	<form class="mt-1">
+	<form class="mt-1" validation-renderer="bootstrap-form">
 		<div class="row">
 			<div class="form-group required col-md-6">
 				<label class="control-label" for="eventDescription">Toimunu kirjeldus</label>
-				<textarea class="form-control" id="eventDescription" rows="6"></textarea>
+				<textarea class="form-control" id="eventDescription" rows="6" 
+					value.bind="report.event.description & validate"></textarea>
 			</div>
 		</div>
 		<div class="row">

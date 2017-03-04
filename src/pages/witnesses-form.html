@@ -1,9 +1,9 @@
 <template>
-	<h2>Süüdlased</h2>
-	<button type="button" class="btn btn-primary btn-lg btn-block mt-1">Lisa süüdlane</button>
+	<h2>Tunnistajad</h2>
+	<button type="button" class="btn btn-primary btn-lg btn-block mt-1">Lisa tunnistaja</button>
 	<div class="panel panel-default suspect-panel">
 		<div class="panel-body">
-			<form>
+			<form validation-renderer="bootstrap-form">
 				<div class="row">
 					<div class="col-md-1 pull-right">
 						<button type="button" class="btn btn-danger btn-md btn-remove">
@@ -59,13 +59,6 @@
 						<label for="address" class="control-label">Aadress</label>
 						<input type="text" class="form-control" id="address">
 						<small class="form-text text-muted">Tänav, maja, korter, linn</small>
-					</div>
-				</div>
-				<br/>
-				<div class="row">
-					<div class="form-group col-md-8">
-						<label class="control-label" for="eventDescription">Tundemärgid</label>
-						<textarea class="form-control" id="eventDescription" rows="3"></textarea>
 					</div>
 				</div>
 			</form>

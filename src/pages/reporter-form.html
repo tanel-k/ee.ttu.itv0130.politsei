@@ -1,16 +1,18 @@
 <template>
 	<h2>Teie isikuandmed</h2>
-	<form class="mt-1">
+	<form class="mt-1" validation-renderer="bootstrap-form">
 		<div class="row">
 			<div class="form-group required col-md-3">
 				<label for="firstName" class="control-label">Eesnimi</label>
-				<input type="text" class="form-control" id="firstName">
+				<input type="text" class="form-control" id="firstName" 
+					value.bind="report.reporter.firstName & validate">
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group required col-md-3">
 				<label for="lastName" class="control-label">Perenimi</label>
-				<input type="text" class="form-control" id="lastName">
+				<input type="text" class="form-control" id="lastName"
+					value.bind="report.reporter.lastName & validate">
 			</div>
 		</div>
 		<div class="row">

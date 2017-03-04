@@ -16,11 +16,11 @@ export class TrackerClickedEvent {
 
 @inject(EventAggregator)
 export class ProgressTracker {
+	@bindable pages = [];
+
 	constructor(eventAggregator) {
 		this.eventAggregator = eventAggregator;
 	}
-
-	@bindable pages = [];
 
 	trackerClick(pageKey) {
 		let targetPage = this.pages.find(page => page.pageKey == pageKey);

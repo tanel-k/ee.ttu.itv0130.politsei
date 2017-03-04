@@ -1,23 +1,27 @@
-import {inject} from 'aurelia-framework';
+import {inject, bindable, NewInstance} from 'aurelia-framework';
 import {Report} from './models';
 import {progressState, TrackerClickedEvent} from './resources/elements/progress-tracker';
 import {EventAggregator} from 'aurelia-event-aggregator';
+import {ValidationController, validateTrigger} from 'aurelia-validation';
+import 'jquery';
 
-@inject(EventAggregator)
+@inject(EventAggregator, NewInstance.of(ValidationController))
 export class ReportForm {
-	constructor(eventAggregator) {
+	constructor(eventAggregator, validationController) {
 		this.eventAggregator = eventAggregator;
+		validationController.validateTrigger = validateTrigger.changeOrBlur;
+		this.validationController = validationController;
 		this.report = new Report();
 		
 		this.pages = [
-			{ pageKey: 'instructions-form', name: 'Juhend' },
-			{ pageKey: 'event-form', name: 'Sündmus' },
-			{ pageKey: 'reporter-form', name: 'Isikuandmed' },
-			{ pageKey: 'reporter-contact-form', name: 'Kontaktandmed' },
-			{ pageKey: 'damages-form', name: 'Varaline kahju' },
-			{ pageKey: 'suspects-form', name: 'Süüdistatavad' },
-			{ pageKey: 'witnesses-form', name: 'Tunnistajad' },
-			{ pageKey: 'submission-form', name: 'Esitamine' }
+			{ pageKey: 'instructions-form.html', name: 'Juhend' },
+			{ pageKey: 'event-form.html', name: 'Sündmus' },
+			{ pageKey: 'reporter-form.html', name: 'Isikuandmed' },
+			{ pageKey: 'reporter-contact-form.html', name: 'Kontaktandmed' },
+			{ pageKey: 'damages-form.html', name: 'Varaline kahju' },
+			{ pageKey: 'suspects-form.html', name: 'Süüdistatavad' },
+			{ pageKey: 'witnesses-form.html', name: 'Tunnistajad' },
+			{ pageKey: 'submission-form.html', name: 'Esitamine' }
 		];
 		this.pages.forEach((page, i) => {
 			page.progressState = progressState.unvisited;
@@ -57,30 +61,34 @@ export class ReportForm {
 		let isPageValid = true;
 		let backNav = targetPage.staticIndex < this.thresholdPage.staticIndex;
 		
-		if (backNav || isPageValid) {	
-			if (backNav) {
-				// back to visited page
-				this.activePage.progressState = progressState.threshold;
-			} else {
-				// next pressed && valid
-				this.activePage.progressState = progressState.visited;
-				this.thresholdPage = targetPage;
-				
-			}
-			
-			targetPage.progressState = progressState.current;
-			this.activePage = targetPage;
+		if (backNav) {
+			this.activePage.progressState = progressState.threshold;
+			this.navigateToPage(targetPage);
+			return;
 		}
+		
+		this.validationController.validate().then(result => {
+			if (result.valid) {
+				this.thresholdPage = targetPage;
+				this.activePage.progressState = progressState.visited;
+				this.navigateToPage(targetPage);
+			}
+		});
 	}
 
 	navigateFromVisited(targetPage) {
-		let isPageValid = true;
-		
-		if (isPageValid) {
-			this.activePage.progressState = progressState.visited;
-			targetPage.progressState = progressState.current;
-			this.activePage = targetPage;
-		}
+		this.validationController.validate().then(result => {
+			if (result.valid) {
+				this.activePage.progressState = progressState.visited;
+				this.navigateToPage(targetPage);
+			}
+		});
+	}
+
+	navigateToPage(targetPage) {
+		targetPage.progressState = progressState.current;
+		this.activePage = targetPage;
+		this.scrollTop();
 	}
 
 	get hasPreviousPage() {
@@ -94,7 +102,7 @@ export class ReportForm {
 	get onFirstPage() {
 		return this.activePage.staticIndex == 0;
 	}
-	
+
 	get onLastPage() {
 		return this.activePage.staticIndex == this.pages.length - 1;
 	}
@@ -102,7 +110,6 @@ export class ReportForm {
 	nextPage() {
 		if (this.hasNextPage) {
 			let targetPage = this.findPageByIndex(this.activePage.staticIndex + 1);
-			console.log(targetPage);
 			this.doNavigation(targetPage);
 		}
 	}
@@ -110,7 +117,6 @@ export class ReportForm {
 	previousPage() {
 		if (this.hasPreviousPage) {
 			let targetPage = this.findPageByIndex(this.activePage.staticIndex - 1);
-			console.log(targetPage);
 			this.doNavigation(targetPage);
 		}
 	}
@@ -125,5 +131,10 @@ export class ReportForm {
 
 	findPageByIndex(index) {
 		return this.pages.find(page => page.staticIndex == index);
+	}
+
+	scrollTop() {
+		// document.body.scrollTop = 0;
+		$('html, body').animate({ scrollTop: 0 }, 100, 'linear');
 	}
 }

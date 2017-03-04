@@ -1,12 +1,16 @@
 <template>
 	<h2>Varaline kahju</h2>
-	<button type="button" class="btn btn-primary btn-lg btn-block mt-1">Lisa ära võetud/viidud/saamata jäänud vara</button>
-	<div class="panel panel-default damage-panel">
+	<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addDamage()">Lisa ära võetud/viidud/saamata jäänud vara</button>
+	<div repeat.for="damage of report.damages" class="panel panel-default damage-panel removable-panel" id="damage-${$index}">
 		<div class="panel-body">
 			<form validation-renderer="bootstrap-form">
 				<div class="row">
+					<div class="col-md-4">
+						<h3>Kahju andmed</h3>
+					</div>
 					<div class="col-md-1 pull-right">
-						<button type="button" class="btn btn-danger btn-md btn-remove">
+						<button type="button" class="btn btn-danger btn-md btn-remove" 
+							click.delegate="removeDamage($index)">
 							<i class="fa fa-times"></i>
 						</button>
 					</div>
@@ -14,17 +18,17 @@
 				<div class="row">
 					<div class="form-group col-md-4">
 						<label class="control-label">Vara nimetus</label>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" value.bind="damage.name & validate">
 					</div>
 					<div class="form-group col-md-3 col-md-offset-2">
 						<label class="control-label">Ligikaudne hetkeväärtus (€)</label>
-						<input type="number" class="form-control">
+						<input type="number" class="form-control" value.bind="damage.valueEstimate & validate">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-2">
 						<label class="control-label">Soetamise aasta</label>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" value.bind="damage.yearOfPurchase & validate">
 					</div>
 				</div>
 				<br/>
@@ -36,13 +40,13 @@
 								<div class="row">
 									<div class="form-group col-md-5">
 										<label class="control-label">Kuupäev</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value.bind="damage.dateLastHad & validate">
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-md-3">
 										<label class="control-label">Kellaaeg</label>
-										<input type="time" class="form-control">
+										<input type="time" class="form-control" value.bind="damage.timeLastHad & validate">
 									</div>
 								</div>
 							</div>
@@ -55,13 +59,13 @@
 								<div class="row">
 									<div class="form-group col-md-5">
 										<label class="control-label">Kuupäev</label>
-										<input type="date" class="form-control">
+										<input type="date" class="form-control" value.bind="damage.dateNoticedMissing & validate">
 									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-md-3">
 										<label class="control-label">Kellaaeg</label>
-										<input type="time" class="form-control">
+										<input type="time" class="form-control" value.bind="damage.timeNoticedMissing & validate">
 									</div>
 								</div>
 							</div>
@@ -72,7 +76,7 @@
 				<div class="row">
 					<div class="form-group col-md-8">
 						<label class="control-label" for="eventDescription">Eritunnused ja tundemärgid</label>
-						<textarea class="form-control" id="eventDescription" rows="3"></textarea>
+						<textarea class="form-control" id="eventDescription" rows="3" value.bind="damage.description & validate"></textarea>
 						<small class="form-text text-muted">Sealhulgas IMEI kood, seerianumber jms</small>
 					</div>
 				</div>

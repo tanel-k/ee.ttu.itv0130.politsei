@@ -1,8 +1,11 @@
 $nav-height: 100px;
+$begin-footer-top-margin: 200px;
+
 $body-font-stack: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 $body-font-size: 1.5em;
 $body-font-weight: 400;
-$begin-footer-top-margin: 200px;
+$body-bottom-margin: 100px;
+
 $spacer-y: 25px;
 
 @mixin top-bottom-margin($margin) {
@@ -19,7 +22,7 @@ body {
 	when nav is fixed:
 	margin-top: $nav-height + 10px;
 	*/
-	margin-bottom: 30px;
+	margin-bottom: $body-bottom-margin;
 	font-family: $body-font-stack;
     font-size: $body-font-size;
 	font-weight: $body-font-weight;

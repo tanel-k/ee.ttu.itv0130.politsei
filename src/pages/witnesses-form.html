@@ -1,12 +1,16 @@
 <template>
 	<h2>Tunnistajad</h2>
-	<button type="button" class="btn btn-primary btn-lg btn-block mt-1">Lisa tunnistaja</button>
-	<div class="panel panel-default suspect-panel">
+	<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addWitness()">Lisa tunnistaja</button>
+	<div repeat.for="witness of report.witnesses"  class="panel panel-default witness-panel removable-panel" id="witness-${$index}">
 		<div class="panel-body">
 			<form validation-renderer="bootstrap-form">
 				<div class="row">
+					<div class="col-md-4">
+						<h3>Tunnistaja andmed</h3>
+					</div>
 					<div class="col-md-1 pull-right">
-						<button type="button" class="btn btn-danger btn-md btn-remove">
+						<button type="button" class="btn btn-danger btn-md btn-remove" 
+							click.delegate="removeWitness($index)">
 							<i class="fa fa-times"></i>
 						</button>
 					</div>
@@ -14,50 +18,50 @@
 				<div class="row">
 					<div class="form-group col-md-3">
 						<label class="control-label">Eesnimi</label>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" value.bind="witness.firstName & validate">
 					</div>
 					<div class="form-group col-md-3 col-md-offset-3">
 						<label class="control-label">Perenimi</label>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" value.bind="witness.lastName & validate">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-3">
 						<label class="control-label">Isikukood</label>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" value.bind="witness.SSN & validate">
 					</div>
 					<div class="form-group col-md-2 col-md-offset-3">
 						<label class="control-label">Sünniaeg</label>
-						<input type="date" class="form-control">
+						<input type="date" class="form-control" value.bind="witness.dateOfBirth & validate">
 					</div>
 				</div>
 				<br/>
 				<div class="row">
 					<div class="form-group col-md-4">
 						<label class="control-label">Kodakondsus</label>
-						<select class="form-control">
+						<select class="form-control" value.bind="witness.nationality & validate">
 							<option></option>
 						</select>
 					</div>
 					<div class="form-group col-md-4 col-md-offset-2">
 						<label class="control-label">Amet</label>
-						<input type="text" class="form-control">
+						<input type="text" class="form-control" value.bind="witness.occupation & validate">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-3">
 						<label class="control-label">Telefoninumber</label>
-						<input type="tel" class="form-control">
+						<input type="tel" class="form-control" value.bind="witness.phoneNumber & validate">
 					</div>
 					<div class="form-group col-md-4 col-md-offset-3">
 						<label class="control-label">E-post</label>
-						<input type="tel" class="form-control">
+						<input type="tel" class="form-control" value.bind="witness.email & validate">
 					</div>
 				</div>
 				<div class="row">
 					<div class="form-group col-md-5">
 						<label for="address" class="control-label">Aadress</label>
-						<input type="text" class="form-control" id="address">
+						<input type="text" class="form-control" id="address" value.bind="witness.address & validate">
 						<small class="form-text text-muted">Tänav, maja, korter, linn</small>
 					</div>
 				</div>

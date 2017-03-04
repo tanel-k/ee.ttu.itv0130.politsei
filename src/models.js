@@ -19,16 +19,19 @@ export class Report {
 export class Person {
 	constructor() {
 		// do not use required() here
+		ValidationRules
+			.ensure('email')
+				.email().withMessage('See pole korrektne e-maili aadress.');
 	}
 
-	firstName = '';
-	lastName = '';
+	firstName = 'John';
+	lastName = 'Doe';
 	SSN = '';
 	dateOfBirth = '';
 	nationality = '';
 	occupation = '';
-	phoneNumber = '';
-	email = '';
+	phoneNumber = '55514212';
+	email = 'john-doe@domain.com';
 	address = '';
 }
 
@@ -36,8 +39,15 @@ export class Reporter extends Person {
 	constructor() {
 		super();
 		ValidationRules
-			.ensure('firstName').required().withMessage('See väli on kohustuslik.')
-			.ensure('lastName').required().withMessage('See väli on kohustuslik.')
+			.ensure('firstName')
+				.required().withMessage('See väli on kohustuslik.')
+			.ensure('lastName')
+				.required().withMessage('See väli on kohustuslik.')
+			.ensure('phoneNumber')
+				.required().withMessage('See väli on kohustuslik.')
+			.ensure('email')
+				.required().withMessage('See väli on kohustuslik.')
+				.email().withMessage('See pole korrektne e-mail.')
 			.on(this);
 		
 	}
@@ -50,6 +60,10 @@ export class Reporter extends Person {
 export class Suspect extends Person {
 	constructor() {
 		super();
+		ValidationRules
+			.ensure('email')
+				.email().withMessage('See pole korrektne e-mail.')
+			.on(this);
 	}
 
 	description = '';
@@ -58,6 +72,10 @@ export class Suspect extends Person {
 export class Witness extends Person {
 	constructor() {
 		super();
+		ValidationRules
+			.ensure('email')
+				.email().withMessage('See pole korrektne e-mail.')
+			.on(this);
 	}
 }
 
@@ -69,7 +87,7 @@ export class Event {
 			.on(this);
 	}
 
-	description = '';
+	description = 'X';
 	dateEvent = '';
 	timeEvent = '';
 	country = '';

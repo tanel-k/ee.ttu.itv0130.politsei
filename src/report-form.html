@@ -2,20 +2,31 @@
 	<div class="row">
 		<progress-tracker pages.bind="pages" class="hidden-sm hidden-xs"></progress-tracker>
 	</div>
-	<div class="row">
+	<div class="row form-area">
 		<compose view="pages/${activePage.pageKey}" model="report"></compose>
 	</div>
 	<div class="row next-prev-footer mt-2" if.bind="!onFirstPage && !onLastPage">
 		<div class="col-md-6">
-			<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="!hasPreviousPage" click.delegate="previousPage()">Tagasi</button>
+			<button type="button" class="btn btn-secondary btn-lg btn-block" click.delegate="previousPage()">Tagasi</button>
 		</div>
 		<div class="col-md-6">
-			<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="!hasNextPage" click.delegate="nextPage()">Edasi</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="nextPage()">Edasi</button>
 		</div>
 	</div>
 	<div class="row begin-footer mt-4" if.bind="onFirstPage">
 		<div class="col-md-12">
 			<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="nextPage()">Alusta</button>
+		</div>
+	</div>
+	<div class="row next-prev-footer mt-2" if.bind="onLastPage">
+		<div class="col-md-4">
+			<button type="button" class="btn btn-secondary btn-lg btn-block" click.delegate="previousPage()">Tagasi</button>
+		</div>
+		<div class="col-md-4">
+			<button type="button" disabled class="btn btn-primary btn-lg btn-block">Kinnita ja allkirjasta ID kaardiga</button>
+		</div>
+		<div class="col-md-4">
+			<button type="button" disabled class="btn btn-primary btn-lg btn-block">Kinnita allkirjastamata</button>
 		</div>
 	</div>
 	<top-scroller class="hidden-sm hidden-xs"></top-scroller>

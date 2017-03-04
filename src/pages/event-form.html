@@ -11,19 +11,19 @@
 		<div class="row">
 			<div class="form-group col-md-2">
 				<label for="eventDate" class="control-label">Kuupäev</label>
-				<input type="date" class="form-control" id="eventDate">
+				<input type="date" class="form-control" id="eventDate" value.bind="report.event.dateEvent & validate">
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-md-2">
 				<label for="eventTime" class="control-label">Kellaaeg</label>
-				<input type="time" class="form-control" id="eventTime">
+				<input type="time" class="form-control" id="eventTime" value.bind="report.event.timeEvent & validate">
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-md-4">
 				<label for="eventCountry" class="control-label">Riik</label>
-				<select class="form-control" id="eventCountry">
+				<select class="form-control" id="eventCountry" value.bind="report.event.country">
 					<option></option>
 				</select>
 			</div>
@@ -31,13 +31,13 @@
 		<div class="row">
 			<div class="form-group col-md-5">
 				<label for="eventAddress" class="control-label">Aadress</label>
-				<input type="text" class="form-control" id="eventAddress">
+				<input type="text" class="form-control" id="eventAddress" value.bind="report.event.address">
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-md-4">
 				<label for="eventLocation" class="control-label">Toimumiskoht</label>
-				<input type="text" class="form-control" id="eventLocation">
+				<input type="text" class="form-control" id="eventLocation" value.bind="report.event.location">
 				<small class="form-text text-muted">Nt internet, park, kauplus</small>
 			</div>
 		</div>

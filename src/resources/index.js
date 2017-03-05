@@ -2,6 +2,8 @@ export function configure(config) {
 	config.globalResources([
 		'./elements/top-scroller',
 		'./elements/progress-tracker',
-		'./elements/number-field'
+		'./elements/currency-field',
+		'./elements/year-field',
+		'./value-converters/trim'
 	]);
 }

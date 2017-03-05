@@ -3,7 +3,7 @@
 		<progress-tracker pages.bind="pages" class="hidden-sm hidden-xs"></progress-tracker>
 	</div>
 	<div class="row form-area">
-		<compose view="pages/${activePage.pageKey}" model="report"></compose>
+		<compose view-model="forms/${activePage.pageKey}" model.bind="report"></compose>
 	</div>
 	<div class="row next-prev-footer mt-2" if.bind="!onFirstPage && !onLastPage">
 		<div class="col-md-6">

@@ -1,0 +1,24 @@
+Validation
+----------
+dates
+times
+years
+currency
+
+date or SSN
+
+UX
+--
+focus on page shift
+scroll to error
+
+Content
+-------
+Summary page
+Select fields
+	country
+	nationality
+
+Nice-to-have
+------------
+i-18n

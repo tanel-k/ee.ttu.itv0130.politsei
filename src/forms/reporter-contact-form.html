@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="form-group required col-md-3">
 				<label for="phoneNumber" class="control-label">Telefoninumber</label>
-				<number-field value.bind="report.reporter.phoneNumber & validate"></number-field>
+				<input class="form-control" type="text" steal-focus="input" value.bind="report.reporter.phoneNumber & validate">
 			</div>
 		</div>
 		<div class="row">

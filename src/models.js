@@ -1,5 +1,7 @@
 import {ValidationRules} from 'aurelia-validation';
 
+let requiredMsg = 'See väli on kohustuslik';
+
 export class Report {
 	constructor() {
 		
@@ -23,7 +25,7 @@ export class Person {
 
 	firstName = 'John';
 	lastName = 'Doe';
-	SSN = '';
+	SSN = '39210130864';
 	dateOfBirth = '';
 	nationality = '';
 	occupation = '';
@@ -38,17 +40,15 @@ export class Reporter extends Person {
 		// applyPersonValidationRules(this);
 		getPersonValidationRules()
 			.ensure('firstName')
-				.required().withMessage('See väli on kohustuslik.')
+				.required().withMessage(requiredMsg)
 			.ensure('lastName')
-				.required().withMessage('See väli on kohustuslik.')
+				.required().withMessage(requiredMsg)
 			.ensure('phoneNumber')
-				.maxLength(50).withMessage('Number on liiga pikk')
-				.minLength(5).withMessage('Number on liiga lühike')
-				.required().withMessage('See väli on kohustuslik.')
+				.required().withMessage(requiredMsg)
 			.ensure('email')
-				.required().withMessage('See väli on kohustuslik.')
+				.required().withMessage(requiredMsg)
 			.ensure('SSN')
-				.required().withMessage('See väli on kohustuslik.')
+				.required().withMessage(requiredMsg)
 			.on(this);
 		
 	}
@@ -77,20 +77,18 @@ export class Witness extends Person {
 function getPersonValidationRules() {
 	return ValidationRules
 		.ensure('phoneNumber')
-			.maxLength(50).withMessage('Number on liiga pikk')
-			.minLength(5).withMessage('Number on liiga lühike')
+			.satisfiesRule('phoneNumberContent').withMessage('See pole korrektne telefoninumber')
 		.ensure('email')
-			.required().withMessage('See väli on kohustuslik.')
 			.email().withMessage('See pole korrektne e-mail.')
 		.ensure('SSN')
-			.matches(/[1-6][0-9]{2}[1,2][0-9][0-9]{2}[0-9]{4}/).withMessage('Pole korrektne isikukood');
+			.satisfiesRule('SSN').withMessage('See pole korrektne isikukood');
 }
 
 export class Event {
 	constructor() {
 		ValidationRules
 			.ensure('description')
-				.required().withMessage('See väli on kohustuslik.')
+				.required().withMessage(requiredMsg)
 			.on(this);
 	}
 
@@ -104,7 +102,12 @@ export class Event {
 
 export class Damage {
 	constructor() {
-		
+		ValidationRules
+			.ensure('valueEstimate')
+				.satisfiesRule('currency').withMessage('See pole korrektne summa.')
+			.ensure('yearOfPurchase')
+				.satisfiesRule('year').withMessage('Aasta peab olema neljakohaline number. Minimaalselt 1900.')
+			.on(this);
 	}
 
 	name = '';

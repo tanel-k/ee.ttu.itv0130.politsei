@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="form-group required col-md-3">
 				<label for="firstName" class="control-label">Eesnimi</label>
-				<input type="text" class="form-control" id="firstName" 
+				<input steal-focus type="text" class="form-control" id="firstName" 
 					value.bind="report.reporter.firstName & validate">
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 						<div class="row">
 							<div class="form-group col-md-12">
 								<label for="SSN" class="control-label">Isikukood</label>
-								<number-field value.bind="report.reporter.SSN & validate"></number-field>
+								<input class="form-control" type="text"  value.bind="report.reporter.SSN & validate">
 							</div>
 						</div>
 						<div class="row">

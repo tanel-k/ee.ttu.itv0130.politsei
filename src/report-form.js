@@ -8,7 +8,7 @@ import 'jquery';
 @inject(EventAggregator, NewInstance.of(ValidationController))
 export class ReportForm {
 	fadeOutDuration = 300;
-	fadeInDuration = 100;
+	fadeInDuration = 750;
 	
 	constructor(eventAggregator, validationController) {
 		this.eventAggregator = eventAggregator;
@@ -17,14 +17,14 @@ export class ReportForm {
 		this.report = new Report();
 		
 		this.pages = [
-			{ pageKey: 'instructions-form.html', name: 'Juhend' },
-			{ pageKey: 'event-form.html', name: 'Sündmus' },
-			{ pageKey: 'reporter-form.html', name: 'Isikuandmed' },
-			{ pageKey: 'reporter-contact-form.html', name: 'Kontaktandmed' },
-			{ pageKey: 'damages-form.html', name: 'Varaline kahju' },
-			{ pageKey: 'suspects-form.html', name: 'Süüdlased' },
-			{ pageKey: 'witnesses-form.html', name: 'Tunnistajad' },
-			{ pageKey: 'submission-form.html', name: 'Esitamine' }
+			{ pageKey: 'instructions-form', name: 'Juhend', loadBind: 'alertFalse' },
+			{ pageKey: 'event-form', name: 'Sündmus' },
+			{ pageKey: 'reporter-form', name: 'Isikuandmed' },
+			{ pageKey: 'reporter-contact-form', name: 'Kontaktandmed' },
+			{ pageKey: 'damages-form', name: 'Varaline kahju' },
+			{ pageKey: 'suspects-form', name: 'Süüdlased' },
+			{ pageKey: 'witnesses-form', name: 'Tunnistajad' },
+			{ pageKey: 'submission-form', name: 'Esitamine' }
 		];
 		this.pages.forEach((page, i) => {
 			page.progressState = progressState.unvisited;
@@ -39,29 +39,6 @@ export class ReportForm {
 
 	attached() {
 		this.formArea = document.body.querySelector('.form-area');
-		
-		
-		let fadeInDuration = this.fadeInDuration;
-		this.removablePanelObserver = new MutationObserver(function(mutations) {
-			mutations.forEach(function(mutation) {
-				if (!mutation.addedNodes) return
-				
-				for (var i=0; i<mutation.addedNodes.length; i++) {
-					let node = mutation.addedNodes[i];
-					if (node.classList 
-						&& node.classList.contains('removable-panel')) {
-						$('html, body').animate({scrollTop: $(node).offset().top}, fadeInDuration, 'linear');
-					}
-				}
-			});
-		});
-		
-		this.removablePanelObserver.observe(this.formArea, {
-			childList: true, 
-			subtree: true, 
-			attributes: false, 
-			characterData: false
-		});
 	}
 
 	activate() {
@@ -141,20 +118,13 @@ export class ReportForm {
 	}
 
 	clearEmptyObjects() {
-		[this.report.damages].forEach(array => this.clearEmptyObjectsInArr(array));
+		[
+		 this.report.damages, 
+		 this.report.suspects, 
+		 this.report.witnesses
+		].forEach(array => clearEmptyObjectsInArr(array));
 	}
 
-	clearEmptyObjectsInArr(array) {
-		let removeIndexes = [];
-		
-		array.forEach((obj, index) => {
-			if (Object.values(obj).every(value => !value && !value.trim())) {
-				removeIndexes.push(index);
-			}
-		});
-		
-		removeIndexes.forEach(index => array.splice(index, 1));
-	}
 
 	navigateFromThreshold(targetPage) {
 		let isPageValid = true;
@@ -187,7 +157,6 @@ export class ReportForm {
 	performNavigation(targetPage) {
 		targetPage.progressState = progressState.current;
 		this.activePage = targetPage;
-		this.scrollTop();
 		this.clearEmptyObjects();
 	}
 
@@ -216,8 +185,16 @@ export class ReportForm {
 	findPageByIndex(index) {
 		return this.pages.find(page => page.staticIndex == index);
 	}
+}
 
-	scrollTop() {
-		$('html, body').animate({ scrollTop: 0 }, 100, 'linear');
-	}
+function clearEmptyObjectsInArr(array) {
+	let removeIndexes = [];
+	
+	array.forEach((obj, index) => {
+		if (Object.values(obj).every(value => !value && !value.trim())) {
+			removeIndexes.push(index);
+		}
+	});
+	
+	removeIndexes.forEach(index => array.splice(index, 1));
 }

@@ -124,24 +124,29 @@
 				]
 			},
 			{
-				"name": "jquery-ui",
-				"path": "../node_modules/jquery-ui",
-				"main": "ui/core",
-				"deps": ["jquery"],
+				"name": "jquery-clockpicker",
+				"path": "../node_modules/jquery-clockpicker/dist",
+				"main": "js/jquery-clockpicker",
+				"deps": ["jquery", "bootstrap"],
+				"exports": "$",
 				"resources": [
-					"themes/base/theme.css",
-					"themes/base/core.css",
-					"themes/base/base.css"
+					"jquery-clockpicker.css"
 				]
 			},
 			{
-				"name": "jquery-ui-datepicker",
-				"path": "../node_modules/jquery-ui",
-				"main": "ui/widgets/datepicker",
-				"deps": ["jquery-ui"],
+				"name": "bootstrap-datepicker",
+				"path": "../node_modules/bootstrap-datepicker/dist",
+				"main": "js/bootstrap-datepicker.min",
+				"deps": ["bootstrap"],
 				"resources": [
-				  "themes/base/datepicker.css"
+					"css/bootstrap-datepicker.standalone.css"
 				]
+			},
+			{
+				"name": "bootstrap-datepicker-i18n-et",
+				"path": "../node_modules/bootstrap-datepicker/dist/",
+				"main": "locales/bootstrap-datepicker.et.min",
+				"deps": ["bootstrap-datepicker"]
 			},
 			{
 				"name": "aurelia-validation",
@@ -166,6 +171,15 @@
 			}
 		]
 	  }
-	]
+	],
+	"copyFiles": {
+		"node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2": "bootstrap/fonts",
+		"node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff": "bootstrap/fonts",
+		"node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf": "bootstrap/fonts",
+		"node_modules/jquery-clockpicker/dist/jquery-clockpicker.js": "scripts/third-party/",
+		"node_modules/jquery-clockpicker/dist/jquery-clockpicker.css": "css/",
+		"node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css": "css/",
+		"node_modules/font-awesome/css/font-awesome.min.css": "css/"
+	}
   }
 }

@@ -4,6 +4,7 @@ dates
 times
 date or SSN
 
+
 UX
 --
 focus on page shift
@@ -18,5 +19,6 @@ Select fields
 
 Nice-to-have
 ------------
+lock buttons to bottom of screen
 i-18n
 mobile view

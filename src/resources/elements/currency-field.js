@@ -3,7 +3,7 @@ import {bindable, bindingMode, inject} from 'aurelia-framework';
 @inject(Element)
 export class CurrencyField {
 	@bindable({ defaultBindingMode: bindingMode.twoWay }) value;
-	@bindable id = '';
+	@bindable guid = '';
 	
 	constructor(element) {
 		this.element = element;

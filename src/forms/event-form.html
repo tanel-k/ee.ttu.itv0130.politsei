@@ -11,13 +11,13 @@
 		<div class="row">
 			<div class="form-group col-md-2">
 				<label for="eventDate" class="control-label">Kuupäev</label>
-				<input type="date" class="form-control" id="eventDate" value.bind="report.event.dateEvent & validate">
+				<datepicker guid="eventDate" value.bind="report.event.dateEvent & validate"></datepicker>	
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-group col-md-2">
 				<label for="eventTime" class="control-label">Kellaaeg</label>
-				<input type="time" class="form-control" id="eventTime" value.bind="report.event.timeEvent & validate">
+				<timepicker guid="eventTime" value.bind="report.event.timeEvent & validate"></timepicker>
 			</div>
 		</div>
 		<div class="row">

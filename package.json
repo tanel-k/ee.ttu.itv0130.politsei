@@ -14,15 +14,17 @@
     "aurelia-validation": "^1.0.0",
     "bluebird": "^3.4.1",
     "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.6.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
+    "jquery-clockpicker": "0.0.8",
     "jquery-ui": "^1.12.1",
     "requirejs": "^2.3.2",
     "text": "github:requirejs/text#latest"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "aurelia-cli": "^0.24.0",
+    "aurelia-cli": "^0.26.1",
     "aurelia-testing": "^1.0.0-beta.2.0.0",
     "aurelia-tools": "^0.2.2",
     "babel-eslint": "^6.0.4",

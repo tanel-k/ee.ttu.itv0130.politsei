@@ -4,6 +4,7 @@ import processMarkup from './process-markup';
 import processCSS from './process-css';
 import transferImages from './transfer-images';
 import transferCSS from './transfer-css';
+import copyFiles from './copy-files';
 import {build} from 'aurelia-cli';
 import project from '../aurelia.json';
 
@@ -14,7 +15,8 @@ export default gulp.series(
     processMarkup,
     processCSS,
 	transferCSS,
-	transferImages
+	transferImages,
+	copyFiles
   ),
   writeBundles
 );

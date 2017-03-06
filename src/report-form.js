@@ -4,6 +4,7 @@ import {progressState, TrackerClickedEvent} from './resources/elements/progress-
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {ValidationController, validateTrigger} from 'aurelia-validation';
 import 'jquery';
+import 'jquery-ui-datepicker';
 
 @inject(EventAggregator, NewInstance.of(ValidationController))
 export class ReportForm {

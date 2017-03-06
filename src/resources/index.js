@@ -3,7 +3,7 @@ export function configure(config) {
 		'./elements/top-scroller',
 		'./elements/progress-tracker',
 		'./elements/currency-field',
-		'./elements/year-field',
+		'./elements/date-picker',
 		'./value-converters/trim'
 	]);
 }

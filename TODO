@@ -2,9 +2,6 @@ Validation
 ----------
 dates
 times
-years
-currency
-
 date or SSN
 
 UX
@@ -22,3 +19,4 @@ Select fields
 Nice-to-have
 ------------
 i-18n
+mobile view

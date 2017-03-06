@@ -124,6 +124,26 @@
 				]
 			},
 			{
+				"name": "jquery-ui",
+				"path": "../node_modules/jquery-ui",
+				"main": "ui/core",
+				"deps": ["jquery"],
+				"resources": [
+					"themes/base/theme.css",
+					"themes/base/core.css",
+					"themes/base/base.css"
+				]
+			},
+			{
+				"name": "jquery-ui-datepicker",
+				"path": "../node_modules/jquery-ui",
+				"main": "ui/widgets/datepicker",
+				"deps": ["jquery-ui"],
+				"resources": [
+				  "themes/base/datepicker.css"
+				]
+			},
+			{
 				"name": "aurelia-validation",
 				"path": "../node_modules/aurelia-validation/dist/amd",
 				"main": "aurelia-validation"

@@ -9,6 +9,7 @@ import 'bootstrap-datepicker-i18n-et';
 export class Datepicker {
 	@bindable guid = '';
 	@bindable({ defaultBindingMode: bindingMode.twoWay }) value;
+	@bindable title = '';
 
 	constructor(element) {
 		this.element = element;
@@ -19,6 +20,7 @@ export class Datepicker {
 				format: "dd/mm/yyyy",
 				language: "et",
 				clearBtn: true,
+				title: this.title,
 				endDate: new Date(),
 				keyboardNavigation: true
 			};

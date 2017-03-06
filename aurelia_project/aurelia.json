@@ -112,6 +112,7 @@
 			"aurelia-templating-binding",
 			"text",
 			"aurelia-fetch-client",
+			"moment",
 			"jquery",
 			{
 				"name": "bootstrap",

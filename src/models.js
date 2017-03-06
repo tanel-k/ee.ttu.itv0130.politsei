@@ -18,6 +18,28 @@ export class Report {
 	useEDossier = false;
 }
 
+export class Event {
+	constructor() {
+		ValidationRules
+			.ensure('description')
+				.required().withMessage(requiredMsg)
+			.ensure('timeEvent')
+				.satisfiesRule('time24h')
+					.withMessage('Kellaaeg peab vastama formaadile tt:mm')
+			.ensure('dateEvent')
+				.satisfiesRule('dateEET')
+					.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+			.on(this);
+	}
+
+	description = 'Random text';
+	dateEvent = '';
+	timeEvent = '';
+	country = '';
+	address = '';
+	location = '';
+}
+
 export class Person {
 	constructor() {
 		// ValidationRules are not inheritable
@@ -47,8 +69,8 @@ export class Reporter extends Person {
 				.required().withMessage(requiredMsg)
 			.ensure('email')
 				.required().withMessage(requiredMsg)
-			.ensure('SSN')
-				.required().withMessage(requiredMsg)
+			.ensure('hasDateOfBirthOrSSN')
+				.satisfiesRule('isTruthy').withMessage('Vähemalt üks väli on vaja ära täita')
 			.on(this);
 		
 	}
@@ -56,6 +78,11 @@ export class Reporter extends Person {
 	preferredModeOfContact = 'phone';
 	contactTime = '';
 	isJuridicialPerson = false;
+
+	get hasDateOfBirthOrSSN() {
+		// workaround for lack of multi-property validation
+		return (this.SSN || this.dateOfBirth) ? true : false;
+	}
 }
 
 export class Suspect extends Person {
@@ -76,6 +103,9 @@ export class Witness extends Person {
 
 function getPersonValidationRules() {
 	return ValidationRules
+		.ensure('dateOfBirth')
+			.satisfiesRule('dateEET')
+				.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
 		.ensure('phoneNumber')
 			.satisfiesRule('phoneNumberContent').withMessage('See pole korrektne telefoninumber')
 		.ensure('email')
@@ -84,29 +114,19 @@ function getPersonValidationRules() {
 			.satisfiesRule('SSN').withMessage('See pole korrektne isikukood');
 }
 
-export class Event {
-	constructor() {
-		ValidationRules
-			.ensure('description')
-				.required().withMessage(requiredMsg)
-			.on(this);
-	}
-
-	description = 'Random text';
-	dateEvent = '';
-	timeEvent = '';
-	country = '';
-	address = '';
-	location = '';
-}
-
 export class Damage {
 	constructor() {
 		ValidationRules
 			.ensure('valueEstimate')
 				.satisfiesRule('currency').withMessage('See pole korrektne summa.')
 			.ensure('yearOfPurchase')
-				.satisfiesRule('year').withMessage('Aasta peab olema neljakohaline number. Minimaalselt 1900.')
+				.satisfiesRule('year').withMessage('See pole korrentkne aasta.')
+			.ensure('timeLastHad')
+				.satisfiesRule('time24h')
+					.withMessage('Kellaaeg peab vastama formaadile tt:mm')
+			.ensure('timeNoticedMissing')
+				.satisfiesRule('time24h')
+					.withMessage('Kellaaeg peab vastama formaadile tt:mm')
 			.on(this);
 	}
 

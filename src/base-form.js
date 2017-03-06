@@ -6,7 +6,7 @@ export class BaseForm {
 	}
 	
 	attached() {
-		scrollToTop();
+		// scrollToTop();
 		yieldFocus();
 	}
 }

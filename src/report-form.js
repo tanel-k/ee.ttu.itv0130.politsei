@@ -99,14 +99,6 @@ export class ReportForm {
 			);
 	}
 
-	fadeAndRemoveFromArray(fromArray, index, selector) {
-		let element = this.formArea.querySelector(selector);
-		
-		$(element).fadeOut(this.fadeOutDuration, function() {
-			fromArray.splice(index, 1);
-		});
-	}
-
 	doNavigation(targetPage) {
 		if (this.onThresholdPage()) {
 			// on active page

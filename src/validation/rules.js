@@ -1,4 +1,5 @@
 import {ValidationRules} from 'aurelia-validation';
+import moment from 'moment';
 
 ValidationRules.customRule(
 	'phoneNumberContent',
@@ -46,7 +47,7 @@ ValidationRules.customRule(
 	'year',
 	(value, obj) => {
 		if (value) {
-			value = value.replace(/\s/g, '');
+			value = value.trim();
 			if (value.match(/^\d\d\d\d$/)) {
 				value = parseInt(value);
 				return (value >= 1900) && (value <= new Date().getFullYear());
@@ -59,3 +60,55 @@ ValidationRules.customRule(
 	},
 	'${$displayName} is not a valid year.'
 );
+
+ValidationRules.customRule(
+	'time24h',
+	(value, obj) => {
+		if (value) {
+			let timeRgx = /^(\d\d):(\d\d)$/;
+			if (value.match(timeRgx)) {
+				let matches = timeRgx.exec(value);
+				let hours = parseInt(matches[1]);
+				let minutes = parseInt(matches[2]);
+				
+				return -1 < hours && hours < 24 && 
+					-1 < minutes && minutes < 60;
+			}
+			
+			return false;
+		}
+		
+		return true;
+	},
+	'${$displayName} is not a valid year.'
+);
+
+ValidationRules.customRule(
+	'dateEET',
+	(value, obj) => {
+		if (value) {
+			let dateRgx = /^(\d\d)\/(\d\d)\/(\d\d\d\d)$/;
+			if (value.match(dateRgx)) {
+				return checkDateFormat(value, "DD/MM/YYYY");
+			}
+			
+			return false;
+		}
+		
+		return true;
+	},
+	'${$displayName} is not a valid date.'
+);
+
+ValidationRules.customRule(
+	'isTruthy',
+	(value, obj) => {
+		return value ? true : false;
+	},
+	'${$displayName} must hold.'
+);
+
+function checkDateFormat(checkDate, dateFmt) {
+	return moment(checkDate, dateFmt)
+		.format(dateFmt) === checkDate;
+}

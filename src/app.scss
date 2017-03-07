@@ -13,6 +13,11 @@ $spacer-y: 25px;
 	margin-bottom: $margin;
 }
 
+@mixin left-right-pad($padding) {
+	padding-left: $padding;
+	padding-right: $padding;
+}
+
 html {
 	overflow-y: scroll;
 }
@@ -39,6 +44,46 @@ body {
 		}
 	}
 	
+	.button-foot {
+		position:fixed;
+		bottom:0px;
+		width: 100%;
+		z-index: 1000;
+		padding: 20px;
+		background-color: #f3f3f3;
+	}
+	
+	/* Large desktops and laptops */
+	@media (min-width: 1200px) {
+		.button-foot {
+			@include left-right-pad(300px);
+		}
+	}
+	
+	/* Landscape tablets and medium desktops */
+	@media (min-width: 992px) and (max-width: 1199px) {
+		.button-foot {
+			@include left-right-pad(100px);
+		}
+	}
+	
+	/* Portrait tablets and small desktops */
+	@media (min-width: 768px) and (max-width: 991px) {
+		.button-foot {
+			@include left-right-pad(50px);
+		}
+	}
+	
+	/* Landscape phones and portrait tablets */
+	@media (max-width: 767px) {
+		.button-foot {
+			button {
+				margin-bottom: 10px;
+			}
+			
+			padding-bottom: 10px;
+		}
+	}
 
 	form {
 		label {
@@ -77,14 +122,6 @@ body {
 	
 	.witness-panel {
 		@extend .removable-panel;
-	}
-	
-	.next-prev-footer {
-		margin-top: $begin-footer-top-margin / 4;
-	}
-	
-	.begin-footer {
-		margin-top: $begin-footer-top-margin;
 	}
 }
 

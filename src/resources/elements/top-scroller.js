@@ -6,6 +6,7 @@ import 'jquery';
 export class TopScroller {
 	@bindable scrollDuration = 100;
 	@bindable appearBound = 100;
+	@bindable bottomOffset = '30px';
 
 	constructor(element) {
 		this.element = element;
@@ -14,6 +15,7 @@ export class TopScroller {
 	attached() {
 		let wrapper = this.element.querySelector('.scroll-top-wrapper');
 		let appearBound = this.appearBound;
+		$(wrapper).css("bottom", this.bottomOffset);
 		
 		document.addEventListener('scroll', function() {
 			if ($(window).scrollTop() > appearBound) {

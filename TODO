@@ -2,9 +2,11 @@ Content
 -------
 Summary page
 
+UX
+--
+mobile view
+
 Nice-to-have
 ------------
-lock buttons to bottom of screen
 i-18n
-mobile view
-yield focus after date/time selected to next input
+select2 for desktops

@@ -29,7 +29,7 @@
 						<div class="row">
 							<div class="form-group col-md-9">
 								<label for="dateOfBirth" class="control-label">Sünnikuupäev</label>
-								<datepicker title="Sünnikuupäev" guid="dateOfBirth" value.bind="report.reporter.dateOfBirth & validate"></datepicker>
+								<datepicker start="decades" title="Sünnikuupäev" guid="dateOfBirth" value.bind="report.reporter.dateOfBirth & validate"></datepicker>
 							</div>
 						</div>
 					</div>
@@ -43,6 +43,7 @@
 				<label for="nationality" class="control-label">Kodakondsus</label>
 				<select class="form-control" id="nationality" value.bind="report.reporter.nationality & validate">
 					<option></option>
+					<option repeat.for="nationality of nationalities">${nationality.name}</option>
 				</select>
 			</div>
 		</div>

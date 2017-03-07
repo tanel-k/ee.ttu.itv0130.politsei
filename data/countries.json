@@ -1,0 +1,782 @@
+[
+  {
+    "name": "Eesti Vabariik"
+  },
+  {
+    "name": "Afganistan"
+  },
+  {
+    "name": "Ahvenamaa "
+  },
+  {
+    "name": "Albaania "
+  },
+  {
+    "name": "Alžeeria"
+  },
+  {
+    "name": "Ameerika Samoa"
+  },
+  {
+    "name": "Ameerika Ühendriigid"
+  },
+  {
+    "name": "Andorra "
+  },
+  {
+    "name": "Angola"
+  },
+  {
+    "name": "Anguilla "
+  },
+  {
+    "name": "Antarktis"
+  },
+  {
+    "name": "Antigua ja Barbuda"
+  },
+  {
+    "name": "Aomen"
+  },
+  {
+    "name": "Araabia Ühendemiraadid"
+  },
+  {
+    "name": "Argentina "
+  },
+  {
+    "name": "Armeenia "
+  },
+  {
+    "name": "Aruba"
+  },
+  {
+    "name": "Aserbaidžaan"
+  },
+  {
+    "name": "Austraalia"
+  },
+  {
+    "name": "Austria "
+  },
+  {
+    "name": "Bahama "
+  },
+  {
+    "name": "Bahrein"
+  },
+  {
+    "name": "Bangladesh"
+  },
+  {
+    "name": "Barbados"
+  },
+  {
+    "name": "Belau "
+  },
+  {
+    "name": "Belgia"
+  },
+  {
+    "name": "Belize"
+  },
+  {
+    "name": "Benin"
+  },
+  {
+    "name": "Bermuda"
+  },
+  {
+    "name": "Bhutan"
+  },
+  {
+    "name": "Boliivia Paljurahvuseline Riik"
+  },
+  {
+    "name": "Bonaire, Sint Eustatius ja Saba"
+  },
+  {
+    "name": "Bosnia- ja Hertsegoviina"
+  },
+  {
+    "name": "Botswana"
+  },
+  {
+    "name": "Bouvet' saar"
+  },
+  {
+    "name": "Brasiilia "
+  },
+  {
+    "name": "Briti India ookeani ala"
+  },
+  {
+    "name": "Briti Neitsisaared"
+  },
+  {
+    "name": "Brunei Darussalam"
+  },
+  {
+    "name": "Bulgaaria"
+  },
+  {
+    "name": "Burkina Faso"
+  },
+  {
+    "name": "Burundi "
+  },
+  {
+    "name": "Colombia"
+  },
+  {
+    "name": "Cooki saared"
+  },
+  {
+    "name": "Costa Rica "
+  },
+  {
+    "name": "Curaçao"
+  },
+  {
+    "name": "Curaçao (Holl)"
+  },
+  {
+    "name": "Djibouti "
+  },
+  {
+    "name": "Dominica "
+  },
+  {
+    "name": "Dominikaani Vabariik"
+  },
+  {
+    "name": "Ecuador"
+  },
+  {
+    "name": "Egiptus"
+  },
+  {
+    "name": "Ekvatoriaal-Guinea"
+  },
+  {
+    "name": "El Salvador"
+  },
+  {
+    "name": "Elevandiluurannik"
+  },
+  {
+    "name": "Eritrea Riik"
+  },
+  {
+    "name": "Etioopia"
+  },
+  {
+    "name": "Falklandi (Malviini) saared"
+  },
+  {
+    "name": "Fidži "
+  },
+  {
+    "name": "Filipiini Vabariik"
+  },
+  {
+    "name": "Fääri saared"
+  },
+  {
+    "name": "Gabon"
+  },
+  {
+    "name": "Gambia "
+  },
+  {
+    "name": "Ghana"
+  },
+  {
+    "name": "Gibraltar "
+  },
+  {
+    "name": "Grenada"
+  },
+  {
+    "name": "Gruusia"
+  },
+  {
+    "name": "Gröönimaa"
+  },
+  {
+    "name": "Guadeloupe"
+  },
+  {
+    "name": "Guam"
+  },
+  {
+    "name": "Guatemala"
+  },
+  {
+    "name": "Guernsey"
+  },
+  {
+    "name": "Guernsey (GBR)"
+  },
+  {
+    "name": "Guinea "
+  },
+  {
+    "name": "Guinea-Bissau "
+  },
+  {
+    "name": "Guyana "
+  },
+  {
+    "name": "Haiti "
+  },
+  {
+    "name": "Heard ja McDonald"
+  },
+  {
+    "name": "Hiina "
+  },
+  {
+    "name": "Hispaania "
+  },
+  {
+    "name": "Holland"
+  },
+  {
+    "name": "Hollandi Antillid"
+  },
+  {
+    "name": "Honduras"
+  },
+  {
+    "name": "Hongkong"
+  },
+  {
+    "name": "Horvaatia"
+  },
+  {
+    "name": "Ida-Timori"
+  },
+  {
+    "name": "Ida-Timori"
+  },
+  {
+    "name": "Iirimaa"
+  },
+  {
+    "name": "Iisrael"
+  },
+  {
+    "name": "ilma kodakondsuseta"
+  },
+  {
+    "name": "India "
+  },
+  {
+    "name": "Indoneesia "
+  },
+  {
+    "name": "Iraak"
+  },
+  {
+    "name": "Iraan"
+  },
+  {
+    "name": "Island"
+  },
+  {
+    "name": "Itaalia"
+  },
+  {
+    "name": "Jaapan"
+  },
+  {
+    "name": "Jamaica"
+  },
+  {
+    "name": "Jeemen"
+  },
+  {
+    "name": "Jersey"
+  },
+  {
+    "name": "JEY"
+  },
+  {
+    "name": "Jordaania"
+  },
+  {
+    "name": "Jugoslaavia"
+  },
+  {
+    "name": "Jõulusaar"
+  },
+  {
+    "name": "Kaimanisaared (GBR)"
+  },
+  {
+    "name": "Kambodža"
+  },
+  {
+    "name": "Kamerun"
+  },
+  {
+    "name": "Kanada"
+  },
+  {
+    "name": "Kasahstan"
+  },
+  {
+    "name": "Katar"
+  },
+  {
+    "name": "Kenya "
+  },
+  {
+    "name": "Kesk-Aafrika Vabariik"
+  },
+  {
+    "name": "Kiribati"
+  },
+  {
+    "name": "Komoori Liit"
+  },
+  {
+    "name": "Kongo "
+  },
+  {
+    "name": "Kongo DV"
+  },
+  {
+    "name": "Kookossaared (Keelingi saared)"
+  },
+  {
+    "name": "Korea RDV"
+  },
+  {
+    "name": "Korea Vabariik"
+  },
+  {
+    "name": "Kosovo"
+  },
+  {
+    "name": "Kreeka "
+  },
+  {
+    "name": "Kuuba "
+  },
+  {
+    "name": "Kuveit"
+  },
+  {
+    "name": "Kõrgõzstan"
+  },
+  {
+    "name": "Küpros"
+  },
+  {
+    "name": "Laos"
+  },
+  {
+    "name": "Leedu "
+  },
+  {
+    "name": "Lesotho "
+  },
+  {
+    "name": "Libeeria"
+  },
+  {
+    "name": "Liechtenstein"
+  },
+  {
+    "name": "Liibanon"
+  },
+  {
+    "name": "Liibüa"
+  },
+  {
+    "name": "Luksemburg"
+  },
+  {
+    "name": "Lõuna-Aafrika Vabariik"
+  },
+  {
+    "name": "Lõuna-Georgia ja Lõuna-Sandwich"
+  },
+  {
+    "name": "Lõuna-Sudaan"
+  },
+  {
+    "name": "Läti Vabariik"
+  },
+  {
+    "name": "Lääne-Sahara"
+  },
+  {
+    "name": "Madagaskar"
+  },
+  {
+    "name": "Makedoonia"
+  },
+  {
+    "name": "Malaisia"
+  },
+  {
+    "name": "Malawi "
+  },
+  {
+    "name": "Maldiivid"
+  },
+  {
+    "name": "Mali "
+  },
+  {
+    "name": "Malta "
+  },
+  {
+    "name": "Mani saar"
+  },
+  {
+    "name": "Maroko "
+  },
+  {
+    "name": "Marshalli Saared"
+  },
+  {
+    "name": "Martinique"
+  },
+  {
+    "name": "Mauritaania"
+  },
+  {
+    "name": "Mauritius"
+  },
+  {
+    "name": "Mayotte"
+  },
+  {
+    "name": "Mehhiko"
+  },
+  {
+    "name": "Mikroneesia "
+  },
+  {
+    "name": "Moldova"
+  },
+  {
+    "name": "Monaco "
+  },
+  {
+    "name": "Mongoolia"
+  },
+  {
+    "name": "Montenegro"
+  },
+  {
+    "name": "Montserrat"
+  },
+  {
+    "name": "Mosambiik"
+  },
+  {
+    "name": "Myanmar"
+  },
+  {
+    "name": "Namiibia "
+  },
+  {
+    "name": "Nauru "
+  },
+  {
+    "name": "Nepal"
+  },
+  {
+    "name": "Nicaragua"
+  },
+  {
+    "name": "Nigeeria"
+  },
+  {
+    "name": "Niger"
+  },
+  {
+    "name": "Niue"
+  },
+  {
+    "name": "Norfolki Saar"
+  },
+  {
+    "name": "Norra "
+  },
+  {
+    "name": "Omaan"
+  },
+  {
+    "name": "Paapua Uus-Guinea"
+  },
+  {
+    "name": "Pakistan"
+  },
+  {
+    "name": "Palestiina okupeeritud alad"
+  },
+  {
+    "name": "Panama"
+  },
+  {
+    "name": "Paraguay"
+  },
+  {
+    "name": "Peruu "
+  },
+  {
+    "name": "Pitcairn"
+  },
+  {
+    "name": "Poola "
+  },
+  {
+    "name": "Portugali "
+  },
+  {
+    "name": "Prantsuse Guajaana"
+  },
+  {
+    "name": "Prantsuse Lõunaalad"
+  },
+  {
+    "name": "Prantsuse Polüneesia "
+  },
+  {
+    "name": "Prantsusmaa"
+  },
+  {
+    "name": "Puerto Rico"
+  },
+  {
+    "name": "Põhja-Mariaanid"
+  },
+  {
+    "name": "Püha Tool (Vatikan)"
+  },
+  {
+    "name": "Réunion"
+  },
+  {
+    "name": "Riik teadmata"
+  },
+  {
+    "name": "Roheneemesaared"
+  },
+  {
+    "name": "Rootsi Kuningriik"
+  },
+  {
+    "name": "Rumeenia"
+  },
+  {
+    "name": "Rwanda "
+  },
+  {
+    "name": "Saalomoni Saared"
+  },
+  {
+    "name": "Saint Helena, Ascension ja Tristan da Cunha (GBR)"
+  },
+  {
+    "name": "Saint Kitts ja Nevis"
+  },
+  {
+    "name": "Saint Lucia"
+  },
+  {
+    "name": "Saint Pierre ja Miquelon"
+  },
+  {
+    "name": "Saint Vincent ja Grenadiinid"
+  },
+  {
+    "name": "Saint-Barthélemy (FRA)"
+  },
+  {
+    "name": "Saint-Martin (Prantsuse osa) (FRA)"
+  },
+  {
+    "name": "Saksamaa "
+  },
+  {
+    "name": "Sambia "
+  },
+  {
+    "name": "Samoa "
+  },
+  {
+    "name": "San Marino "
+  },
+  {
+    "name": "Sao Tomé ja Principe"
+  },
+  {
+    "name": "Saudi Araabia "
+  },
+  {
+    "name": "Seišellid"
+  },
+  {
+    "name": "Senegal"
+  },
+  {
+    "name": "Serbia "
+  },
+  {
+    "name": "Sierra Leone "
+  },
+  {
+    "name": "Singapur"
+  },
+  {
+    "name": "Sint Marteen (Hollandi osa)"
+  },
+  {
+    "name": "Slovakkia"
+  },
+  {
+    "name": "Sloveenia"
+  },
+  {
+    "name": "Somaali Vabariik"
+  },
+  {
+    "name": "Soome "
+  },
+  {
+    "name": "Sri Lanka"
+  },
+  {
+    "name": "Sudaan"
+  },
+  {
+    "name": "Suriname"
+  },
+  {
+    "name": "Suurbritannia"
+  },
+  {
+    "name": "Svaasimaa"
+  },
+  {
+    "name": "Svalbard ja Jan Mayen"
+  },
+  {
+    "name": "Süüria "
+  },
+  {
+    "name": "Šveits"
+  },
+  {
+    "name": "Zimbabwe"
+  },
+  {
+    "name": "Taani"
+  },
+  {
+    "name": "Tadžikistan"
+  },
+  {
+    "name": "Tai "
+  },
+  {
+    "name": "Taiwan"
+  },
+  {
+    "name": "Tansaania "
+  },
+  {
+    "name": "Togo "
+  },
+  {
+    "name": "Tokelau"
+  },
+  {
+    "name": "Tonga "
+  },
+  {
+    "name": "Trinidad ja Tobago"
+  },
+  {
+    "name": "Tšaad"
+  },
+  {
+    "name": "Tšehhi "
+  },
+  {
+    "name": "Tšiili "
+  },
+  {
+    "name": "Tuneesia "
+  },
+  {
+    "name": "Turks ja Caicos"
+  },
+  {
+    "name": "Tuvalu"
+  },
+  {
+    "name": "Türgi "
+  },
+  {
+    "name": "Türkmenistan"
+  },
+  {
+    "name": "Uganda "
+  },
+  {
+    "name": "Ukraina"
+  },
+  {
+    "name": "Ungari "
+  },
+  {
+    "name": "Uruguay"
+  },
+  {
+    "name": "USA Neitsisaared"
+  },
+  {
+    "name": "Usbekistan"
+  },
+  {
+    "name": "Uus-Kaledoonia"
+  },
+  {
+    "name": "Uus-Meremaa"
+  },
+  {
+    "name": "Valgevene "
+  },
+  {
+    "name": "Wallis ja Futuna"
+  },
+  {
+    "name": "Vanuatu "
+  },
+  {
+    "name": "Venemaa Föderatsioon"
+  },
+  {
+    "name": "Venezuela"
+  },
+  {
+    "name": "Vietnam"
+  },
+  {
+    "name": "Ühendriikide hajasaared"
+  },
+  {
+    "name": "Mujal nimetamata territooriumid"
+  },
+  {
+    "name": "Määratlemata"
+  }
+]

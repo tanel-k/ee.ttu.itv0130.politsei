@@ -10,6 +10,7 @@ export class Datepicker {
 	@bindable guid = '';
 	@bindable({ defaultBindingMode: bindingMode.twoWay }) value;
 	@bindable title = '';
+	@bindable start;
 
 	constructor(element) {
 		this.element = element;
@@ -25,7 +26,10 @@ export class Datepicker {
 				autoclose: true,
 				forceParse: false,
 				showOnFocus: false, //?
-				keyboardNavigation: false
+				keyboardNavigation: false,
+				startView: this.start 
+					? this.start 
+					: 'day'
 			};
 		
 		let _this = this;

@@ -30,6 +30,7 @@ ValidationRules.customRule(
 	'currency',
 	(value, obj) => {
 		if (value) {
+			value = value.trim();
 			value = value.replace(',', '.');
 			if (!value.match(/^\d*(\.\d+)?$/)) {
 				return false;
@@ -65,6 +66,7 @@ ValidationRules.customRule(
 	'time24h',
 	(value, obj) => {
 		if (value) {
+			value = value.trim();
 			let timeRgx = /^(\d\d):(\d\d)$/;
 			if (value.match(timeRgx)) {
 				let matches = timeRgx.exec(value);
@@ -87,12 +89,7 @@ ValidationRules.customRule(
 	'dateEET',
 	(value, obj) => {
 		if (value) {
-			let dateRgx = /^(\d\d)\/(\d\d)\/(\d\d\d\d)$/;
-			if (value.match(dateRgx)) {
-				return checkDateFormat(value, "DD/MM/YYYY");
-			}
-			
-			return false;
+			return isEETDate(value.trim());
 		}
 		
 		return true;
@@ -107,6 +104,29 @@ ValidationRules.customRule(
 	},
 	'${$displayName} must hold.'
 );
+
+ValidationRules.customRule(
+	'dateEETNotFuture',
+	(value, obj) => {
+		if (value && isEETDate(value.trim())) {
+			let now = moment();
+			return !moment(value, "DD/MM/YYYY").isAfter(now);
+		}
+		
+		return true;
+	},
+	'${$displayName} cannot be in the future.'
+);
+
+function isEETDate(dateStr) {
+	
+	let dateRgx = /^(\d\d)\/(\d\d)\/(\d\d\d\d)$/;
+	if (dateStr.match(dateRgx)) {
+		return checkDateFormat(dateStr, "DD/MM/YYYY");
+	}
+	
+	return false;
+}
 
 function checkDateFormat(checkDate, dateFmt) {
 	return moment(checkDate, dateFmt)

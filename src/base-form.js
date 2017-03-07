@@ -1,13 +1,25 @@
+import {EventAggregator} from 'aurelia-event-aggregator';
+import {inject} from 'aurelia-framework';
 import 'jquery';
 
+@inject(EventAggregator)
 export class BaseForm {
+	constructor(eventAggregator) {
+		this.eventAggregator = eventAggregator;
+	}
+	
 	activate(report) {
 		this.report = report;
 	}
 	
 	attached() {
 		// scrollToTop();
+		this.eventAggregator.publish(new FormAttachedEvent());
 		yieldFocus();
+	}
+
+	detached() {
+		this.eventAggregator.publish(new FormDetachedEvent());
 	}
 }
 
@@ -24,4 +36,12 @@ export function yieldFocus() {
 		
 		$(focusNode).focus();
 	}
+}
+
+export class FormAttachedEvent {
+	
+}
+
+export class FormDetachedEvent {
+	
 }

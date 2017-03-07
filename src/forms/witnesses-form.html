@@ -33,7 +33,7 @@
 						</div>
 						<div class="form-group col-md-2 col-md-offset-3">
 							<label class="control-label">Sünniaeg</label>
-							<datepicker value.bind="witness.dateOfBirth & validate"></datepicker>
+							<datepicker start="decades" value.bind="witness.dateOfBirth & validate"></datepicker>
 						</div>
 					</div>
 					<br/>
@@ -42,6 +42,7 @@
 							<label class="control-label">Kodakondsus</label>
 							<select class="form-control" value.bind="witness.nationality & validate">
 								<option></option>
+								<option repeat.for="nationality of nationalities">${nationality.name}</option>
 							</select>
 						</div>
 						<div class="form-group col-md-4 col-md-offset-2">

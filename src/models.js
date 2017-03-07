@@ -29,6 +29,8 @@ export class Event {
 			.ensure('dateEvent')
 				.satisfiesRule('dateEET')
 					.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+				.satisfiesRule('dateEETNotFuture')
+					.withMessage('Kuupäev ei saa olla tulevikus')
 			.on(this);
 	}
 
@@ -70,7 +72,8 @@ export class Reporter extends Person {
 			.ensure('email')
 				.required().withMessage(requiredMsg)
 			.ensure('hasDateOfBirthOrSSN')
-				.satisfiesRule('isTruthy').withMessage('Vähemalt üks väli on vaja ära täita')
+				.satisfiesRule('isTruthy')
+					.withMessage('Vähemalt üks väli on vaja ära täita')
 			.on(this);
 		
 	}
@@ -106,8 +109,11 @@ function getPersonValidationRules() {
 		.ensure('dateOfBirth')
 			.satisfiesRule('dateEET')
 				.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+			.satisfiesRule('dateEETNotFuture')
+				.withMessage('Kuupäev ei saa olla tulevikus')
 		.ensure('phoneNumber')
-			.satisfiesRule('phoneNumberContent').withMessage('See pole korrektne telefoninumber')
+			.satisfiesRule('phoneNumberContent')
+				.withMessage('See pole korrektne telefoninumber')
 		.ensure('email')
 			.email().withMessage('See pole korrektne e-mail.')
 		.ensure('SSN')
@@ -119,6 +125,16 @@ export class Damage {
 		ValidationRules
 			.ensure('valueEstimate')
 				.satisfiesRule('currency').withMessage('See pole korrektne summa.')
+			.ensure('dateNoticedMissing')
+				.satisfiesRule('dateEET')
+					.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+				.satisfiesRule('dateEETNotFuture')
+					.withMessage('Kuupäev ei saa olla tulevikus')
+			.ensure('dateLastHad')
+				.satisfiesRule('dateEET')
+					.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+				.satisfiesRule('dateEETNotFuture')
+					.withMessage('Kuupäev ei saa olla tulevikus')
 			.ensure('yearOfPurchase')
 				.satisfiesRule('year').withMessage('See pole korrektne aasta.')
 			.ensure('timeLastHad')

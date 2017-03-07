@@ -16,15 +16,13 @@ export class Timepicker {
 		this.input = this.element.querySelector('input');
 		
 		let defaults = {
-			autoClose: false,
-			appendActions: true,
+			// autoClose: false,
+			// appendActions: true,
 			okText: 'Vali',
 			cancelText: 'Tühista',
 			position: 'top',
 			alignment: 'left',
 			format: '24h'
-			// minTime
-			// timeFromNow
 		};
 		
 		this.clockpicker = $(this.input)

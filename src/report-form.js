@@ -1,20 +1,25 @@
 import {inject, bindable, NewInstance} from 'aurelia-framework';
 import {Report, Damage, Witness, Suspect} from './models';
 import {progressState, TrackerClickedEvent} from './resources/elements/progress-tracker';
+import {FormAttachedEvent, FormDetachedEvent} from './base-form';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {ValidationController, validateTrigger} from 'aurelia-validation';
+import {DataGateway} from './data-gateway';
 import 'jquery';
 
-@inject(EventAggregator, NewInstance.of(ValidationController))
+@inject(EventAggregator, NewInstance.of(ValidationController), DataGateway)
 export class ReportForm {
 	fadeOutDuration = 300;
 	fadeInDuration = 750;
 	errorScrollDuration = 300;
+	// fixes navigation spam
+	isNavigating = true;
 	
-	constructor(eventAggregator, validationController) {
+	constructor(eventAggregator, validationController, dataGateway) {
 		this.eventAggregator = eventAggregator;
 		validationController.validateTrigger = validateTrigger.changeOrBlur;
 		this.validationController = validationController;
+		this.dataGateway = dataGateway;
 		this.report = new Report();
 		
 		this.pages = [
@@ -40,9 +45,15 @@ export class ReportForm {
 
 	attached() {
 		this.formArea = document.body.querySelector('.form-area');
+		this.isNavigating = false;
 	}
 
 	activate() {
+		let _this = this;
+		this.dataGateway.getCountries().then(countries => _this.countries = countries);
+		this.dataGateway.getNationalities().then(nationalities => _this.nationalities = nationalities);
+		this.dataGateway.getMunicipalities().then(municipalities => _this.municipalities = municipalities);
+		
 		this.eventAggregator.subscribe(TrackerClickedEvent,
 			event => {
 				if (this.activePage.pageKey == event.pageKey) {
@@ -52,6 +63,14 @@ export class ReportForm {
 				let targetPage = this.findPageByKey(event.pageKey);
 				this.doNavigation(targetPage);
 			}
+		);
+
+		this.eventAggregator.subscribe(FormAttachedEvent,
+			event => this.isNavigating = false
+		);
+
+		this.eventAggregator.subscribe(FormDetachedEvent,
+			event => this.isNavigating = true
 		);
 	}
 
@@ -109,12 +128,14 @@ export class ReportForm {
 
 
 	doNavigation(targetPage) {
-		if (this.onThresholdPage()) {
-			// on active page
-			this.navigateFromThreshold(targetPage);
-		} else {
-			// navigation in visited section
-			this.navigateFromVisited(targetPage);
+		if (!this.isNavigating) {
+			if (this.onThresholdPage()) {
+				// on active page
+				this.navigateFromThreshold(targetPage);
+			} else {
+				// navigation in visited section
+				this.navigateFromVisited(targetPage);
+			}
 		}
 	}
 

@@ -120,7 +120,7 @@ export class Damage {
 			.ensure('valueEstimate')
 				.satisfiesRule('currency').withMessage('See pole korrektne summa.')
 			.ensure('yearOfPurchase')
-				.satisfiesRule('year').withMessage('See pole korrentkne aasta.')
+				.satisfiesRule('year').withMessage('See pole korrektne aasta.')
 			.ensure('timeLastHad')
 				.satisfiesRule('time24h')
 					.withMessage('Kellaaeg peab vastama formaadile tt:mm')

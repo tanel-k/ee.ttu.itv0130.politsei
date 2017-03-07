@@ -22,7 +22,10 @@ export class Datepicker {
 				clearBtn: true,
 				title: this.title,
 				endDate: new Date(),
-				keyboardNavigation: true
+				autoclose: true,
+				forceParse: false,
+				showOnFocus: false, //?
+				keyboardNavigation: false
 			};
 		
 		let _this = this;
@@ -33,7 +36,7 @@ export class Datepicker {
 				_this.value = e.target.value;
 			})
 			.on('changeDate', e => {
-				_this.datepicker.hide();
+				// _this.datepicker.hide();
 			})
 			.data('datepicker');
 	}

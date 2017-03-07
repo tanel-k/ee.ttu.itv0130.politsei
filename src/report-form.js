@@ -9,6 +9,7 @@ import 'jquery';
 export class ReportForm {
 	fadeOutDuration = 300;
 	fadeInDuration = 750;
+	errorScrollDuration = 300;
 	
 	constructor(eventAggregator, validationController) {
 		this.eventAggregator = eventAggregator;
@@ -50,7 +51,6 @@ export class ReportForm {
 				
 				let targetPage = this.findPageByKey(event.pageKey);
 				this.doNavigation(targetPage);
-				
 			}
 		);
 	}
@@ -99,6 +99,15 @@ export class ReportForm {
 			);
 	}
 
+	fadeAndRemoveFromArray(fromArray, index, selector) {
+		let element = this.formArea.querySelector(selector);
+
+		$(element).fadeOut(this.fadeOutDuration, function() {
+			fromArray.splice(index, 1);
+		});
+	}
+
+
 	doNavigation(targetPage) {
 		if (this.onThresholdPage()) {
 			// on active page
@@ -109,7 +118,7 @@ export class ReportForm {
 		}
 	}
 
-	clearEmptyObjects() {
+	purgeAggregates() {
 		[
 		 this.report.damages, 
 		 this.report.suspects, 
@@ -133,6 +142,8 @@ export class ReportForm {
 				this.thresholdPage = targetPage;
 				this.activePage.progressState = progressState.visited;
 				this.performNavigation(targetPage);
+			} else {
+				scrollToFirstError(this.errorScrollDuration);
 			}
 		});
 	}
@@ -142,6 +153,8 @@ export class ReportForm {
 			if (result.valid) {
 				this.activePage.progressState = progressState.visited;
 				this.performNavigation(targetPage);
+			} else {
+				scrollToFirstError(this.errorScrollDuration);
 			}
 		});
 	}
@@ -149,7 +162,7 @@ export class ReportForm {
 	performNavigation(targetPage) {
 		targetPage.progressState = progressState.current;
 		this.activePage = targetPage;
-		this.clearEmptyObjects();
+		this.purgeAggregates();
 	}
 
 	nextPage() {
@@ -189,4 +202,15 @@ function clearEmptyObjectsInArr(array) {
 	});
 	
 	removeIndexes.forEach(index => array.splice(index, 1));
+}
+
+function scrollToFirstError(scrollDuration) {
+	let errorDiv = document.querySelector('div.has-error');
+	if (errorDiv) {
+		$('html, body').animate({ scrollTop: $(errorDiv).offset().top }, scrollDuration, 'linear');
+		let formInput = errorDiv.querySelector('.form-control');
+		if (formInput) {
+			$(formInput).focus();
+		}
+	}
 }

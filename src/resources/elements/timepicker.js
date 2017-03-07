@@ -33,6 +33,8 @@ export class Timepicker {
 				_this.value = e.target.value;
 			})
 			.data('jqclockpicker');
+		
+		$(this.input).off('focus.jqclockpicker click.jqclockpicker');
 	}
 	
 	show() {

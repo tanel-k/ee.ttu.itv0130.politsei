@@ -20,12 +20,23 @@ export class BootstrapFormValidationRenderer {
 	}
 
 	if (result.valid) {
-	  if (!formGroup.classList.contains('has-error')) {
-		// formGroup.classList.add('has-success');
-	  }
+	  /* if (!formGroup.classList.contains('has-error')) {
+		 formGroup.classList.add('has-success');
+	   } */
 	} else {
 	  // add the has-error class to the enclosing form-group div
 	  // formGroup.classList.remove('has-success');
+	  
+	  if (formGroup.classList.contains('has-error')) {
+		  let prevMessages = document.querySelectorAll('.validation-message');
+		  if (prevMessages) {
+			  for (var message of prevMessages) {
+				  if (message.textContent == result.message) {
+					  return;
+				  }
+			  }
+		  }
+	  }
 	  formGroup.classList.add('has-error');
 
 	  // add help-block

@@ -1,0 +1,5 @@
+<template>
+	<select id="${guid}" class="form-control" value.bind="value">
+		<option repeat.for="val of values" value="${val.value}">${val.name}</option>
+	</select>
+</template>

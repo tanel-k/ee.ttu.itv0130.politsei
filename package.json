@@ -19,8 +19,11 @@
     "jquery": "^3.1.1",
     "jquery-clockpicker": "0.0.8",
     "jquery-ui": "^1.12.1",
+    "microplugin": "0.0.3",
     "moment": "^2.17.1",
     "requirejs": "^2.3.2",
+    "selectize": "^0.12.4",
+    "sifter": "^0.5.2",
     "text": "github:requirejs/text#latest"
   },
   "peerDependencies": {},

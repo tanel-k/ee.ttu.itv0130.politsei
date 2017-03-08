@@ -5,6 +5,7 @@ export function configure(config) {
 		'./elements/currency-field',
 		'./elements/datepicker',
 		'./elements/timepicker',
+		'./elements/enhanced-select',
 		'./value-converters/trim'
 	]);
 }

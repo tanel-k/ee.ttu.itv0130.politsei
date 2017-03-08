@@ -23,10 +23,7 @@
 		<div class="row">
 			<div class="form-group col-md-4">
 				<label for="eventCountry" class="control-label">Riik</label>
-				<select class="form-control" id="eventCountry" value.bind="report.event.country">
-					<option></option>
-					<option repeat.for="country of countries">${country.name}</option>
-				</select>
+				<enhanced-select guid="country-select" value.bind="report.event.country" values.bind="countries"></enhanced-select>
 			</div>
 		</div>
 		<div class="row">

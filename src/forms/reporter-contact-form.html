@@ -39,10 +39,7 @@
 		<div class="row">
 			<div class="form-group col-md-4">
 				<label for="municipality" class="control-label">Maakond</label>
-				<select class="form-control" id="municipality" value.bind="report.reporter.municipality & validate">
-					<option></option>
-					<option repeat.for="municipality of municipalities">${municipality.name}</option>
-				</select>
+				<enhanced-select guid="municipality" value.bind="report.reporter.municipality & validate" values.bind="municipalities"></enhanced-select>
 			</div>
 		</div>
 		<div class="row">

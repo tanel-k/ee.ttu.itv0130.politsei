@@ -113,6 +113,8 @@
 			"aurelia-templating-binding",
 			"text",
 			"aurelia-fetch-client",
+			"sifter",
+			"microplugin",
 			"moment",
 			"jquery",
 			{
@@ -123,6 +125,15 @@
 				"exports": "$",
 				"resources": [
 					"css/bootstrap.css"
+				]
+			},
+			{
+				"name": "selectize",
+				"path": "../node_modules/selectize/dist",
+				"main": "js/selectize",
+				"deps": ["jquery", "bootstrap", "sifter", "microplugin"],
+				"resources": [
+					"css/selectize.bootstrap3.css"
 				]
 			},
 			{

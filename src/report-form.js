@@ -49,10 +49,20 @@ export class ReportForm {
 	}
 
 	activate() {
-		let _this = this;
-		this.dataGateway.getCountries().then(countries => _this.countries = countries);
-		this.dataGateway.getNationalities().then(nationalities => _this.nationalities = nationalities);
-		this.dataGateway.getMunicipalities().then(municipalities => _this.municipalities = municipalities);
+		this.dataGateway.getCountries().then(countries => {
+			this.countries = countries.map(c => { return { value: c.name, name: c.name } });
+			this.countries.unshift({});
+		});
+		
+		this.dataGateway.getNationalities().then(nationalities => {
+			this.nationalities = nationalities.map(n => { return { value: n.name, name: n.name } });
+			this.nationalities.unshift({});
+		});
+		
+		this.dataGateway.getMunicipalities().then(municipalities => {
+			this.municipalities = municipalities.map(m => { return { value: m.name, name: m.name } });
+			this.municipalities.unshift({});
+		});
 		
 		this.eventAggregator.subscribe(TrackerClickedEvent,
 			event => {

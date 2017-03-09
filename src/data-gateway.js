@@ -1,4 +1,5 @@
 import {inject} from 'aurelia-framework';
+import 'whatwg-fetch';
 import {HttpClient, json} from 'aurelia-fetch-client';
 import environment from './environment';
 

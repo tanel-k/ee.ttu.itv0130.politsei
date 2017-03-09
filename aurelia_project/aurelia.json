@@ -89,6 +89,7 @@
 		  "node_modules/requirejs/require.js"
 		],
 		"dependencies": [
+			"whatwg-fetch",
 			"aurelia-fetch-client",
 			"aurelia-binding",
 			"aurelia-bootstrapper",

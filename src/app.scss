@@ -4,7 +4,7 @@ $begin-footer-top-margin: 200px;
 $body-font-stack: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 $body-font-size: 1.5em;
 $body-font-weight: 400;
-$body-bottom-margin: 100px;
+$body-bottom-margin: 200px;
 
 $spacer-y: 25px;
 
@@ -53,28 +53,32 @@ body {
 		background-color: #f3f3f3;
 	}
 	
-	/* Large desktops and laptops */
+	/* lg */
 	@media (min-width: 1200px) {
 		.button-foot {
 			@include left-right-pad(300px);
 		}
 	}
 	
-	/* Landscape tablets and medium desktops */
+	/* md */
 	@media (min-width: 992px) and (max-width: 1199px) {
 		.button-foot {
 			@include left-right-pad(100px);
 		}
 	}
 	
-	/* Portrait tablets and small desktops */
+	/* sm */
 	@media (min-width: 768px) and (max-width: 991px) {
 		.button-foot {
 			@include left-right-pad(50px);
+			
+			button {
+				margin-bottom: 10px;
+			}
 		}
 	}
 	
-	/* Landscape phones and portrait tablets */
+	/* xs */
 	@media (max-width: 767px) {
 		.button-foot {
 			button {

@@ -6,6 +6,7 @@ export function configure(config) {
 		'./elements/datepicker',
 		'./elements/timepicker',
 		'./elements/enhanced-select',
+		'./elements/confirm-button',
 		'./value-converters/trim'
 	]);
 }

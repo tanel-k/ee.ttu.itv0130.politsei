@@ -132,3 +132,16 @@ function checkDateFormat(checkDate, dateFmt) {
 	return moment(checkDate, dateFmt)
 		.format(dateFmt) === checkDate;
 }
+
+ValidationRules.customRule(
+	'registryCode',
+	(value, obj) => {
+		if (value) {
+			let codeRgx = /^[\d]{8}$/;
+			return value.match(codeRgx);
+		}
+		
+		return true;
+	},
+	'${$displayName} cannot be in the future.'
+);

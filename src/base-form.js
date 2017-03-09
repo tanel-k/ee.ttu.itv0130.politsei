@@ -4,6 +4,8 @@ import 'jquery';
 
 @inject(EventAggregator)
 export class BaseForm {
+	scrollDuration = 500;
+	
 	constructor(eventAggregator) {
 		this.eventAggregator = eventAggregator;
 	}
@@ -13,8 +15,9 @@ export class BaseForm {
 	}
 	
 	attached() {
-		// scrollToTop();
 		this.eventAggregator.publish(new FormAttachedEvent());
+		// scrollToTop(this.scrollDuration, yieldFocus);
+		scrollToTop(0);
 		yieldFocus();
 	}
 
@@ -23,8 +26,12 @@ export class BaseForm {
 	}
 }
 
-export function scrollToTop() {
-	$('html, body').animate({ scrollTop: 0 }, 100, 'linear');
+export function scrollToTop(duration, complete) {
+	$('html, body').animate(
+		{ scrollTop: 0 }, 
+		duration, 
+		'linear', 
+		complete);
 }
 
 export function yieldFocus() {

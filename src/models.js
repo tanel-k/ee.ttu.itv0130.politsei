@@ -74,10 +74,14 @@ export class Reporter extends Person {
 			.ensure('hasDateOfBirthOrSSN')
 				.satisfiesRule('isTruthy')
 					.withMessage('Vähemalt üks väli on vaja ära täita')
+			.ensure('registryCode')
+				.satisfiesRule('registryCode')
+					.withMessage('See pole korrektne registrikood')
 			.on(this);
 		
 	}
 
+	registryCode = '';
 	preferredModeOfContact = 'phone';
 	contactTime = '';
 	isJuridicialPerson = false;

@@ -57,5 +57,12 @@
 				</label>
 			</div>
 		</div>
+		<div class="row" if.bind="report.reporter.isJuridicialPerson">
+			<div class="form-group col-md-3">
+				<label for="registryCode" class="control-label">Registrikood</label>
+				<input type="text" class="form-control" id="registryCode"
+					value.bind="report.reporter.registryCode & validate">
+			</div>
+		</div>
 	</form>
 </template>

@@ -27,7 +27,7 @@ export class ReportForm {
 			{ pageKey: 'event-form', name: 'Sündmus' },
 			{ pageKey: 'reporter-form', name: 'Isikuandmed' },
 			{ pageKey: 'reporter-contact-form', name: 'Kontaktandmed' },
-			{ pageKey: 'damages-form', name: 'Varaline kahju' },
+			{ pageKey: 'damages-form', name: 'Kahju' },
 			{ pageKey: 'suspects-form', name: 'Süüdlased' },
 			{ pageKey: 'witnesses-form', name: 'Tunnistajad' },
 			{ pageKey: 'submission-form', name: 'Esitamine' }

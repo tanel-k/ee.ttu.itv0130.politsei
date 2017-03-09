@@ -7,13 +7,12 @@
 				<form validation-renderer="bootstrap-form">
 					<div class="row">
 						<div class="col-md-4">
-							<h3>Kahju andmed</h3>
+							<h3>Vara andmed</h3>
 						</div>
 						<div class="col-md-1 pull-right">
-							<button type="button" class="btn btn-danger btn-md btn-remove" 
-								click.delegate="removeDamage($index)">
+							<confirm-button classes="btn btn-danger btn-md btn-remove" content="" title="Kas olete kindel?" ok="Jah" cancel="Ei" icon="times" action.call="removeDamage($index)" placement="right">
 								<i class="fa fa-times"></i>
-							</button>
+							</confirm-button>
 						</div>
 					</div>
 					<div class="row">

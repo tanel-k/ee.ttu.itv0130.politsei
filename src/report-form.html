@@ -1,37 +1,57 @@
 <template>
 	<div class="container">
 		<div class="row">
-			<progress-tracker pages.bind="pages" class="hidden-sm hidden-xs"></progress-tracker>
+			<progress-tracker pages.bind="pages" class="hidden-xs"></progress-tracker>
 		</div>
 		<div class="row form-area">
 			<compose view-model="forms/${activePage.pageKey}" model.bind="report"></compose>
 		</div>
 		<top-scroller bottom-offset="100px" class="hidden-sm hidden-xs"></top-scroller>
 	</div>
+
 	<div class="button-foot container">
+		<!-- TODO dynamic reordering -->
 		<div class="row" if.bind="!onFirstPage && !onLastPage">
-			<div class="col-md-6">
+			<!-- md, lg -->
+			<div class="col-md-6 hidden-sm hidden-xs">
 				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
 			</div>
+			<!-- /md, lg -->
 			<div class="col-md-6">
 				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="nextPage()">Edasi</button>
 			</div>
+			<!-- xs, sm -->
+			<div class="col-md-6 hidden-md hidden-lg">
+				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
+			</div>
+			<!-- /xs, sm -->
 		</div>
 		<div class="row" if.bind="onFirstPage">
 			<div class="col-md-12">
 				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="nextPage()">Alusta</button>
 			</div>
 		</div>
+		
 		<div class="row" if.bind="onLastPage">
-			<div class="col-md-4">
+			<!-- md, lg -->
+			<div class="col-md-4 hidden-sm hidden-xs">
 				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 hidden-sm hidden-xs">
 				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" >Kinnita ja allkirjasta ID kaardiga</button>
 			</div>
+			<!-- /md, lg -->
 			<div class="col-md-4">
 				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating">Kinnita allkirjastamata</button>
 			</div>
+			<!-- xs, sm -->
+			<div class="col-md-4 hidden-md hidden-lg">
+				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" >Kinnita ja allkirjasta ID kaardiga</button>
+			</div>
+			<div class="col-md-4 hidden-md hidden-lg">
+				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
+			</div>
+			<!-- /xs, sm -->
 		</div>
 	</div>
 </template>

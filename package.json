@@ -24,7 +24,8 @@
     "requirejs": "^2.3.2",
     "selectize": "^0.12.4",
     "sifter": "^0.5.2",
-    "text": "github:requirejs/text#latest"
+    "text": "github:requirejs/text#latest",
+    "whatwg-fetch": "^2.0.3"
   },
   "peerDependencies": {},
   "devDependencies": {

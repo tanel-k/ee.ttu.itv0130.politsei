@@ -1,0 +1,12 @@
+<template>
+	<button class="${classes}" type="button"
+		data-toggle="confirmation" 
+		data-placement="${placement}"
+		data-content="${content}"
+		data-title="${title}"
+		data-btn-ok-label="${ok}"
+		data-btn-cancel-label="${cancel}"
+		click.delegate="action()">
+		<slot></slot>
+	</button>
+</template>

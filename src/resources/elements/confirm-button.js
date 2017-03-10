@@ -19,7 +19,9 @@ export class ConfirmButton {
 
 	attached() {
 		this.selector = $(this.element).find('button')
-			.confirmation();
+			.confirmation({
+				
+			});
 	}
 	
 	detached() {

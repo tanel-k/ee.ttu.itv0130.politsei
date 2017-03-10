@@ -12,7 +12,7 @@ export class ReportForm {
 	fadeOutDuration = 300;
 	fadeInDuration = 750;
 	errorScrollDuration = 300;
-	// fixes navigation spam
+	// patch for navigation spam
 	isNavigating = true;
 	
 	constructor(eventAggregator, validationController, dataGateway) {
@@ -92,51 +92,6 @@ export class ReportForm {
 		return this.activePage.staticIndex == this.pages.length - 1;
 	}
 
-	addDamage() {
-		this.report.damages.unshift(new Damage());
-	}
-
-	removeDamage(index) {
-		this.fadeAndRemoveFromArray(
-				this.report.damages, 
-				index, 
-				`#damage-${index}`
-			);
-	}
-
-	addWitness() {
-		this.report.witnesses.unshift(new Witness());
-	}
-
-	removeWitness(index) {
-		this.fadeAndRemoveFromArray(
-				this.report.witnesses, 
-				index, 
-				`#witness-${index}`
-			);
-	}
-
-	addSuspect() {
-		this.report.suspects.unshift(new Suspect());
-	}
-
-	removeSuspect(index) {
-		this.fadeAndRemoveFromArray(
-				this.report.suspects, 
-				index, 
-				`#suspect-${index}`
-			);
-	}
-
-	fadeAndRemoveFromArray(fromArray, index, selector) {
-		let element = this.formArea.querySelector(selector);
-
-		$(element).fadeOut(this.fadeOutDuration, function() {
-			fromArray.splice(index, 1);
-		});
-	}
-
-
 	doNavigation(targetPage) {
 		if (!this.isNavigating) {
 			if (this.onThresholdPage()) {
@@ -148,15 +103,6 @@ export class ReportForm {
 			}
 		}
 	}
-
-	purgeAggregates() {
-		[
-		 this.report.damages, 
-		 this.report.suspects, 
-		 this.report.witnesses
-		].forEach(array => clearEmptyObjectsInArr(array));
-	}
-
 
 	navigateFromThreshold(targetPage) {
 		let isPageValid = true;
@@ -193,7 +139,6 @@ export class ReportForm {
 	performNavigation(targetPage) {
 		targetPage.progressState = progressState.current;
 		this.activePage = targetPage;
-		this.purgeAggregates();
 	}
 
 	nextPage() {
@@ -221,18 +166,6 @@ export class ReportForm {
 	findPageByIndex(index) {
 		return this.pages.find(page => page.staticIndex == index);
 	}
-}
-
-function clearEmptyObjectsInArr(array) {
-	let removeIndexes = [];
-	
-	array.forEach((obj, index) => {
-		if (Object.values(obj).every(value => !value && !value.trim())) {
-			removeIndexes.push(index);
-		}
-	});
-	
-	removeIndexes.forEach(index => array.splice(index, 1));
 }
 
 function scrollToFirstError(scrollDuration) {

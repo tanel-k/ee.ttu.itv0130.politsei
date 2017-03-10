@@ -1,87 +1,104 @@
 <template>
 	<div class="agg-wrapper">
 		<h2>Varaline kahju</h2>
-		<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addDamage()">Lisa ära võetud/viidud/saamata jäänud vara</button>
-		<div repeat.for="damage of report.damages" class="panel panel-default damage-panel removable-panel" id="damage-${$index}">
-			<div class="panel-body">
-				<form validation-renderer="bootstrap-form">
+		<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addItem()">Lisa ära võetud/viidud/saamata jäänud vara</button>
+		<template repeat.for="container of array">
+			<!-- TODO: move to template -->
+			<div class="panel panel-default undo-panel" if.bind="!container.isActive">
+				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-4">
-							<h3>Vara andmed</h3>
+							<p>Varalise kahju andmed eemaldatud.<button type="button" class="btn btn-link" click.delegate="activateItem(container)">Võta tagasi?</button></p>
 						</div>
 						<div class="col-md-1 pull-right">
-							<confirm-button classes="btn btn-danger btn-md btn-remove" content="" title="Kas olete kindel?" ok="Jah" cancel="Ei" icon="times" action.call="removeDamage($index)" placement="right">
+							<button class="btn btn-default btn-md btn-remove" click.delegate="destroyItem(container)">
 								<i class="fa fa-times"></i>
-							</confirm-button>
+							</button>
 						</div>
 					</div>
-					<div class="row">
-						<div class="form-group col-md-4">
-							<label class="control-label">Vara nimetus</label>
-							<input type="text" class="form-control" value.bind="damage.name & validate">
-						</div>
-						<div class="form-group col-md-3 col-md-offset-2">
-							<label class="control-label">Ligikaudne hetkeväärtus (€)</label>
-							<currency-field value.bind="damage.valueEstimate & validate"></currency-field>
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-2">
-							<label class="control-label">Soetamise aasta</label>
-							<input class="form-control" type="text" value.bind="damage.yearOfPurchase & validate">
-						</div>
-					</div>
-					<br/>
-					<div class="row">
-						<div class="col-md-6">
-							<label class="control-label">Vara viimati olemas</label>
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<div class="row">
-										<div class="form-group col-md-5">
-											<label class="control-label">Kuupäev</label>
-											<datepicker title="Kuupäev" value.bind="damage.dateLastHad & validate"></datepicker>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group col-md-3">
-											<label class="control-label">Kellaaeg</label>
-											<timepicker value.bind="damage.timeLastHad & validate"></timepicker>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group col-md-6">
-							<label class="control-label">Vara puudumine avastati</label>
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<div class="row">
-										<div class="form-group col-md-5">
-											<label class="control-label">Kuupäev</label>
-											<datepicker title="Kuupäev" value.bind="damage.dateNoticedMissing & validate"></datepicker>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group col-md-3">
-											<label class="control-label">Kellaaeg</label>
-											<timepicker value.bind="damage.timeNoticedMissing & validate"></timepicker>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<br/>
-					<div class="row">
-						<div class="form-group col-md-8">
-							<label class="control-label" for="eventDescription">Eritunnused ja tundemärgid</label>
-							<textarea class="form-control" id="eventDescription" rows="3" value.bind="damage.description & validate"></textarea>
-							<small class="form-text text-muted">Sealhulgas IMEI kood, seerianumber jms</small>
-						</div>
-					</div>
-				</form>
+				</div>
 			</div>
-		</div>
+			<div class="panel panel-default removable-panel" id="item-${container.id}" if.bind="container.isActive">
+				<div class="panel-body">
+					<form validation-renderer="bootstrap-form">
+						<div class="row">
+							<div class="col-md-4">
+								<h3>Vara andmed</h3>
+							</div>
+							<div class="col-md-1 pull-right">
+								<button class="btn btn-danger btn-md btn-remove" click.delegate="deactivateItem(container)">
+									<i class="fa fa-times"></i>
+								</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label class="control-label">Vara nimetus</label>
+								<input type="text" class="form-control" value.bind="container.item.name & validate">
+							</div>
+							<div class="form-group col-md-3 col-md-offset-2">
+								<label class="control-label">Ligikaudne hetkeväärtus (€)</label>
+								<currency-field value.bind="container.item.valueEstimate & validate"></currency-field>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-2">
+								<label class="control-label">Soetamise aasta</label>
+								<input class="form-control" type="text" value.bind="container.item.yearOfPurchase & validate">
+							</div>
+						</div>
+						<br/>
+						<div class="row">
+							<div class="col-md-6">
+								<label class="control-label">Vara viimati olemas</label>
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<div class="row">
+											<div class="form-group col-md-5">
+												<label class="control-label">Kuupäev</label>
+												<datepicker title="Kuupäev" value.bind="container.item.dateLastHad & validate"></datepicker>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-md-3">
+												<label class="control-label">Kellaaeg</label>
+												<timepicker value.bind="container.item.timeLastHad & validate"></timepicker>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="control-label">Vara puudumine avastati</label>
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<div class="row">
+											<div class="form-group col-md-5">
+												<label class="control-label">Kuupäev</label>
+												<datepicker title="Kuupäev" value.bind="container.item.dateNoticedMissing & validate"></datepicker>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group col-md-3">
+												<label class="control-label">Kellaaeg</label>
+												<timepicker value.bind="container.item.timeNoticedMissing & validate"></timepicker>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br/>
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label class="control-label" for="eventDescription">Eritunnused ja tundemärgid</label>
+								<textarea class="form-control" id="eventDescription" rows="3" value.bind="container.item.description & validate"></textarea>
+								<small class="form-text text-muted">Sealhulgas IMEI kood, seerianumber jms</small>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</template>
 	</div>
 </template>

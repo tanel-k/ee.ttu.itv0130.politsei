@@ -18,6 +18,11 @@ $spacer-y: 25px;
 	padding-right: $padding;
 }
 
+@mixin top-bottom-pad($padding) {
+	padding-top: $padding;
+	padding-bottom: $padding
+}
+
 html {
 	overflow-y: scroll;
 }
@@ -27,6 +32,7 @@ body {
 	when nav is fixed:
 	margin-top: $nav-height + 10px;
 	*/
+	
 	margin-bottom: $body-bottom-margin;
 	font-family: $body-font-stack;
     font-size: $body-font-size;
@@ -116,19 +122,26 @@ body {
 		}
 	}
 	
-	.damage-panel {
-		@extend .removable-panel;
-	}
-	
-	.suspect-panel {
-		@extend .removable-panel;
-	}
-	
-	.witness-panel {
-		@extend .removable-panel;
+	.undo-panel {
+		@include top-bottom-margin(20px);
+		
+		.panel-body {
+			@include left-right-pad(15px);
+			@incliude top-bottom-pad(10px);
+		}
+		
+		.btn-remove {
+			display: block;
+			float: right;
+		}
+		
+		p {
+			margin: 0;
+		}
 	}
 }
 
+/* utility classes */
 .mt-0 {
   margin-top: 0 !important;
 }

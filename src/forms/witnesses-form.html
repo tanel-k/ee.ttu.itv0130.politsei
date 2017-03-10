@@ -1,71 +1,88 @@
 <template>
 	<div class="agg-wrapper">
 		<h2>Tunnistajad</h2>
-		<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addWitness()">Lisa tunnistaja</button>
-		<div repeat.for="witness of report.witnesses"  class="panel panel-default witness-panel removable-panel" id="witness-${$index}">
-			<div class="panel-body">
-				<form validation-renderer="bootstrap-form">
+		<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addItem()">Lisa tunnistaja</button>
+		<template repeat.for="container of array">
+			<!-- TODO: move to template -->
+			<div class="panel panel-default undo-panel" if.bind="!container.isActive">
+				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-4">
-							<h3>Tunnistaja andmed</h3>
+							<p>Tunnistaja andmed eemaldatud.<button type="button" class="btn btn-link" click.delegate="activateItem(container)">Võta tagasi?</button></p>
 						</div>
 						<div class="col-md-1 pull-right">
-							<button type="button" class="btn btn-danger btn-md btn-remove" 
-								click.delegate="removeWitness($index)">
+							<button class="btn btn-default btn-md btn-remove" click.delegate="destroyItem(container)">
 								<i class="fa fa-times"></i>
 							</button>
 						</div>
 					</div>
-					<div class="row">
-						<div class="form-group col-md-3">
-							<label class="control-label">Eesnimi</label>
-							<input type="text" class="form-control" value.bind="witness.firstName & validate">
-						</div>
-						<div class="form-group col-md-3 col-md-offset-3">
-							<label class="control-label">Perenimi</label>
-							<input type="text" class="form-control" value.bind="witness.lastName & validate">
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-3">
-							<label class="control-label">Isikukood</label>
-							<input class="form-control" type="text"  value.bind="witness.SSN & validate">
-						</div>
-						<div class="form-group col-md-2 col-md-offset-3">
-							<label class="control-label">Sünniaeg</label>
-							<datepicker start="decades" value.bind="witness.dateOfBirth & validate"></datepicker>
-						</div>
-					</div>
-					<br/>
-					<div class="row">
-						<div class="form-group col-md-4">
-							<label class="control-label">Kodakondsus</label>
-							<enhanced-select value.bind="witness.nationality & validate" values.bind="nationalities"></enhanced-select>
-						</div>
-						<div class="form-group col-md-4 col-md-offset-2">
-							<label class="control-label">Amet</label>
-							<input type="text" class="form-control" value.bind="witness.occupation & validate">
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-3">
-							<label class="control-label">Telefoninumber</label>
-							<input class="form-control" type="text"  value.bind="witness.phoneNumber & validate">
-						</div>
-						<div class="form-group col-md-4 col-md-offset-3">
-							<label class="control-label">E-post</label>
-							<input type="tel" class="form-control" value.bind="witness.email & validate">
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-5">
-							<label for="address" class="control-label">Aadress</label>
-							<input type="text" class="form-control" id="address" value.bind="witness.address & validate">
-							<small class="form-text text-muted">Tänav, maja, korter, linn</small>
-						</div>
-					</div>
-				</form>
+				</div>
 			</div>
-		</div>
+			<div class="panel panel-default removable-panel" id="item-${container.id}" if.bind="container.isActive">
+				<div class="panel-body">
+					<form validation-renderer="bootstrap-form">
+						<div class="row">
+							<div class="col-md-4">
+								<h3>Tunnistaja andmed</h3>
+							</div>
+							<div class="col-md-1 pull-right">
+								<button type="button" class="btn btn-danger btn-md btn-remove" 
+									click.delegate="deactivateItem(container)">
+									<i class="fa fa-times"></i>
+								</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-3">
+								<label class="control-label">Eesnimi</label>
+								<input type="text" class="form-control" value.bind="container.item.firstName & validate">
+							</div>
+							<div class="form-group col-md-3 col-md-offset-3">
+								<label class="control-label">Perenimi</label>
+								<input type="text" class="form-control" value.bind="container.item.lastName & validate">
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-3">
+								<label class="control-label">Isikukood</label>
+								<input class="form-control" type="text" value.bind="container.item.SSN & validate">
+							</div>
+							<div class="form-group col-md-2 col-md-offset-3">
+								<label class="control-label">Sünniaeg</label>
+								<datepicker start="decades" value.bind="container.item.dateOfBirth & validate"></datepicker>
+							</div>
+						</div>
+						<br/>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label class="control-label">Kodakondsus</label>
+								<enhanced-select value.bind="container.item.nationality & validate" values.bind="nationalities"></enhanced-select>
+							</div>
+							<div class="form-group col-md-4 col-md-offset-2">
+								<label class="control-label">Amet</label>
+								<input type="text" class="form-control" value.bind="container.item.occupation & validate">
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-3">
+								<label class="control-label">Telefoninumber</label>
+								<input class="form-control" type="text"  value.bind="container.item.phoneNumber & validate">
+							</div>
+							<div class="form-group col-md-4 col-md-offset-3">
+								<label class="control-label">E-post</label>
+								<input type="tel" class="form-control" value.bind="container.item.email & validate">
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-5">
+								<label for="address" class="control-label">Aadress</label>
+								<input type="text" class="form-control" id="address" value.bind="container.item.address & validate">
+								<small class="form-text text-muted">Tänav, maja, korter, linn</small>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</template>
 	</div>
 </template>

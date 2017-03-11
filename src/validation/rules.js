@@ -110,7 +110,7 @@ ValidationRules.customRule(
 	(value, obj) => {
 		if (value && isEETDate(value.trim())) {
 			let now = moment();
-			return !moment(value, "DD/MM/YYYY").isAfter(now);
+			return !moment(value, "DD.MM.YYYY").isAfter(now);
 		}
 		
 		return true;
@@ -120,9 +120,9 @@ ValidationRules.customRule(
 
 function isEETDate(dateStr) {
 	
-	let dateRgx = /^(\d\d)\/(\d\d)\/(\d\d\d\d)$/;
+	let dateRgx = /^(\d\d)\.(\d\d)\.(\d\d\d\d)$/;
 	if (dateStr.match(dateRgx)) {
-		return checkDateFormat(dateStr, "DD/MM/YYYY");
+		return checkDateFormat(dateStr, "DD.MM.YYYY");
 	}
 	
 	return false;

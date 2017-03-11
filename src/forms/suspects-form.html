@@ -3,7 +3,6 @@
 		<h2>Süüdlased</h2>
 		<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addItem()">Lisa süüdlane</button>
 		<template repeat.for="container of array">
-			<!-- TODO: move to template -->
 			<div class="panel panel-default undo-panel" if.bind="!container.isActive">
 				<div class="panel-body">
 					<div class="row">
@@ -26,8 +25,7 @@
 								<h3>Süüdlase andmed</h3>
 							</div>
 							<div class="col-md-1 pull-right">
-								<button type="button" class="btn btn-danger btn-md btn-remove" 
-									click.delegate="deactivateItem(container)">
+								<button type="button" class="btn btn-danger btn-md btn-remove" type="button" click.delegate="deactivateItem(container)">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
@@ -49,7 +47,7 @@
 							</div>
 							<div class="form-group col-md-2 col-md-offset-3">
 								<label class="control-label">Sünniaeg</label>
-								<datepicker start="decades" value.bind="container.item.dateOfBirth & validate"></datepicker>
+								<datepicker start="decades" format="dd.mm.yyyy" value.bind="container.item.dateOfBirth & validate"></datepicker>
 							</div>
 						</div>
 						<br/>
@@ -85,7 +83,7 @@
 							<div class="form-group col-md-8">
 								<label class="control-label" for="suspectDescription">Tundemärgid</label>
 								<textarea class="form-control" rows="3" id="suspectDescription" value.bind="container.item.description & validate"></textarea>
-								<small class="form-text text-muted">sh sugu, vanus, kirjeldus, riietus jne</small>
+								<small class="form-text text-muted">Sugu, vanus, kirjeldus, riietus jne</small>
 							</div>
 						</div>
 					</form>

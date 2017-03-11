@@ -119,6 +119,12 @@
 			"moment",
 			"jquery",
 			{
+				"name": "inputmask",
+				"path": "../node_modules/jquery.inputmask/dist",
+				"main": "jquery.inputmask.bundle.js",
+				"deps": ["jquery"]
+			},
+			{
 				"name": "bootstrap",
 				"path": "../node_modules/bootstrap/dist",
 				"main": "js/bootstrap.min",

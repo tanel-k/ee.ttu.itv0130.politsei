@@ -1,0 +1,34 @@
+$from-color: #fcfcfc /* #f3f3f3 #004A7F*/;
+$mid-color:  #d6d6d6 /* buttonface #0094FF*/;
+$duration: 2500ms;
+
+@-webkit-keyframes glowing {
+  0% { background-color: $from-color; -webkit-box-shadow: 0 0 3px $from-color; }
+  50% { background-color: $mid-color; -webkit-box-shadow: 0 0 10px $mid-color; }
+  100% { background-color: $from-color; -webkit-box-shadow: 0 0 3px $from-color; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: $from-color; -moz-box-shadow: 0 0 3px $from-color; }
+  50% { background-color: $mid-color; -moz-box-shadow: 0 0 10px $mid-color; }
+  100% { background-color: $from-color; -moz-box-shadow: 0 0 3px $from-color; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: $from-color; box-shadow: 0 0 3px $from-color; }
+  50% { background-color: $mid-color; box-shadow: 0 0 10px $mid-color; }
+  100% { background-color: $from-color; box-shadow: 0 0 3px $from-color; }
+}
+
+@keyframes glowing {
+  0% { background-color: $from-color; box-shadow: 0 0 3px $from-color; }
+  50% { background-color: $mid-color; box-shadow: 0 0 10px $mid-color; }
+  100% { background-color: $from-color; box-shadow: 0 0 3px $from-color; }
+}
+
+.is-glowing {
+	-webkit-animation: glowing $duration infinite;
+	-moz-animation: glowing $duration infinite;
+	-o-animation: glowing $duration infinite;
+	animation: glowing $duration infinite;
+}

@@ -28,12 +28,13 @@ export class Event {
 					.withMessage('Kellaaeg peab vastama formaadile tt:mm')
 			.ensure('dateEvent')
 				.satisfiesRule('dateEET')
-					.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+					.withMessage('Kuupäev peab vastama formaadile pp.kk.aaaa')
 				.satisfiesRule('dateEETNotFuture')
 					.withMessage('Kuupäev ei saa olla tulevikus')
 			.on(this);
 	}
 
+	isHomeEvent = false;
 	description = 'Random text';
 	dateEvent = '';
 	timeEvent = '';
@@ -112,7 +113,7 @@ function getPersonValidationRules() {
 	return ValidationRules
 		.ensure('dateOfBirth')
 			.satisfiesRule('dateEET')
-				.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+				.withMessage('Kuupäev peab vastama formaadile pp.kk.aaaa')
 			.satisfiesRule('dateEETNotFuture')
 				.withMessage('Kuupäev ei saa olla tulevikus')
 		.ensure('phoneNumber')
@@ -131,12 +132,12 @@ export class Damage {
 				.satisfiesRule('currency').withMessage('See pole korrektne summa.')
 			.ensure('dateNoticedMissing')
 				.satisfiesRule('dateEET')
-					.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+					.withMessage('Kuupäev peab vastama formaadile pp.kk.aaaa')
 				.satisfiesRule('dateEETNotFuture')
 					.withMessage('Kuupäev ei saa olla tulevikus')
 			.ensure('dateLastHad')
 				.satisfiesRule('dateEET')
-					.withMessage('Kuupäev peab vastama formaadile pp/kk/aaaa')
+					.withMessage('Kuupäev peab vastama formaadile pp.kk.aaaa')
 				.satisfiesRule('dateEETNotFuture')
 					.withMessage('Kuupäev ei saa olla tulevikus')
 			.ensure('yearOfPurchase')

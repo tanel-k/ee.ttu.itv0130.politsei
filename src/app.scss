@@ -122,6 +122,11 @@ body {
 		}
 	}
 	
+	.checkbox-field-row {
+		margin-top: 5px;
+		margin-bottom: 15px;
+	}
+	
 	.undo-panel {
 		@include top-bottom-margin(20px);
 		
@@ -133,6 +138,7 @@ body {
 		.btn-remove {
 			display: block;
 			float: right;
+			border: 0;
 		}
 		
 		p {

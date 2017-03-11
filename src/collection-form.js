@@ -59,6 +59,8 @@ export class CollectionForm extends BaseForm {
 	}
 
 	addItem() {
+		// this action should clear undos (?)
+		this.array = this.array.filter(ctr => ctr.isActive);
 		this.array.unshift({
 			id: this.generateId(),
 			isActive: true,
@@ -91,10 +93,7 @@ export class CollectionForm extends BaseForm {
 
 	unwrapItems(fromArray, toArray) {
 		fromArray.forEach((container, index) => {
-			if (container.isActive && isNonEmptyObject(container.item)) {
-				alert('good!');
-				console.log(container.item);
-				console.log(this.ItemClass);
+			if (container.isActive && !areScalarMembersEmpty(container.item)) {
 				toArray.push(container.item);
 			}
 		});
@@ -109,8 +108,17 @@ export class CollectionForm extends BaseForm {
 	}
 }
 
-// BROKEN
-function isNonEmptyObject(o) {
-	return Object.getOwnPropertyNames(o).every(name => o[name]);
-	// return o && Object.values(o).every(value => !value && !value.trim());
+function areScalarMembersEmpty(o) {
+	let scalarTypes = ['string', 'boolean', 'number'];
+	return o && Object.values(o).every(value => {
+		let valueType = typeof value;
+		if (valueType == 'string') {
+			return !(value && value.trim());
+		} else if (scalarTypes.indexOf(valueType) > -1) {
+			return value != null;
+		}
+		
+		// everything else is considered an empty member
+		return true;
+	});
 }

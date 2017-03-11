@@ -1,3 +1,5 @@
 node_modules
+scripts
+!scripts/third-party
 .idea
 .DS_STORE

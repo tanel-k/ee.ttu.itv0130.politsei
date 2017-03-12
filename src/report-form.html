@@ -6,12 +6,8 @@
 		<div class="row form-area">
 			<compose view-model="forms/${activePage.pageKey}" model.bind="report"></compose>
 		</div>
-		<top-scroller bottom-offset="100px" class="hidden-sm hidden-xs"></top-scroller>
-	</div>
-
-	<div class="button-foot container">
 		<!-- TODO dynamic reordering -->
-		<div class="row" if.bind="!onFirstPage && !onLastPage">
+		<div class="row mt-2 button-foot" if.bind="!onFirstPage && !onLastPage">
 			<!-- md, lg -->
 			<div class="col-md-6 hidden-sm hidden-xs">
 				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
@@ -26,13 +22,12 @@
 			</div>
 			<!-- /xs, sm -->
 		</div>
-		<div class="row" if.bind="onFirstPage">
+		<div class="row mt-5 button-foot" if.bind="onFirstPage">
 			<div class="col-md-12">
 				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="nextPage()">Alusta</button>
 			</div>
 		</div>
-		
-		<div class="row" if.bind="onLastPage">
+		<div class="row mt-2 button-foot" if.bind="onLastPage">
 			<!-- md, lg -->
 			<div class="col-md-4 hidden-sm hidden-xs">
 				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
@@ -53,5 +48,6 @@
 			</div>
 			<!-- /xs, sm -->
 		</div>
+		<top-scroller bottom-offset="10px" class="hidden-sm hidden-xs"></top-scroller>
 	</div>
 </template>

@@ -36,7 +36,7 @@ export class ReportForm {
 			page.progressState = progressState.unvisited;
 			page.staticIndex = i;
 		});
-		let firstForm = this.pages[0];
+		let firstForm = this.pages[7];
 		
 		firstForm.progressState = progressState.current;
 		this.activePage = firstForm;

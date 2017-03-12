@@ -4,7 +4,7 @@ $begin-footer-top-margin: 200px;
 $body-font-stack: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 $body-font-size: 1.5em;
 $body-font-weight: 400;
-$body-bottom-margin: 200px;
+$body-bottom-margin: 50px;
 
 $spacer-y: 25px;
 
@@ -50,34 +50,23 @@ body {
 		}
 	}
 	
-	.button-foot {
-		position:fixed;
-		bottom:0px;
-		width: 100%;
-		z-index: 1000;
-		padding: 20px;
-		background-color: #f3f3f3;
+	.form-area {
+		@include left-right-pad(15px);
 	}
 	
 	/* lg */
 	@media (min-width: 1200px) {
-		.button-foot {
-			@include left-right-pad(300px);
-		}
+		
 	}
 	
 	/* md */
 	@media (min-width: 992px) and (max-width: 1199px) {
-		.button-foot {
-			@include left-right-pad(100px);
-		}
+	
 	}
 	
 	/* sm */
 	@media (min-width: 768px) and (max-width: 991px) {
 		.button-foot {
-			@include left-right-pad(50px);
-			
 			button {
 				margin-bottom: 10px;
 			}
@@ -90,8 +79,6 @@ body {
 			button {
 				margin-bottom: 10px;
 			}
-			
-			padding-bottom: 10px;
 		}
 	}
 
@@ -106,6 +93,16 @@ body {
 				color:red;
 			}
 		}
+	}
+	
+	.display-label {
+		font-weight: bold;
+		text-align: right;
+	}
+	
+	.display-values {
+		// Could do something like
+		// color: darkgray;
 	}
 	
 	.progress-indicator {

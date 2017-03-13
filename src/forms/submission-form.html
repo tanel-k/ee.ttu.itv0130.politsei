@@ -262,21 +262,21 @@
 			<div class="row">
 				<div class="form-check col-md-5">
 					<label class="form-check-label">
-						<input type="checkbox" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus&nbsp;<a href="#" title="" data-toggle="popover" data-trigger="hover" data-content="Menetluse liik, mille käigus nõustuvad süüdistatav ja tema kaitsja süüdistuse sisu ja kuriteo kvalifikatsiooni, kuriteoga tekitatud kahju laadi ja suurusega ning jõuavad kokkuleppele prokuröri poolt kohtus nõutava karistuse liigis ja määras.">kokkuleppemenetlusega</a>
+						<input type="checkbox" checked.bind="report.agreeToSettlement" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus&nbsp;<a href="#" title="" data-toggle="popover" data-trigger="hover" data-content="Menetluse liik, mille käigus nõustuvad süüdistatav ja tema kaitsja süüdistuse sisu ja kuriteo kvalifikatsiooni, kuriteoga tekitatud kahju laadi ja suurusega ning jõuavad kokkuleppele prokuröri poolt kohtus nõutava karistuse liigis ja määras.">kokkuleppemenetlusega</a>
 					</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-check col-md-7">
 					<label class="form-check-label">
-						<input type="checkbox" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus, et menetlusega seotud dokumendid esitatakse minu poolt antud e-posti aadressile
+						<input type="checkbox" checked.bind="report.agreeToEmailedDocs" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus, et menetlusega seotud dokumendid esitatakse minu poolt antud e-posti aadressile
 					</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-check col-md-5">
 					<label class="form-check-label">
-						<input type="checkbox" class="form-check-input control-label">&nbsp;&nbsp;Soovin teavet&nbsp;<a target="_blank" href="https://www.e-toimik.ee">E-Toimiku</a>&nbsp;kaudu
+						<input type="checkbox" checked.bind="report.useEDossier" class="form-check-input control-label">&nbsp;&nbsp;Soovin teavet&nbsp;<a target="_blank" href="https://www.e-toimik.ee">E-Toimiku</a>&nbsp;kaudu
 					</label>
 				</div>
 			</div>

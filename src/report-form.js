@@ -12,7 +12,7 @@ import 'jquery';
 export class ReportForm {
 	fadeOutDuration = 300;
 	fadeInDuration = 750;
-	errorScrollDuration = 300;
+	errorScrollDuration = 150;
 	// patch for navigation spam
 	isNavigating = true;
 	

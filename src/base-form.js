@@ -18,7 +18,10 @@ export class BaseForm {
 		this.eventAggregator.publish(new FormAttachedEvent());
 		// scrollToTop(this.scrollDuration, yieldFocus);
 		// scrollToTop(0);
-		yieldFocus();
+		if (document.querySelectorAll('.has-error').length == 0) {
+			// anti-pattern :C
+			yieldFocus();
+		}
 	}
 
 	detached() {

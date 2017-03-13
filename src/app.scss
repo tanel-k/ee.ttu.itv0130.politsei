@@ -102,10 +102,19 @@ body {
 	}
 	
 	.removable-panel {
+		.panel-body {
+			padding-top: 5px;
+		}
+		
 		@include top-bottom-margin(20px);
-		.btn-remove {
-			display: block;
-			float: right;
+		.btn-remove-wrapper {
+			top: 20px;
+			
+			.btn-remove {
+				display: block;
+				float: right;
+				top: 20px;
+			}
 		}
 	}
 	

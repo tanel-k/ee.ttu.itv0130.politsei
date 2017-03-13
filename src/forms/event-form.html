@@ -5,7 +5,7 @@
 			<div class="form-group required col-md-6">
 				<label class="control-label" for="eventDescription">Toimunu kirjeldus</label>
 				<!-- bizarre bug when steal-focus is present on textarea -->
-				<textarea class="form-control" id="eventDescription" rows="6" 
+				<textarea steal-focus class="form-control" id="eventDescription" rows="6" 
 					value.bind="report.event.description & validate"></textarea>
 			</div>
 		</div>

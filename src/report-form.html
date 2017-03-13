@@ -10,44 +10,44 @@
 		<div class="row mt-2 button-foot" if.bind="!onFirstPage && !onLastPage">
 			<!-- md, lg -->
 			<div class="col-md-6 hidden-sm hidden-xs">
-				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
+				<button type="button" class="btn btn-secondary btn-lg btn-block" click.delegate="previousPage()">Tagasi</button>
 			</div>
 			<!-- /md, lg -->
 			<div class="col-md-6">
-				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="nextPage()">Edasi</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="nextPage()">Edasi</button>
 			</div>
 			<!-- xs, sm -->
 			<div class="col-md-6 hidden-md hidden-lg">
-				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
+				<button type="button" class="btn btn-secondary btn-lg btn-block" click.delegate="previousPage()">Tagasi</button>
 			</div>
 			<!-- /xs, sm -->
 		</div>
 		<div class="row mt-5 button-foot" if.bind="onFirstPage">
 			<div class="col-md-12">
-				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="nextPage()">Alusta</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="nextPage()">Alusta</button>
 			</div>
 		</div>
 		<div class="row mt-2 button-foot" if.bind="onLastPage">
 			<!-- md, lg -->
 			<div class="col-md-4 hidden-sm hidden-xs">
-				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
+				<button type="button" class="btn btn-secondary btn-lg btn-block" click.delegate="previousPage()">Tagasi</button>
 			</div>
 			<div class="col-md-4 hidden-sm hidden-xs">
-				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="exitForm()">Kinnita ja allkirjasta ID kaardiga</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="exitForm()">Kinnita ja allkirjasta ID kaardiga</button>
 			</div>
 			<!-- /md, lg -->
 			<div class="col-md-4">
-				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="exitForm()">Kinnita allkirjastamata</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="exitForm()">Kinnita allkirjastamata</button>
 			</div>
 			<!-- xs, sm -->
 			<div class="col-md-4 hidden-md hidden-lg">
-				<button type="button" class="btn btn-primary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="exitForm()">Kinnita ja allkirjasta ID kaardiga</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="exitForm()">Kinnita ja allkirjasta ID kaardiga</button>
 			</div>
 			<div class="col-md-4 hidden-md hidden-lg">
-				<button type="button" class="btn btn-secondary btn-lg btn-block" disabled.bind="isNavigating" click.delegate="previousPage()">Tagasi</button>
+				<button type="button" class="btn btn-secondary btn-lg btn-block" click.delegate="previousPage()">Tagasi</button>
 			</div>
 			<!-- /xs, sm -->
 		</div>
-		<top-scroller bottom-offset="100px" right-offset="50px" class="hidden-sm hidden-xs"></top-scroller>
+		<top-scroller bottom-offset="130px" right-offset="50px" class="hidden-sm hidden-xs"></top-scroller>
 	</div>
 </template>

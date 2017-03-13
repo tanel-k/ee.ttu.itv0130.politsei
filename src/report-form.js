@@ -12,7 +12,7 @@ import 'jquery';
 export class ReportForm {
 	fadeOutDuration = 300;
 	fadeInDuration = 750;
-	errorScrollDuration = 150;
+	errorScrollDuration = 0;
 	// patch for navigation spam
 	isNavigating = true;
 	
@@ -76,6 +76,17 @@ export class ReportForm {
 				this.doNavigation(targetPage);
 			}
 		);
+		
+		this.eventAggregator.subscribe(ChangePageMessage,
+			event => {
+				if (this.activePage.pageKey == event.pageKey) {
+					return;
+				}
+				
+				let targetPage = this.findPageByKey(event.pageKey);
+				this.doNavigation(targetPage);
+			}
+		);
 
 		this.eventAggregator.subscribe(FormAttachedEvent,
 			event => this.isNavigating = false
@@ -84,6 +95,15 @@ export class ReportForm {
 		this.eventAggregator.subscribe(FormDetachedEvent,
 			event => this.isNavigating = true
 		);
+	}
+	
+	handlePageChangeRequest(event) {
+		if (this.activePage.pageKey == event.pageKey) {
+			return;
+		}
+		
+		let targetPage = this.findPageByKey(event.pageKey);
+		this.doNavigation(targetPage);
 	}
 
 	get onFirstPage() {
@@ -95,7 +115,7 @@ export class ReportForm {
 	}
 
 	doNavigation(targetPage) {
-		if (!this.isNavigating) {
+		//if (!this.isNavigating) {
 			if (this.onThresholdPage()) {
 				// on active page
 				this.navigateFromThreshold(targetPage);
@@ -103,7 +123,7 @@ export class ReportForm {
 				// navigation in visited section
 				this.navigateFromVisited(targetPage);
 			}
-		}
+		//}
 	}
 
 	navigateFromThreshold(targetPage) {
@@ -122,7 +142,7 @@ export class ReportForm {
 				this.activePage.progressState = progressState.visited;
 				this.performNavigation(targetPage);
 			} else {
-				scrollToFirstError(this.errorScrollDuration);
+				focusError();
 			}
 		});
 	}
@@ -133,7 +153,7 @@ export class ReportForm {
 				this.activePage.progressState = progressState.visited;
 				this.performNavigation(targetPage);
 			} else {
-				scrollToFirstError(this.errorScrollDuration);
+				focusError();
 			}
 		});
 	}
@@ -174,14 +194,18 @@ export class ReportForm {
 	}
 }
 
-function scrollToFirstError(scrollDuration) {
+export class ChangePageMessage {
+	constructor(pageKey) {
+		this.pageKey = pageKey;
+	}
+}
+
+function focusError() {
 	let errorDiv = document.querySelector('div.has-error');
 	if (errorDiv) {
-		$('html, body').animate({ scrollTop: $(errorDiv).offset().top }, scrollDuration, 'linear', function() {
-			let formInput = errorDiv.querySelector('.form-control');
-			if (formInput) {
-				$(formInput).focus();
-			}
-		});
+		let formInput = errorDiv.querySelector('.form-control');
+		if (formInput) {
+			$(formInput).focus();
+		}
 	}
 }

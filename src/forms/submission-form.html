@@ -7,6 +7,7 @@
 	<div class="row">
 		<h3>Teie andmed</h3>
 		<div class="row col-md-12">
+			<h4><a href="#" click.delegate="changePage('reporter-form')">Isikuandmed</a></h4>
 			<panel-wrapper class="col-md-6">
 				<value-row>
 					<span slot="label">Eesnimi</span>
@@ -41,6 +42,7 @@
 			</panel-wrapper>
 		</div>
 		<div class="row col-md-12">
+			<h4><a href="#" click.delegate="changePage('reporter-contact-form')">Kontaktandmed</a></h4>
 			<panel-wrapper class="col-md-6">
 				<value-row>
 					<span slot="label">Telefoninumber</span>
@@ -76,7 +78,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<h3>Sündmuse andmed</h3>
+		<h3><a href="#" click.delegate="changePage('event-form')">Sündmus</a></h3>
 		<panel-wrapper class="col-md-12">
 			<value-row>
 				<span slot="label">Toimunu kirjeldus</span>
@@ -107,7 +109,7 @@
 		</panel-wrapper>
 	</div>
 	<div class="row" if.bind="report.damages.length > 0">
-		<h3>Varaline kahju</h3>
+		<h3><a href="#" click.delegate="changePage('damages-form')">Varaline kahju</a></h3>
 		<panel-wrapper class="col-md-12" repeat.for="damage of report.damages">
 			<h4>Kahju #${$index + 1}</h4>
 			<panel-wrapper>
@@ -145,7 +147,7 @@
 		</panel-wrapper>
 	</div>
 	<div class="row" if.bind="report.suspects.length > 0">
-		<h3>Süüdlased</h3>
+		<h3><a href="#" click.delegate="changePage('suspects-form')">Süüdlased</a></h3>
 		<panel-wrapper class="col-md-12" repeat.for="suspect of report.suspects">
 			<h4>Süüdlane #${$index + 1}</h4>
 			<div class="row">
@@ -202,8 +204,8 @@
 			</div>
 		</panel-wrapper>
 	</div>
-	<div class="row" if.bind="report.witness.length > 0">
-		<h3>Tunnistajad</h3>
+	<div class="row" if.bind="report.witnesses.length > 0">
+		<h3><a href="#" click.delegate="changePage('witnesses-form')">Tunnistajad</a></h3>
 		<panel-wrapper class="col-md-12" repeat.for="witness of report.witnesses">
 			<h4>Tunnistaja #${$index + 1}</h4>
 			<div class="row">
@@ -259,7 +261,7 @@
 		<div class="row">
 			<div class="form-check col-md-5">
 				<label class="form-check-label">
-					<input type="checkbox" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus kokkuleppemenetlusega
+					<input type="checkbox" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus&nbsp;<a href="#" title="" data-toggle="popover" data-trigger="hover" data-content="Menetluse liik, mille käigus nõustuvad süüdistatav ja tema kaitsja süüdistuse sisu ja kuriteo kvalifikatsiooni, kuriteoga tekitatud kahju laadi ja suurusega ning jõuavad kokkuleppele prokuröri poolt kohtus nõutava karistuse liigis ja määras.">kokkuleppemenetlusega</a>
 				</label>
 			</div>
 		</div>

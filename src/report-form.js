@@ -5,9 +5,10 @@ import {FormAttachedEvent, FormDetachedEvent} from './base-form';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {ValidationController, validateTrigger} from 'aurelia-validation';
 import {DataGateway} from './data-gateway';
+import {Router} from 'aurelia-router';
 import 'jquery';
 
-@inject(EventAggregator, NewInstance.of(ValidationController), DataGateway)
+@inject(EventAggregator, NewInstance.of(ValidationController), DataGateway, Router)
 export class ReportForm {
 	fadeOutDuration = 300;
 	fadeInDuration = 750;
@@ -15,12 +16,13 @@ export class ReportForm {
 	// patch for navigation spam
 	isNavigating = true;
 	
-	constructor(eventAggregator, validationController, dataGateway) {
+	constructor(eventAggregator, validationController, dataGateway, router) {
 		this.eventAggregator = eventAggregator;
 		validationController.validateTrigger = validateTrigger.changeOrBlur;
 		this.validationController = validationController;
 		this.dataGateway = dataGateway;
 		this.report = new Report();
+		this.router = router;
 		
 		this.pages = [
 			{ pageKey: 'instructions-form', name: 'Juhend', loadBind: 'alertFalse' },
@@ -36,7 +38,7 @@ export class ReportForm {
 			page.progressState = progressState.unvisited;
 			page.staticIndex = i;
 		});
-		let firstForm = this.pages[7];
+		let firstForm = this.pages[0];
 		
 		firstForm.progressState = progressState.current;
 		this.activePage = firstForm;
@@ -166,15 +168,20 @@ export class ReportForm {
 	findPageByIndex(index) {
 		return this.pages.find(page => page.staticIndex == index);
 	}
+	
+	exitForm() {
+		this.router.navigateToRoute('complete');
+	}
 }
 
 function scrollToFirstError(scrollDuration) {
 	let errorDiv = document.querySelector('div.has-error');
 	if (errorDiv) {
-		$('html, body').animate({ scrollTop: $(errorDiv).offset().top }, scrollDuration, 'linear');
-		let formInput = errorDiv.querySelector('.form-control');
-		if (formInput) {
-			$(formInput).focus();
-		}
+		$('html, body').animate({ scrollTop: $(errorDiv).offset().top }, scrollDuration, 'linear', function() {
+			let formInput = errorDiv.querySelector('.form-control');
+			if (formInput) {
+				$(formInput).focus();
+			}
+		});
 	}
 }

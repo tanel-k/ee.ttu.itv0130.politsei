@@ -33,14 +33,14 @@ export class Event {
 					.withMessage('Kuupäev ei saa olla tulevikus')
 			.on(this);
 	}
-
+	
 	isHomeEvent = false;
-	description = 'Random text';
-	dateEvent = '';
-	timeEvent = '';
-	country = '';
-	address = '';
-	location = '';
+	description;
+	dateEvent;
+	timeEvent;
+	country;
+	address;
+	location;
 }
 
 export class Person {
@@ -48,15 +48,15 @@ export class Person {
 		// ValidationRules are not inheritable
 	}
 
-	firstName = 'John';
-	lastName = 'Doe';
-	SSN = '39210130864';
-	dateOfBirth = '';
-	nationality = '';
-	occupation = '';
-	phoneNumber = '55514212';
-	email = 'john-doe@domain.com';
-	address = '';
+	firstName;
+	lastName;
+	SSN;
+	dateOfBirth;
+	nationality ;
+	occupation;
+	phoneNumber;
+	email;
+	address;
 }
 
 export class Reporter extends Person {
@@ -82,10 +82,10 @@ export class Reporter extends Person {
 		
 	}
 
-	registryCode = '';
-	preferredModeOfContact = 'phone';
-	contactTime = '';
 	isJuridicialPerson = false;
+	registryCode;
+	preferredModeOfContact = 'telefon';
+	contactTime;
 
 	get hasDateOfBirthOrSSN() {
 		// workaround for lack of multi-property validation
@@ -99,7 +99,7 @@ export class Suspect extends Person {
 		getPersonValidationRules().on(this);
 	}
 
-	description = '';
+	description;
 }
 
 export class Witness extends Person {
@@ -151,12 +151,12 @@ export class Damage {
 			.on(this);
 	}
 
-	name = '';
-	valueEstimate = '';
-	yearOfPurchase = '';
-	dateLastHad = '';
-	timeLastHad = '';
-	dateNoticedMissing = '';
-	timeNoticedMissing = '';
-	description = '';
+	name;
+	valueEstimate;
+	yearOfPurchase;
+	dateLastHad;
+	timeLastHad;
+	dateNoticedMissing;
+	timeNoticedMissing;
+	description;
 }

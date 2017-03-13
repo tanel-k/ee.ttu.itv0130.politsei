@@ -1,0 +1,17 @@
+$margin: 5px;
+
+.display-row {
+	margin-top: $margin;
+	margin-bottom: $margin;
+	padding: 5px;
+	
+	.display-label {
+		font-weight: bold;
+		// text-align: right;
+	}
+
+	.display-values {
+		// Could do something like
+		// color: darkgray;
+	}
+}

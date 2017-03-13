@@ -18,7 +18,7 @@
 			<div class="form-group col-md-12">
 				<div class="form-check">
 					<label class="form-check-label">
-						<input class="form-check-input" type="radio" name="preferredModeOfContact" value="phone" checked.bind="report.reporter.preferredModeOfContact">
+						<input class="form-check-input" type="radio" name="preferredModeOfContact" value="telefon" checked.bind="report.reporter.preferredModeOfContact">
 						telefon
 					</label>
 				</div>
@@ -33,7 +33,7 @@
 		<div class="row">
 			<div class="form-group col-md-4">
 				<label for="contactTime" class="control-label">Sobiv aeg kontakteerumiseks</label>
-				<input type="text" class="form-control" id="contactTime">
+				<input type="text" class="form-control" id="contactTime" value.bind="report.reporter.contactTime & validate">
 				<small class="form-text text-muted">Nt õhtuti, hommikuti</small>
 			</div>
 		</div>

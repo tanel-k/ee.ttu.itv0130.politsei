@@ -6,7 +6,6 @@
  */
 
 ;(function() {
-	console.log('alerto');
     var $ = window.jQuery,
         $win = $(window),
         $doc = $(document),

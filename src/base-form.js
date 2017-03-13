@@ -17,7 +17,7 @@ export class BaseForm {
 	attached() {
 		this.eventAggregator.publish(new FormAttachedEvent());
 		// scrollToTop(this.scrollDuration, yieldFocus);
-		scrollToTop(0);
+		// scrollToTop(0);
 		yieldFocus();
 	}
 

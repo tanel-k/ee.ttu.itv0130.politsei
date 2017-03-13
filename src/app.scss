@@ -95,16 +95,6 @@ body {
 		}
 	}
 	
-	.display-label {
-		font-weight: bold;
-		text-align: right;
-	}
-	
-	.display-values {
-		// Could do something like
-		// color: darkgray;
-	}
-	
 	.progress-indicator {
 		li:after {
 			content:"\0000a0";

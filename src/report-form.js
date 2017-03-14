@@ -223,6 +223,6 @@ function focusError() {
 			{ scrollTop: $(formLabel).offset().top }, 
 			100, 
 			'linear', 
-			() => $(formInput).focus());
+			() => formInput.focus());
 	}
 }

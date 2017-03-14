@@ -2,15 +2,15 @@
 	<div class="row mt-2 button-foot" if.bind="!onFirstPage && !onLastPage && !isNavigating">
 		<!-- md, lg -->
 		<div class="col-md-6 hidden-sm hidden-xs">
-			<button type="button" class="btn btn-secondary btn-lg btn-block" click.delegate="previousPage()">Tagasi</button>
+			<button type="button" class="btn btn-secondary btn-lg btn-block" mousedown.delegate="previousPage()">Tagasi</button>
 		</div>
 		<!-- /md, lg -->
 		<div class="col-md-6">
-			<button type="button" class="btn btn-primary btn-lg btn-block" click.delegate="nextPage()">Edasi</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" mousedown.delegate="nextPage()">Edasi</button>
 		</div>
 		<!-- xs, sm -->
 		<div class="col-md-6 hidden-md hidden-lg">
-			<button type="button" class="btn btn-secondary btn-lg btn-block" click.delegate="previousPage()">Tagasi</button>
+			<button type="button" class="btn btn-secondary btn-lg btn-block" mousedown.delegate="previousPage()">Tagasi</button>
 		</div>
 		<!-- /xs, sm -->
 	</div>

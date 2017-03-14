@@ -17,7 +17,6 @@ export class BaseForm {
 	
 	attached() {
 		this.eventAggregator.publish(new FormAttachedEvent());
-		
 		if (document.body.querySelectorAll('.has-error').length === 0) {
 			// anti-pattern :C
 			scrollToTop(0, yieldFocus);

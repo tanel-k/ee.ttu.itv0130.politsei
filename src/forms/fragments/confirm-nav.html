@@ -2,21 +2,21 @@
 	<div class="row mt-2 button-foot" if.bind="onLastPage && !isNavigating">
 		<!-- md, lg -->
 		<div class="col-md-4 hidden-sm hidden-xs">
-			<button type="button" class="btn btn-secondary btn-lg btn-block" mousedown.delegate="previousPage()">Tagasi</button>
+			<button type="button" class="btn btn-secondary btn-lg btn-block" keypress.delegate="previousPage()" mousedown.delegate="previousPage()">Tagasi</button>
 		</div>
 		<div class="col-md-4 hidden-sm hidden-xs">
-			<button type="button" class="btn btn-primary btn-lg btn-block" mousedown.delegate="exitForm()">Kinnita ja allkirjasta ID kaardiga</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" keypress.delegate="exitForm()" mousedown.delegate="exitForm()">Kinnita ja allkirjasta ID kaardiga</button>
 		</div>
 		<!-- /md, lg -->
 		<div class="col-md-4">
-			<button type="button" class="btn btn-primary btn-lg btn-block" mousedown.delegate="exitForm()">Kinnita allkirjastamata</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" keypress.delegate="exitForm()" mousedown.delegate="exitForm()">Kinnita allkirjastamata</button>
 		</div>
 		<!-- xs, sm -->
 		<div class="col-md-4 hidden-md hidden-lg">
-			<button type="button" class="btn btn-primary btn-lg btn-block" mousedown.delegate="exitForm()">Kinnita ja allkirjasta ID kaardiga</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" keypress.delegate="exitForm()" mousedown.delegate="exitForm()">Kinnita ja allkirjasta ID kaardiga</button>
 		</div>
 		<div class="col-md-4 hidden-md hidden-lg">
-			<button type="button" class="btn btn-secondary btn-lg btn-block" mousedown.delegate="previousPage()">Tagasi</button>
+			<button type="button" class="btn btn-secondary btn-lg btn-block" keypress.delegate="previousPage()" mousedown.delegate="previousPage()">Tagasi</button>
 		</div>
 		<!-- /xs, sm -->
 	</div>

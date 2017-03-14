@@ -11,11 +11,7 @@ import 'block-ui';
 
 @inject(EventAggregator, NewInstance.of(ValidationController), DataGateway, Router)
 export class ReportForm {
-	fadeOutDuration = 300;
-	fadeInDuration = 750;
 	errorScrollDuration = 0;
-	// patch for navigation spam
-	isNavigating = true;
 	
 	constructor(eventAggregator, validationController, dataGateway, router) {
 		this.eventAggregator = eventAggregator;
@@ -48,7 +44,6 @@ export class ReportForm {
 
 	attached() {
 		this.formArea = document.body.querySelector('.form-area');
-		this.isNavigating = false;
 	}
 
 	activate() {
@@ -72,11 +67,10 @@ export class ReportForm {
 		this.eventAggregator.subscribe(FormAttachedEvent,
 			event => {
 				this.publishTrackerMutation();
-				this.isNavigating = false;
 			});
 		this.eventAggregator.subscribe(FormDetachedEvent,
 			event => {
-				this.isNavigating = true
+				// no-op
 			});
 	}
 	
@@ -98,14 +92,12 @@ export class ReportForm {
 	}
 
 	doNavigation(targetPage) {
-		if (!this.isNavigating) {
-			if (this.onThresholdPage()) {
-				// on active page
-				this.navigateFromThreshold(targetPage);
-			} else {
-				// navigation in visited section
-				this.navigateFromVisited(targetPage);
-			}
+		if (this.onThresholdPage()) {
+			// on active page
+			this.navigateFromThreshold(targetPage);
+		} else {
+			// navigation in visited section
+			this.navigateFromVisited(targetPage);
 		}
 	}
 

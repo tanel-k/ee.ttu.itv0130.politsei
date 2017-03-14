@@ -25,6 +25,14 @@ $form-area-fade-in-duration: 1s;
 	padding-bottom: $padding
 }
 
+@mixin fade-in($fade-in-duration) {
+	-webkit-animation: fadein $fade-in-duration;
+	-moz-animation: fadein $fade-in-duration;
+	-ms-animation: fadein $fade-in-duration;
+	-o-animation: fadein $fade-in-duration;
+	animation: fadein $fade-in-duration;
+}
+
 html {
 	overflow-y: scroll;
 }
@@ -56,11 +64,7 @@ body {
 		@include left-right-pad(15px);
 		
 		.form-area {
-			-webkit-animation: fadein $form-area-fade-in-duration;
-			-moz-animation: fadein $form-area-fade-in-duration;
-			-ms-animation: fadein $form-area-fade-in-duration;
-			-o-animation: fadein $form-area-fade-in-duration;
-			animation: fadein $form-area-fade-in-duration;
+			@include fade-in($form-area-fade-in-duration);
 			
 			.btn-lg.btn-block {
 				font-size: $nav-button-size;
@@ -120,15 +124,12 @@ body {
 			padding-top: 5px;
 		}
 		
-		-webkit-animation: fadein $form-area-fade-in-duration;
-		-moz-animation: fadein $form-area-fade-in-duration;
-		-ms-animation: fadein $form-area-fade-in-duration;
-		-o-animation: fadein $form-area-fade-in-duration;
-		animation: fadein $form-area-fade-in-duration;
-		
+		@include fade-in($form-area-fade-in-duration);
 		@include top-bottom-margin(20px);
+		padding-top: 15px;
+		
 		.btn-remove-wrapper {
-			top: 20px;
+			/*top: 20px;*/
 			
 			.btn-remove {
 				display: block;
@@ -145,6 +146,10 @@ body {
 	
 	.undo-panel {
 		@include top-bottom-margin(20px);
+		
+		.btn-link {
+			font-size: inherit !important;
+		}
 		
 		.panel-body {
 			@include left-right-pad(15px);

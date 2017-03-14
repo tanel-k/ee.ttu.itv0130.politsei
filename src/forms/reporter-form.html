@@ -2,32 +2,32 @@
 	<form class="mt-1 form-area" validation-renderer="bootstrap-form" class="form-wrapper" >
 		<h3>Teie isikuandmed</h3>
 		<div class="row">
-			<div class="form-group required col-md-3">
+			<div class="form-group required col-md-3 col-sm-4 col-xs-7">
 				<label for="firstName" class="control-label">Eesnimi</label>
 				<input steal-focus type="text" class="form-control" id="firstName" 
 					value.bind="report.reporter.firstName & validate">
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group required col-md-3">
+			<div class="form-group required col-md-3 col-sm-4 col-xs-7">
 				<label for="lastName" class="control-label">Perenimi</label>
 				<input type="text" class="form-control" id="lastName"
 					value.bind="report.reporter.lastName & validate">
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group required col-md-3">
+			<div class="form-group required col-md-3 col-sm-4 col-xs-7">
 				<label class="control-label">Isikukood ja/või sünnikuupäev</label>
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="row">
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-12 col-sm-12 col-xs-12">
 								<label for="SSN" class="control-label">Isikukood</label>
 								<input class="form-control" type="text"  value.bind="report.reporter.SSN & validate">
 							</div>
 						</div>
 						<div class="row">
-							<div class="form-group col-md-9">
+							<div class="form-group col-md-9 col-sm-10 col-xs-10">
 								<label for="dateOfBirth" class="control-label">Sünnikuupäev</label>
 								<datepicker start="decades" format="dd.mm.yyyy" title="Sünnikuupäev" guid="dateOfBirth" value.bind="report.reporter.dateOfBirth & validate"></datepicker>
 							</div>
@@ -39,27 +39,27 @@
 			</div>
 		</div>
 		<div class="row checkbox-field-row">
-			<div class="form-check col-md-5">
+			<div class="form-check col-md-5 col-sm-6 col-xs-6">
 				<label class="form-check-label">
 					<input type="checkbox" class="form-check-input control-label" checked.bind="report.reporter.isJuridicialPerson">&nbsp;&nbsp;Kannatanu on juriidiline isik
 				</label>
 			</div>
 		</div>
 		<div class="row" if.bind="report.reporter.isJuridicialPerson">
-			<div class="form-group col-md-3">
+			<div class="form-group col-md-3 col-sm-4 col-xs-5">
 				<label for="registryCode" class="control-label">Registrikood</label>
 				<input type="text" class="form-control" id="registryCode"
 					value.bind="report.reporter.registryCode & validate">
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group col-md-5">
+			<div class="form-group col-md-5 col-sm-6 col-xs-7">
 				<label for="nationality" class="control-label">Kodakondsus</label>
 				<enhanced-select guid="nationality" value.bind="report.reporter.nationality & validate" values.bind="nationalities"></enhanced-select>
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-4 col-sm-5 col-xs-6">
 				<label for="occupation" class="control-label">Amet</label>
 				<input type="text" class="form-control" id="occupation" value.bind="report.reporter.occupation & validate">
 			</div>

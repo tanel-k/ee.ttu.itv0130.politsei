@@ -1,6 +1,6 @@
 <template>
 	<div class="agg-wrapper form-area">
-		<h2>Tunnistajad</h2>
+		<h3>Tunnistajad</h3>
 		<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addItem()">Lisa tunnistaja</button>
 		<template repeat.for="container of array">
 			<div class="panel panel-default undo-panel" show.bind="!container.isActive">
@@ -22,7 +22,7 @@
 					<form validation-renderer="bootstrap-form">
 						<div class="row">
 							<div class="col-md-8 col-xs-8">
-								<h3>Tunnistaja andmed</h3>
+								<h4>Tunnistaja andmed</h4>
 							</div>
 							<div class="col-md-1 pull-right btn-remove-wrapper">
 								<button type="button" class="btn btn-danger btn-md btn-remove" type="button" click.delegate="deactivateItem(container)">

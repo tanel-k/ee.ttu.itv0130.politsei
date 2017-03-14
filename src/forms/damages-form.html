@@ -1,6 +1,6 @@
 <template>
 	<div class="agg-wrapper form-area">
-		<h2>Varaline kahju</h2>
+		<h3>Varaline kahju</h3>
 		<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addItem()">Lisa ära võetud/viidud/saamata jäänud vara</button>
 		<template repeat.for="container of array">
 			<div class="panel panel-default undo-panel" show.bind="!container.isActive">
@@ -22,7 +22,7 @@
 					<form validation-renderer="bootstrap-form">
 						<div class="row">
 							<div class="col-md-8 col-xs-8">
-								<h3>Vara andmed</h3>
+								<h4>Vara andmed</h4>
 							</div>
 							<div class="col-md-1 pull-right btn-remove-wrapper">
 								<button type="button" class="btn btn-danger btn-md btn-remove" type="button" click.delegate="deactivateItem(container)">

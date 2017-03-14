@@ -125,6 +125,12 @@
 				"deps": ["jquery"]
 			},
 			{
+				"name": "block-ui",
+				"path": "../node_modules/block-ui/",
+				"main": "jquery.blockUI.js",
+				"deps": ["jquery"]
+			},
+			{
 				"name": "bootstrap",
 				"path": "../node_modules/bootstrap/dist",
 				"main": "js/bootstrap.min",

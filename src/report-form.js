@@ -7,6 +7,7 @@ import {ValidationController, validateTrigger} from 'aurelia-validation';
 import {DataGateway} from './data-gateway';
 import {Router} from 'aurelia-router';
 import 'jquery';
+import 'block-ui';
 
 @inject(EventAggregator, NewInstance.of(ValidationController), DataGateway, Router)
 export class ReportForm {
@@ -89,12 +90,16 @@ export class ReportForm {
 		);
 
 		this.eventAggregator.subscribe(FormAttachedEvent,
-			event => this.isNavigating = false
-		);
+			event => {
+				this.isNavigating = false;
+				this.unblock();
+			});
 
 		this.eventAggregator.subscribe(FormDetachedEvent,
-			event => this.isNavigating = true
-		);
+			event => {
+				this.isNavigating = true
+				this.block();
+			});
 	}
 	
 	handlePageChangeRequest(event) {
@@ -115,7 +120,7 @@ export class ReportForm {
 	}
 
 	doNavigation(targetPage) {
-		//if (!this.isNavigating) {
+		if (!this.isNavigating) {
 			if (this.onThresholdPage()) {
 				// on active page
 				this.navigateFromThreshold(targetPage);
@@ -123,7 +128,7 @@ export class ReportForm {
 				// navigation in visited section
 				this.navigateFromVisited(targetPage);
 			}
-		//}
+		}
 	}
 
 	navigateFromThreshold(targetPage) {
@@ -190,7 +195,16 @@ export class ReportForm {
 	}
 	
 	exitForm() {
+		this.unblock();
 		this.router.navigateToRoute('complete');
+	}
+	
+	block() {
+		$.blockUI({message:null});
+	}
+	
+	unblock() {
+		setTimeout(() => $.unblockUI(), 150);
 	}
 }
 

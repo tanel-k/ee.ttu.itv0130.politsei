@@ -12,6 +12,7 @@
     "aurelia-bootstrapper": "^1.0.0",
     "aurelia-fetch-client": "^1.1.1",
     "aurelia-validation": "^1.0.0",
+    "block-ui": "^2.70.1",
     "bluebird": "^3.4.1",
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.6.4",

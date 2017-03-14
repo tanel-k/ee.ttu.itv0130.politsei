@@ -35,7 +35,7 @@ export class Event {
 	}
 	
 	isHomeEvent = false;
-	description;
+	description = '';
 	dateEvent;
 	timeEvent;
 	country;

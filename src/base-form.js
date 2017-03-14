@@ -2,11 +2,12 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {inject} from 'aurelia-framework';
 import 'jquery';
 
-@inject(EventAggregator)
+@inject(Element, EventAggregator)
 export class BaseForm {
 	scrollDuration = 500;
 	
-	constructor(eventAggregator) {
+	constructor(element, eventAggregator) {
+		this.element = element;
 		this.eventAggregator = eventAggregator;
 	}
 	

@@ -53,6 +53,7 @@ export class CollectionForm extends BaseForm {
 	}
 
 	detached() {
+		super.detached();
 		this.removablePanelObserver.disconnect();
 		this.sourceArray.splice(0);
 		this.unwrapItems(this.array, this.sourceArray);

@@ -11,7 +11,8 @@ export class SubmissionForm extends BaseForm {
 		this.eventAggregator = eventAggregator;
 	}
 	
-	attached() {
+	attached(report) {
+		super.attached();
 		$('*[data-toggle=popover]').popover();
 	}
 	

@@ -1,286 +1,288 @@
 <template>
-	<require from="./fragments/value-row"></require>
-	<require from="./fragments/panel-wrapper"></require>
-	<div class="row">
-		<h2>Avalduse esitamine</h2>
-	</div>
-	<div class="row">
-		<h3>Teie andmed</h3>
-		<div class="row col-md-12">
-			<h4><a href="#" click.delegate="changePage('reporter-form')">Isikuandmed</a></h4>
-			<panel-wrapper class="col-md-6">
-				<value-row>
-					<span slot="label">Eesnimi</span>
-					<p slot="value">${defaultValue(report.reporter.firstName)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Perenimi</span>
-					<p slot="value">${defaultValue(report.reporter.lastName)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Sünnikuupäev</span>
-					<p slot="value">${defaultValue(report.reporter.dateOfBirth)}</p>
-				</value-row>
-			</panel-wrapper>
-			<panel-wrapper class="col-md-6">
-				<value-row>
-					<span slot="label">Isikukood</span>
-					<p slot="value">${defaultValue(report.reporter.SSN)}</p>
-				</value-row>
-				<value-row if.bind="report.reporter.isJuridicialPerson">
-					<span slot="label">Registrikood</span>
-					<p slot="value">${defaultValue(report.reporter.registryCode)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Kodakondsus</span>
-					<p slot="value">${defaultValue(report.reporter.nationality)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Amet</span>
-					<p slot="value">${defaultValue(report.reporter.occupation)}</p>
-				</value-row>
-			</panel-wrapper>
+	<div class="form-area">
+		<require from="./fragments/value-row"></require>
+		<require from="./fragments/panel-wrapper"></require>
+		<div class="row">
+			<h2>Avalduse esitamine</h2>
 		</div>
-		<div class="row col-md-12">
-			<h4><a href="#" click.delegate="changePage('reporter-contact-form')">Kontaktandmed</a></h4>
-			<panel-wrapper class="col-md-6">
-				<value-row>
-					<span slot="label">Telefoninumber</span>
-					<p slot="value">${defaultValue(report.reporter.phoneNumber)}</p>
-				</value-row>
-				<div class="alert alert-warning" role="alert" if.bind="isNonEmpty(report.reporter.email)">
-					<strong>Tähelepanu</strong>! Palun kontrolli oma e-posti aadressi. Kui aadress on ôige, saadetakse sellele päeva jooksul süüteoteate koopia, mis tähendab, et avaldus on politseini jõudnud. Kui seda ei juhtu, siis palun võta ühendust aadressil&nbsp;<a href="mailto:ppa@politsei.ee">ppa@politsei.ee</a>.
-				</div>
-				<value-row>
-					<span slot="label">E-post</span>
-					<p slot="value">${defaultValue(report.reporter.email)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Eelistatud kontaktmeetod</span>
-					<p slot="value">${defaultValue(report.reporter.preferredModeOfContact)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Sobiv aeg kontakteerumiseks</span>
-					<p slot="value">${defaultValue(report.reporter.contactTime)}</p>
-				</value-row>
-				</value-row>
-			</panel-wrapper>
-			<panel-wrapper class="col-md-6">
-				<value-row>
-					<span slot="label">Maakond</span>
-					<p slot="value">${defaultValue(report.reporter.municipality)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Elukoha aadress</span>
-					<p slot="value">${defaultValue(report.reporter.address)}</p>
-				</value-row>
-			</panel-wrapper>
-		</div>
-	</div>
-	<div class="row">
-		<h3><a href="#" click.delegate="changePage('event-form')">Sündmus</a></h3>
-		<panel-wrapper class="col-md-12">
-			<value-row>
-				<span slot="label">Toimunu kirjeldus</span>
-				<p css.bind="{ 'white-space' : 'pre-wrap' }" slot="value">${defaultValue(report.event.description)}</p>
-			</value-row>
-			<value-row>
-				<span slot="label">Aeg</span>
-				<p slot="value"><em>kuupäev:</em>&nbsp;${defaultValue(report.event.dateEvent)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(report.event.timeEvent)}</p>
-			</value-row>
-			<value-row if.bind="report.event.isHomeEvent">
-				<span slot="label">Asukoht</span>
-				<p slot="value">Sündmus toimus teie elukoha aadressil</p>
-			</value-row>
-			<template if.bind="!report.event.isHomeEvent">
-				<value-row>
-					<span slot="label">Riik</span>
-					<p slot="value">${defaultValue(report.event.country)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Aadress</span>
-					<p slot="value">${defaultValue(report.event.address)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Toimumiskoht</span>
-					<p slot="value">${defaultValue(report.event.location)}</p>
-				</value-row>
-			</template>
-		</panel-wrapper>
-	</div>
-	<div class="row" if.bind="report.damages.length > 0">
-		<h3><a href="#" click.delegate="changePage('damages-form')">Varaline kahju</a></h3>
-		<panel-wrapper class="col-md-12" repeat.for="damage of report.damages">
-			<h4>Kahju #${$index + 1}</h4>
-			<panel-wrapper>
-				<value-row>
-					<span slot="label">Vara nimetus</span>
-					<p slot="value">${defaultValue(damage.name)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Eritunnused ja tundemärgid</span>
-					<p slot="value">${defaultValue(damage.description)}</p>
-				</value-row>
-			</panel-wrapper>
-			<panel-wrapper>
-				<value-row>
-					<span slot="label">Ligikaudne hetkeväärtus</span>
-					<p slot="value">${defaultValue(damage.valueEstimate)} €</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Soetamise aasta</span>
-					<p slot="value">${defaultValue(damage.yearOfPurchase)}</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Vara viimati olemas</span>
-					<p slot="value">
-						<em>kuupäev:</em>&nbsp;${defaultValue(damage.dateLastHad)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(damage.timeLastHad)}
-					</p>
-				</value-row>
-				<value-row>
-					<span slot="label">Vara puudumine avastati</span>
-					<p slot="value">
-						<em>kuupäev:</em>&nbsp;${defaultValue(damage.dateNoticedMissing)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(damage.timeNoticedMissing)}
-					</p>
-				</value-row>
-			</panel-wrapper>
-		</panel-wrapper>
-	</div>
-	<div class="row" if.bind="report.suspects.length > 0">
-		<h3><a href="#" click.delegate="changePage('suspects-form')">Süüdlased</a></h3>
-		<panel-wrapper class="col-md-12" repeat.for="suspect of report.suspects">
-			<h4>Süüdlane #${$index + 1}</h4>
-			<div class="row">
+		<div class="row">
+			<h3>Teie andmed</h3>
+			<div class="row col-md-12">
+				<h4><a href="#" click.delegate="changePage('reporter-form')">Isikuandmed</a></h4>
 				<panel-wrapper class="col-md-6">
 					<value-row>
 						<span slot="label">Eesnimi</span>
-						<p slot="value">${defaultValue(suspect.firstName)}</p>
+						<p slot="value">${defaultValue(report.reporter.firstName)}</p>
 					</value-row>
 					<value-row>
 						<span slot="label">Perenimi</span>
-						<p slot="value">${defaultValue(suspect.lastName)}</p>
+						<p slot="value">${defaultValue(report.reporter.lastName)}</p>
 					</value-row>
 					<value-row>
-						<span slot="label">Sünniaeg</span>
-						<p slot="value">${defaultValue(suspect.dateOfBirth)}</p>
+						<span slot="label">Sünnikuupäev</span>
+						<p slot="value">${defaultValue(report.reporter.dateOfBirth)}</p>
 					</value-row>
 				</panel-wrapper>
 				<panel-wrapper class="col-md-6">
 					<value-row>
 						<span slot="label">Isikukood</span>
-						<p slot="value">${defaultValue(suspect.SSN)}</p>
+						<p slot="value">${defaultValue(report.reporter.SSN)}</p>
+					</value-row>
+					<value-row if.bind="report.reporter.isJuridicialPerson">
+						<span slot="label">Registrikood</span>
+						<p slot="value">${defaultValue(report.reporter.registryCode)}</p>
 					</value-row>
 					<value-row>
 						<span slot="label">Kodakondsus</span>
-						<p slot="value">${defaultValue(suspect.nationality)}</p>
+						<p slot="value">${defaultValue(report.reporter.nationality)}</p>
 					</value-row>
 					<value-row>
 						<span slot="label">Amet</span>
-						<p slot="value">${defaultValue(suspect.occupation)}</p>
+						<p slot="value">${defaultValue(report.reporter.occupation)}</p>
 					</value-row>
 				</panel-wrapper>
 			</div>
-			<div class="row">
+			<div class="row col-md-12">
+				<h4><a href="#" click.delegate="changePage('reporter-contact-form')">Kontaktandmed</a></h4>
 				<panel-wrapper class="col-md-6">
 					<value-row>
 						<span slot="label">Telefoninumber</span>
-						<p slot="value">${defaultValue(suspect.phoneNumber)}</p>
+						<p slot="value">${defaultValue(report.reporter.phoneNumber)}</p>
 					</value-row>
+					<div class="alert alert-warning" role="alert" if.bind="isNonEmpty(report.reporter.email)">
+						<strong>Tähelepanu</strong>! Palun kontrolli oma e-posti aadressi. Kui aadress on ôige, saadetakse sellele päeva jooksul süüteoteate koopia, mis tähendab, et avaldus on politseini jõudnud. Kui seda ei juhtu, siis palun võta ühendust aadressil&nbsp;<a href="mailto:ppa@politsei.ee">ppa@politsei.ee</a>.
+					</div>
 					<value-row>
 						<span slot="label">E-post</span>
-						<p slot="value">${defaultValue(suspect.email)}</p>
+						<p slot="value">${defaultValue(report.reporter.email)}</p>
+					</value-row>
+					<value-row>
+						<span slot="label">Eelistatud kontaktmeetod</span>
+						<p slot="value">${defaultValue(report.reporter.preferredModeOfContact)}</p>
+					</value-row>
+					<value-row>
+						<span slot="label">Sobiv aeg kontakteerumiseks</span>
+						<p slot="value">${defaultValue(report.reporter.contactTime)}</p>
+					</value-row>
+					</value-row>
+				</panel-wrapper>
+				<panel-wrapper class="col-md-6">
+					<value-row>
+						<span slot="label">Maakond</span>
+						<p slot="value">${defaultValue(report.reporter.municipality)}</p>
+					</value-row>
+					<value-row>
+						<span slot="label">Elukoha aadress</span>
+						<p slot="value">${defaultValue(report.reporter.address)}</p>
+					</value-row>
+				</panel-wrapper>
+			</div>
+		</div>
+		<div class="row">
+			<h3><a href="#" click.delegate="changePage('event-form')">Sündmus</a></h3>
+			<panel-wrapper class="col-md-12">
+				<value-row>
+					<span slot="label">Toimunu kirjeldus</span>
+					<p css.bind="{ 'white-space' : 'pre-wrap' }" slot="value">${defaultValue(report.event.description)}</p>
+				</value-row>
+				<value-row>
+					<span slot="label">Aeg</span>
+					<p slot="value"><em>kuupäev:</em>&nbsp;${defaultValue(report.event.dateEvent)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(report.event.timeEvent)}</p>
+				</value-row>
+				<value-row if.bind="report.event.isHomeEvent">
+					<span slot="label">Asukoht</span>
+					<p slot="value">Sündmus toimus teie elukoha aadressil</p>
+				</value-row>
+				<template if.bind="!report.event.isHomeEvent">
+					<value-row>
+						<span slot="label">Riik</span>
+						<p slot="value">${defaultValue(report.event.country)}</p>
 					</value-row>
 					<value-row>
 						<span slot="label">Aadress</span>
-						<p slot="value">${defaultValue(suspect.address)}</p>
+						<p slot="value">${defaultValue(report.event.address)}</p>
+					</value-row>
+					<value-row>
+						<span slot="label">Toimumiskoht</span>
+						<p slot="value">${defaultValue(report.event.location)}</p>
+					</value-row>
+				</template>
+			</panel-wrapper>
+		</div>
+		<div class="row" if.bind="report.damages.length > 0">
+			<h3><a href="#" click.delegate="changePage('damages-form')">Varaline kahju</a></h3>
+			<panel-wrapper class="col-md-12" repeat.for="damage of report.damages">
+				<h4>Kahju #${$index + 1}</h4>
+				<panel-wrapper>
+					<value-row>
+						<span slot="label">Vara nimetus</span>
+						<p slot="value">${defaultValue(damage.name)}</p>
+					</value-row>
+					<value-row>
+						<span slot="label">Eritunnused ja tundemärgid</span>
+						<p slot="value">${defaultValue(damage.description)}</p>
 					</value-row>
 				</panel-wrapper>
-				<panel-wrapper class="col-md-6">
+				<panel-wrapper>
 					<value-row>
-						<span slot="label">Tundemärgid</span>
-						<p slot="value">${defaultValue(suspect.description)}</p>
+						<span slot="label">Ligikaudne hetkeväärtus</span>
+						<p slot="value">${defaultValue(damage.valueEstimate)} €</p>
+					</value-row>
+					<value-row>
+						<span slot="label">Soetamise aasta</span>
+						<p slot="value">${defaultValue(damage.yearOfPurchase)}</p>
+					</value-row>
+					<value-row>
+						<span slot="label">Vara viimati olemas</span>
+						<p slot="value">
+							<em>kuupäev:</em>&nbsp;${defaultValue(damage.dateLastHad)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(damage.timeLastHad)}
+						</p>
+					</value-row>
+					<value-row>
+						<span slot="label">Vara puudumine avastati</span>
+						<p slot="value">
+							<em>kuupäev:</em>&nbsp;${defaultValue(damage.dateNoticedMissing)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(damage.timeNoticedMissing)}
+						</p>
 					</value-row>
 				</panel-wrapper>
-			</div>
-		</panel-wrapper>
-	</div>
-	<div class="row" if.bind="report.witnesses.length > 0">
-		<h3><a href="#" click.delegate="changePage('witnesses-form')">Tunnistajad</a></h3>
-		<panel-wrapper class="col-md-12" repeat.for="witness of report.witnesses">
-			<h4>Tunnistaja #${$index + 1}</h4>
-			<div class="row">
-				<panel-wrapper class="col-md-6">
-					<value-row>
-						<span slot="label">Eesnimi</span>
-						<p slot="value">${defaultValue(witness.firstName)}</p>
-					</value-row>
-					<value-row>
-						<span slot="label">Perenimi</span>
-						<p slot="value">${defaultValue(witness.lastName)}</p>
-					</value-row>
-					<value-row>
-						<span slot="label">Sünniaeg</span>
-						<p slot="value">${defaultValue(witness.dateOfBirth)}</p>
-					</value-row>
-				</panel-wrapper>
-				<panel-wrapper class="col-md-6">
-					<value-row>
-						<span slot="label">Isikukood</span>
-						<p slot="value">${defaultValue(witness.SSN)}</p>
-					</value-row>
-					<value-row>
-						<span slot="label">Kodakondsus</span>
-						<p slot="value">${defaultValue(witness.nationality)}</p>
-					</value-row>
-					<value-row>
-						<span slot="label">Amet</span>
-						<p slot="value">${defaultValue(witness.occupation)}</p>
-					</value-row>
-				</panel-wrapper>
-			</div>
-			<div class="row">
-				<panel-wrapper class="col-md-12">
-					<value-row>
-						<span slot="label">Telefoninumber</span>
-						<p slot="value">${defaultValue(witness.phoneNumber)}</p>
-					</value-row>
-					<value-row>
-						<span slot="label">E-post</span>
-						<p slot="value">${defaultValue(witness.email)}</p>
-					</value-row>
-					<value-row>
-						<span slot="label">Aadress</span>
-						<p slot="value">${defaultValue(witness.address)}</p>
-					</value-row>
-				</panel-wrapper>
-			</div>
-		</panel-wrapper>
-	</div>
-	<div class="row">
-		<h3>Esitamine</h3>
-		<form validation-renderer="bootstrap-form">
-			<div class="row">
-				<div class="form-check col-md-5">
-					<label class="form-check-label">
-						<input type="checkbox" checked.bind="report.agreeToSettlement" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus&nbsp;<a href="#" title="" data-toggle="popover" data-trigger="hover" data-content="Menetluse liik, mille käigus nõustuvad süüdistatav ja tema kaitsja süüdistuse sisu ja kuriteo kvalifikatsiooni, kuriteoga tekitatud kahju laadi ja suurusega ning jõuavad kokkuleppele prokuröri poolt kohtus nõutava karistuse liigis ja määras.">kokkuleppemenetlusega</a>
-					</label>
+			</panel-wrapper>
+		</div>
+		<div class="row" if.bind="report.suspects.length > 0">
+			<h3><a href="#" click.delegate="changePage('suspects-form')">Süüdlased</a></h3>
+			<panel-wrapper class="col-md-12" repeat.for="suspect of report.suspects">
+				<h4>Süüdlane #${$index + 1}</h4>
+				<div class="row">
+					<panel-wrapper class="col-md-6">
+						<value-row>
+							<span slot="label">Eesnimi</span>
+							<p slot="value">${defaultValue(suspect.firstName)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Perenimi</span>
+							<p slot="value">${defaultValue(suspect.lastName)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Sünniaeg</span>
+							<p slot="value">${defaultValue(suspect.dateOfBirth)}</p>
+						</value-row>
+					</panel-wrapper>
+					<panel-wrapper class="col-md-6">
+						<value-row>
+							<span slot="label">Isikukood</span>
+							<p slot="value">${defaultValue(suspect.SSN)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Kodakondsus</span>
+							<p slot="value">${defaultValue(suspect.nationality)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Amet</span>
+							<p slot="value">${defaultValue(suspect.occupation)}</p>
+						</value-row>
+					</panel-wrapper>
 				</div>
-			</div>
-			<div class="row">
-				<div class="form-check col-md-7">
-					<label class="form-check-label">
-						<input type="checkbox" checked.bind="report.agreeToEmailedDocs" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus, et menetlusega seotud dokumendid esitatakse minu poolt antud e-posti aadressile
-					</label>
+				<div class="row">
+					<panel-wrapper class="col-md-6">
+						<value-row>
+							<span slot="label">Telefoninumber</span>
+							<p slot="value">${defaultValue(suspect.phoneNumber)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">E-post</span>
+							<p slot="value">${defaultValue(suspect.email)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Aadress</span>
+							<p slot="value">${defaultValue(suspect.address)}</p>
+						</value-row>
+					</panel-wrapper>
+					<panel-wrapper class="col-md-6">
+						<value-row>
+							<span slot="label">Tundemärgid</span>
+							<p slot="value">${defaultValue(suspect.description)}</p>
+						</value-row>
+					</panel-wrapper>
 				</div>
-			</div>
-			<div class="row">
-				<div class="form-check col-md-5">
-					<label class="form-check-label">
-						<input type="checkbox" checked.bind="report.useEDossier" class="form-check-input control-label">&nbsp;&nbsp;Soovin teavet&nbsp;<a target="_blank" href="https://www.e-toimik.ee">E-Toimiku</a>&nbsp;kaudu
-					</label>
+			</panel-wrapper>
+		</div>
+		<div class="row" if.bind="report.witnesses.length > 0">
+			<h3><a href="#" click.delegate="changePage('witnesses-form')">Tunnistajad</a></h3>
+			<panel-wrapper class="col-md-12" repeat.for="witness of report.witnesses">
+				<h4>Tunnistaja #${$index + 1}</h4>
+				<div class="row">
+					<panel-wrapper class="col-md-6">
+						<value-row>
+							<span slot="label">Eesnimi</span>
+							<p slot="value">${defaultValue(witness.firstName)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Perenimi</span>
+							<p slot="value">${defaultValue(witness.lastName)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Sünniaeg</span>
+							<p slot="value">${defaultValue(witness.dateOfBirth)}</p>
+						</value-row>
+					</panel-wrapper>
+					<panel-wrapper class="col-md-6">
+						<value-row>
+							<span slot="label">Isikukood</span>
+							<p slot="value">${defaultValue(witness.SSN)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Kodakondsus</span>
+							<p slot="value">${defaultValue(witness.nationality)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Amet</span>
+							<p slot="value">${defaultValue(witness.occupation)}</p>
+						</value-row>
+					</panel-wrapper>
 				</div>
-			</div>
-		</form>
+				<div class="row">
+					<panel-wrapper class="col-md-12">
+						<value-row>
+							<span slot="label">Telefoninumber</span>
+							<p slot="value">${defaultValue(witness.phoneNumber)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">E-post</span>
+							<p slot="value">${defaultValue(witness.email)}</p>
+						</value-row>
+						<value-row>
+							<span slot="label">Aadress</span>
+							<p slot="value">${defaultValue(witness.address)}</p>
+						</value-row>
+					</panel-wrapper>
+				</div>
+			</panel-wrapper>
+		</div>
+		<div class="row">
+			<h3>Esitamine</h3>
+			<form validation-renderer="bootstrap-form">
+				<div class="row">
+					<div class="form-check col-md-5">
+						<label class="form-check-label">
+							<input type="checkbox" checked.bind="report.agreeToSettlement" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus&nbsp;<a href="#" title="" data-toggle="popover" data-trigger="hover" data-content="Menetluse liik, mille käigus nõustuvad süüdistatav ja tema kaitsja süüdistuse sisu ja kuriteo kvalifikatsiooni, kuriteoga tekitatud kahju laadi ja suurusega ning jõuavad kokkuleppele prokuröri poolt kohtus nõutava karistuse liigis ja määras.">kokkuleppemenetlusega</a>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-check col-md-7">
+						<label class="form-check-label">
+							<input type="checkbox" checked.bind="report.agreeToEmailedDocs" class="form-check-input control-label">&nbsp;&nbsp;Olen nõus, et menetlusega seotud dokumendid esitatakse minu poolt antud e-posti aadressile
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-check col-md-5">
+						<label class="form-check-label">
+							<input type="checkbox" checked.bind="report.useEDossier" class="form-check-input control-label">&nbsp;&nbsp;Soovin teavet&nbsp;<a target="_blank" href="https://www.e-toimik.ee">E-Toimiku</a>&nbsp;kaudu
+						</label>
+					</div>
+				</div>
+			</form>
+		</div>
+		<compose view="./fragments/confirm-nav.html"></compose>
 	</div>
-	<compose view="./fragments/confirm-nav.html"></compose>
 </template>

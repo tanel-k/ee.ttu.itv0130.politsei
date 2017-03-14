@@ -24,37 +24,10 @@ export class CollectionForm extends BaseForm {
 		
 		let fadeInDuration = this.fadeInDuration;
 		this.wrapper = document.querySelector('.agg-wrapper');
-		
-		this.removablePanelObserver = new MutationObserver(function(mutations) {
-			mutations.forEach(function(mutation) {
-				if (!mutation.addedNodes) return;
-				
-				for (var i=0; i<mutation.addedNodes.length; i++) {
-					let node = mutation.addedNodes[i];
-					
-					if (node.classList 
-						&& node.classList.contains('removable-panel')) {
-						// shitty fade-in workaround
-						$(node).fadeOut(0);
-						$(node).fadeIn(fadeInDuration);
-					}
-				}
-
-				
-			});
-		});
-		
-		this.removablePanelObserver.observe(this.wrapper, {
-			childList: true, 
-			subtree: true, 
-			attributes: false, 
-			characterData: false
-		});
 	}
 
 	detached() {
 		super.detached();
-		this.removablePanelObserver.disconnect();
 		this.sourceArray.splice(0);
 		this.unwrapItems(this.array, this.sourceArray);
 	}
@@ -70,7 +43,7 @@ export class CollectionForm extends BaseForm {
 	}
 
 	deactivateItem(container) {
-		this.fadeAndRemove(container);
+		container.isActive = false;
 	}
 
 	activateItem(container) {
@@ -97,14 +70,6 @@ export class CollectionForm extends BaseForm {
 			if (container.isActive && !areScalarMembersEmpty(container.item)) {
 				toArray.push(container.item);
 			}
-		});
-	}
-
-	fadeAndRemove(container) {
-		let element = this.formArea.querySelector(`#item-${container.id}`);
-
-		$(element).fadeOut(this.fadeOutDuration, function() {
-			container.isActive = false;
 		});
 	}
 }

@@ -73,12 +73,10 @@ export class ReportForm {
 			event => {
 				this.publishTrackerMutation();
 				this.isNavigating = false;
-				this.unblock();
 			});
 		this.eventAggregator.subscribe(FormDetachedEvent,
 			event => {
 				this.isNavigating = true
-				this.block();
 			});
 	}
 	
@@ -189,15 +187,6 @@ export class ReportForm {
 	
 	exitForm() {
 		this.router.navigateToRoute('complete');
-	}
-	
-	block() {
-		// $.blockUI({message:null});
-	}
-	
-	unblock() {
-		// fake delay, not sure I would like to keep this
-		// setTimeout(() => $.unblockUI(), 150);
 	}
 }
 

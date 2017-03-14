@@ -1,9 +1,9 @@
 <template>
-	<div class="agg-wrapper">
+	<div class="agg-wrapper form-area">
 		<h2>Süüdlased</h2>
 		<button type="button" class="btn btn-primary btn-lg btn-block mt-1" click.delegate="addItem()">Lisa süüdlane</button>
-		<template repeat.for="container of array">
-			<div class="panel panel-default undo-panel" if.bind="!container.isActive">
+		<template repeat.for="container of array" containerless>
+			<div class="panel panel-default undo-panel" show.bind="!container.isActive">
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-4 col-xs-8">
@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="panel panel-default removable-panel" id="item-${container.id}" if.bind="container.isActive">
+			<div class="panel panel-default removable-panel" id="item-${container.id}" show.bind="container.isActive">
 				<div class="panel-body">
 					<form validation-renderer="bootstrap-form">
 						<div class="row">

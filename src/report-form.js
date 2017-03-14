@@ -1,6 +1,6 @@
 import {inject, bindable, NewInstance} from 'aurelia-framework';
 import {Report, Damage, Witness, Suspect} from './models';
-import {progressState, TrackerClickedEvent} from './resources/elements/progress-tracker';
+import {progressState, TrackerPageRequestEvent, TrackerExternalChangeEvent} from './resources/elements/progress-tracker';
 import {FormAttachedEvent, FormDetachedEvent} from './base-form';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {ValidationController, validateTrigger} from 'aurelia-validation';
@@ -52,49 +52,29 @@ export class ReportForm {
 	}
 
 	activate() {
+		// data initialization
 		this.dataGateway.getCountries().then(countries => {
 			this.countries = countries.map(c => { return { value: c.name, name: c.name } });
 			this.countries.unshift({});
 		});
-		
 		this.dataGateway.getNationalities().then(nationalities => {
 			this.nationalities = nationalities.map(n => { return { value: n.name, name: n.name } });
 			this.nationalities.unshift({});
 		});
-		
 		this.dataGateway.getMunicipalities().then(municipalities => {
 			this.municipalities = municipalities.map(m => { return { value: m.name, name: m.name } });
 			this.municipalities.unshift({});
 		});
 		
-		this.eventAggregator.subscribe(TrackerClickedEvent,
-			event => {
-				if (this.activePage.pageKey == event.pageKey) {
-					return;
-				}
-				
-				let targetPage = this.findPageByKey(event.pageKey);
-				this.doNavigation(targetPage);
-			}
-		);
-		
-		this.eventAggregator.subscribe(ChangePageMessage,
-			event => {
-				if (this.activePage.pageKey == event.pageKey) {
-					return;
-				}
-				
-				let targetPage = this.findPageByKey(event.pageKey);
-				this.doNavigation(targetPage);
-			}
-		);
-
+		// event observation
+		this.eventAggregator.subscribe(TrackerPageRequestEvent, this.handlePageChangeRequest.bind(this));
+		this.eventAggregator.subscribe(ChangePageMessage, this.handlePageChangeRequest.bind(this));
 		this.eventAggregator.subscribe(FormAttachedEvent,
 			event => {
+				this.publishTrackerMutation();
 				this.isNavigating = false;
 				this.unblock();
 			});
-
 		this.eventAggregator.subscribe(FormDetachedEvent,
 			event => {
 				this.isNavigating = true
@@ -136,7 +116,7 @@ export class ReportForm {
 		let backNav = targetPage.staticIndex < this.thresholdPage.staticIndex;
 		
 		if (backNav) {
-			this.activePage.progressState = progressState.threshold;
+			this.cacheTrackerMutation(this.activePage, progressState.threshold);
 			this.performNavigation(targetPage);
 			return;
 		}
@@ -144,7 +124,7 @@ export class ReportForm {
 		this.validationController.validate().then(result => {
 			if (result.valid) {
 				this.thresholdPage = targetPage;
-				this.activePage.progressState = progressState.visited;
+				this.cacheTrackerMutation(this.activePage, progressState.visited);
 				this.performNavigation(targetPage);
 			} else {
 				focusError();
@@ -155,7 +135,7 @@ export class ReportForm {
 	navigateFromVisited(targetPage) {
 		this.validationController.validate().then(result => {
 			if (result.valid) {
-				this.activePage.progressState = progressState.visited;
+				this.cacheTrackerMutation(this.activePage, progressState.visited);
 				this.performNavigation(targetPage);
 			} else {
 				focusError();
@@ -164,8 +144,21 @@ export class ReportForm {
 	}
 
 	performNavigation(targetPage) {
-		targetPage.progressState = progressState.current;
+		this.cacheTrackerMutation(targetPage, progressState.current);
 		this.activePage = targetPage;
+	}
+	
+	cacheTrackerMutation(page, newProgressState) {
+		if (!this.trackerMutationCache) {
+			this.trackerMutationCache = {};
+		}
+		
+		this.trackerMutationCache[page.pageKey] = newProgressState;
+	}
+	
+	publishTrackerMutation() {
+		this.eventAggregator.publish(new TrackerExternalChangeEvent(this.trackerMutationCache));
+		this.trackerMutationCache = {};
 	}
 
 	nextPage() {
@@ -199,11 +192,12 @@ export class ReportForm {
 	}
 	
 	block() {
-		$.blockUI({message:null});
+		// $.blockUI({message:null});
 	}
 	
 	unblock() {
-		setTimeout(() => $.unblockUI(), 150);
+		// fake delay, not sure I would like to keep this
+		// setTimeout(() => $.unblockUI(), 150);
 	}
 }
 

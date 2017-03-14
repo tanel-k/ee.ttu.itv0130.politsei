@@ -1,7 +1,7 @@
 <template>
 	<require from="./progress-tracker.css"></require>
 	<ul class="progress-indicator flexer">
-		<template repeat.for="page of pages">
+		<template repeat.for="page of pageCache">
 			<li class="${page.progressState}" click.delegate="trackerClick(page.pageKey)">
 				<span class="bubble"></span>
 				<span class="name">${page.name}</span>

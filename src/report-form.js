@@ -195,7 +195,6 @@ export class ReportForm {
 	}
 	
 	exitForm() {
-		this.unblock();
 		this.router.navigateToRoute('complete');
 	}
 	
@@ -215,11 +214,15 @@ export class ChangePageMessage {
 }
 
 function focusError() {
-	let errorDiv = document.querySelector('div.has-error');
+	let errorDiv = document.body.querySelector('div.has-error');
 	if (errorDiv) {
 		let formInput = errorDiv.querySelector('.form-control');
-		if (formInput) {
-			$(formInput).focus();
-		}
+		let formLabel = errorDiv.querySelector('.control-label');
+		
+		$('html, body').animate(
+			{ scrollTop: $(formLabel).offset().top }, 
+			100, 
+			'linear', 
+			() => $(formInput).focus());
 	}
 }

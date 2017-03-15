@@ -87,7 +87,9 @@
 				</value-row>
 				<value-row>
 					<span slot="label">Aeg</span>
-					<p slot="value"><em>kuupäev:</em>&nbsp;${defaultValue(report.event.dateEvent)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(report.event.timeEvent)}</p>
+					<p slot="value">
+						${defaultValue(report.event.dateEvent + ' ' + report.event.timeEvent)}
+					</p>
 				</value-row>
 				<value-row if.bind="report.event.isHomeEvent">
 					<span slot="label">Asukoht</span>
@@ -135,13 +137,13 @@
 					<value-row>
 						<span slot="label">Vara viimati olemas</span>
 						<p slot="value">
-							<em>kuupäev:</em>&nbsp;${defaultValue(damage.dateLastHad)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(damage.timeLastHad)}
+							${defaultValue(damage.dateLastHad + ' ' + damage.timeLastHad)}
 						</p>
 					</value-row>
 					<value-row>
 						<span slot="label">Vara puudumine avastati</span>
 						<p slot="value">
-							<em>kuupäev:</em>&nbsp;${defaultValue(damage.dateNoticedMissing)}&nbsp;<em>kellaaeg:</em>&nbsp;${defaultValue(damage.timeNoticedMissing)}
+							${defaultValue(damage.dateNoticedMissing + ' ' + damage.timeNoticedMissing)}
 						</p>
 					</value-row>
 				</panel-wrapper>

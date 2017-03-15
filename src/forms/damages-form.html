@@ -6,8 +6,8 @@
 			<div class="panel panel-default undo-panel" show.bind="!container.isActive">
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-4 col-xs-8">
-							<p>Varalise kahju andmed eemaldatud.<button type="button" class="btn btn-link" click.delegate="activateItem(container)">Võta tagasi?</button></p>
+						<div class="col-md-8 col-xs-10">
+							<p>Varalise kahju andmed eemaldatud.</p><button type="button" class="btn btn-link" click.delegate="activateItem(container)">Võta tagasi?</button>
 						</div>
 						<div class="col-md-1 pull-right">
 							<button class="btn undo-link btn-default btn-md btn-remove" click.delegate="destroyItem(container)">
@@ -59,7 +59,7 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="form-group col-md-3 col-sm-5 col-xs-12">
+											<div class="form-group col-md-4 col-sm-5 col-xs-12">
 												<label class="control-label">Kellaaeg</label>
 												<timepicker value.bind="container.item.timeLastHad & validate"></timepicker>
 											</div>
@@ -78,7 +78,7 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="form-group col-md-3 col-sm-5 col-xs-12">
+											<div class="form-group col-md-4 col-sm-5 col-xs-12">
 												<label class="control-label">Kellaaeg</label>
 												<timepicker value.bind="container.item.timeNoticedMissing & validate"></timepicker>
 											</div>

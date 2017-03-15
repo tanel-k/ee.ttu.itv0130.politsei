@@ -6,8 +6,8 @@
 			<div class="panel panel-default undo-panel" show.bind="!container.isActive">
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-4 col-xs-8">
-							<p>Tunnistaja andmed eemaldatud.<button type="button" class="btn btn-link" click.delegate="activateItem(container)">Võta tagasi?</button></p>
+						<div class="col-md-8 col-xs-10">
+							<p>Tunnistaja andmed eemaldatud.</p><button type="button" class="btn btn-link" click.delegate="activateItem(container)">Võta tagasi?</button>
 						</div>
 						<div class="col-md-1 pull-right">
 							<button class="btn btn-default btn-md btn-remove undo-link" click.delegate="destroyItem(container)">
@@ -41,11 +41,11 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="form-group col-md-3 col-sm-4 col-xs-12">
+							<div class="form-group col-md-4 col-sm-4 col-xs-12">
 								<label class="control-label">Isikukood</label>
 								<input class="form-control" type="text" value.bind="container.item.SSN & validate">
 							</div>
-							<div class="form-group col-md-2 col-sm-4 col-sm-offset-3 col-md-offset-3">
+							<div class="form-group col-md-3 col-sm-4 col-sm-offset-3 col-md-offset-2">
 								<label class="control-label">Sünniaeg</label>
 								<datepicker start="decades" format="dd.mm.yyyy" value.bind="container.item.dateOfBirth & validate"></datepicker>
 							</div>

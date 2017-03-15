@@ -2,13 +2,13 @@
 	<form class="mt-1 form-area" validation-renderer="bootstrap-form">
 		<h3>Teie kontaktandmed</h3>
 		<div class="row">
-			<div class="form-group required col-md-3 col-sm-4 col-xs-6">
+			<div class="form-group required col-md-3 col-sm-4">
 				<label for="phoneNumber" class="control-label">Telefoninumber</label>
 				<input class="form-control" type="text" steal-focus value.bind="report.reporter.phoneNumber & validate">
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group required col-md-4 col-sm-5 col-xs-7">
+			<div class="form-group required col-md-4 col-sm-5">
 				<label for="email" class="control-label">E-post</label>
 				<input type="text" class="form-control" id="email" value.bind="report.reporter.email & validate">
 			</div>
@@ -31,20 +31,20 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group col-md-4 col-sm-5 col-xs-7">
+			<div class="form-group col-md-4 col-sm-5">
 				<label for="contactTime" class="control-label">Sobiv aeg kontakteerumiseks</label>
 				<input type="text" class="form-control" id="contactTime" value.bind="report.reporter.contactTime & validate">
 				<small class="form-text text-muted">Nt õhtuti, hommikuti</small>
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group col-md-4 col-sm-5 col-xs-8">
+			<div class="form-group col-md-4 col-sm-5">
 				<label for="municipality" class="control-label">Maakond</label>
 				<enhanced-select guid="municipality" value.bind="report.reporter.municipality & validate" values.bind="municipalities"></enhanced-select>
 			</div>
 		</div>
 		<div class="row">
-			<div class="form-group col-md-5 col-sm-6 col-xs-9">
+			<div class="form-group col-md-5 col-sm-6">
 				<label for="address" class="control-label">Elukoha aadress</label>
 				<input type="text" class="form-control" id="address" value.bind="report.reporter.address & validate">
 				<small class="form-text text-muted">Tänav, maja, korter, linn</small>

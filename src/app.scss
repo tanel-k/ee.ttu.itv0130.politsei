@@ -99,8 +99,9 @@ body {
 			}
 		}
 	}
-
+	
 	form {
+		
 		label {
 			font-weight: $body-font-weight !important;
 		}
@@ -122,6 +123,10 @@ body {
 	.removable-panel {
 		.panel-body {
 			padding-top: 5px;
+		}
+		
+		input.form-control {
+			height: 33.75px !important;
 		}
 		
 		@include fade-in($form-area-fade-in-duration);
@@ -147,8 +152,19 @@ body {
 	.undo-panel {
 		@include top-bottom-margin(20px);
 		
+		p {
+			display: inline-block;
+			padding: 6px 12px;
+			line-height: 1.42857143;
+			vertical-align: middle;
+		}
+		
 		.btn-link {
 			font-size: inherit !important;
+			display: inline-block !important;
+			padding: 6px 12px;
+			line-height: 1.42857143;
+			vertical-align: middle;
 		}
 		
 		.panel-body {
